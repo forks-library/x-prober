@@ -1,9 +1,9 @@
-export interface ServerBenchmarkMarksProps {
+export type ServerBenchmarkMarksProps = {
   cpu: number;
   read: number;
   write: number;
-}
-export interface ServerBenchmarkProps {
+};
+export type ServerBenchmarkProps = {
   id: string;
   name: string;
   url: string;
@@ -12,4 +12,4 @@ export interface ServerBenchmarkProps {
   binUrl: string;
   total: number;
   detail: ServerBenchmarkMarksProps;
-}
+};

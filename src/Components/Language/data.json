@@ -1,11 +1,4 @@
 {
-  "": {
-    "ja": "Project-Id-Version: X-Prober\nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-05 08:46+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Poedit 3.4.2\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: gettext\n",
-    "zh": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:51+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
-    "zhcn": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:51+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
-    "zhhk": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:53+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: zh_HK\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
-    "zhtw": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-05 08:47+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: zh_TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-ZhConverter: 繁化姬 dict-b76338ce-r665 @ 2019/11/20 14:24:08 | https://zhconvert.org\nX-Poedit-Flags-xgettext: --add-comments\n"
-  },
   "{{days}}d {{hours}}h {{mins}}min {{secs}}s": {
     "ja": "{{days}}日 {{hours}}時間 {{mins}}分 {{secs}}秒",
     "zh": "{{days}} 天 {{hours}} 时 {{mins}} 分 {{secs}} 秒",
@@ -190,10 +183,7 @@
   },
   "Dark": {
     "ja": "ダークモード",
-    "zh": "深色模式",
-    "zhcn": "深色模式",
-    "zhhk": "暗黑模式",
-    "zhtw": "深色模式"
+    "zhhk": "暗黑模式"
   },
   "Database": {
     "ja": "データベース",
@@ -211,10 +201,7 @@
   },
   "Default": {
     "ja": "デフォルト",
-    "zh": "默认",
-    "zhcn": "默认",
-    "zhhk": "預設",
-    "zhtw": "預設"
+    "zhhk": "預設"
   },
   "Detail": {
     "ja": "詳細",
@@ -288,17 +275,11 @@
   },
   "Error: {{error}}": {
     "ja": "エラー: {{error}}",
-    "zh": "错误: {{error}}",
-    "zhcn": "错误: {{error}}",
-    "zhhk": "錯誤: {{error}}",
-    "zhtw": "錯誤: {{error}}"
+    "zhhk": "錯誤: {{error}}"
   },
   "Failed to fetch data. Please try again later.": {
     "ja": "データの取得に失敗しました。しばらくしてからもう一度お試しください。",
-    "zh": "无法获取数据，请稍后重试。",
-    "zhcn": "无法获取数据，请稍后重试。",
-    "zhhk": "無法獲取數據，請稍後重試。",
-    "zhtw": "無法獲取資料，請稍後重試。"
+    "zhhk": "無法獲取數據，請稍後重試。"
   },
   "Generate by {{appName}} and developed by {{authorName}}": {
     "ja": "{{appName}} によって生成され、{{authorName}} によって開発されました",

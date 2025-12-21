@@ -1,7 +1,7 @@
-export interface WindowConfigProps {
+export type WindowConfigProps = {
   IS_DEV: boolean;
   AUTHORIZATION: string;
-}
-export interface WindowProps {
-  GLOBAL_CONFIG: WindowConfig;
-}
+};
+export type WindowProps = {
+  GLOBAL_CONFIG: WindowConfigProps;
+};

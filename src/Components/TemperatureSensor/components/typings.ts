@@ -1,8 +1,8 @@
-export interface TemperatureSensorItemProps {
+export type TemperatureSensorItemProps = {
   id: string;
   name: string;
   celsius: number;
-}
-export interface TemperatureSensorPollDataProps {
+};
+export type TemperatureSensorPollDataProps = {
   items: TemperatureSensorItemProps[];
-}
+};

@@ -1,6 +1,6 @@
-export interface TemplatePlaceholdersProps {
+export type TemplatePlaceholdersProps = {
   [id: string]: string | number;
-}
+};
 export function template(
   str: string,
   placeholders: TemplatePlaceholdersProps

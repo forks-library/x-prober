@@ -1,4 +1,4 @@
-export interface ConfigProps {
+export type ConfigProps = {
   APP_VERSION: string;
   APP_NAME: string;
   APP_URL: string;
@@ -12,4 +12,4 @@ export interface ConfigProps {
   AUTHOR_NAME: string;
   LATEST_PHP_STABLE_VERSION: string;
   LATEST_NGINX_STABLE_VERSION: string;
-}
+};

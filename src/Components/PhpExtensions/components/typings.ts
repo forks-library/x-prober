@@ -1,4 +1,4 @@
-export interface PhpExtensionsPollDataProps {
+export type PhpExtensionsPollDataProps = {
   redis: boolean;
   sqlite3: boolean;
   memcache: boolean;
@@ -24,4 +24,4 @@ export interface PhpExtensionsPollDataProps {
   ldap: boolean;
   curl: boolean;
   loadedExtensions: string[];
-}
+};

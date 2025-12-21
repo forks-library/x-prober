@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { gettext } from '@/Components/Language/index.ts';
 import { OK } from '@/Components/Rest/http-status.ts';
 
-interface UseIpProps {
+type UseIpProps = {
   ip: string;
   msg: string;
   isLoading: boolean;
-}
+};
 export const useIp = (type: 4 | 6): UseIpProps => {
   const [data, setData] = useState<UseIpProps>({
     ip: '',

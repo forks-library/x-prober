@@ -1,7 +1,9 @@
 import { AlertTriangle, LoaderPinwheel, Pointer, X } from 'lucide-react';
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, FC } from 'react';
 import styles from './index.module.scss';
-import { ButtonStatus, type ButtonStatusValue } from './typings.ts';interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+import { ButtonStatus, type ButtonStatusValue } from './typings.ts';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   status?: ButtonStatusValue;
 }
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -15,7 +17,7 @@ const Icon: FC<{ status: ButtonStatusValue }> = ({ status }) => {
         [ButtonStatus.Loading]: <LoaderPinwheel />,
         [ButtonStatus.Warning]: <AlertTriangle />,
         [ButtonStatus.Pointer]: <Pointer />,
-      }?.[status] ?? null}
+      }[status] ?? null}
     </span>
   );
 };
@@ -34,10 +36,11 @@ export const Button: FC<ButtonProps> = ({
 export const Link: FC<LinkProps> = ({
   status = ButtonStatus.Pointer,
   children,
+  href,
   ...props
 }) => {
   return (
-    <a className={styles.button} data-link {...props}>
+    <a className={styles.button} data-link href={href} {...props}>
       <Icon status={status} />
       {children}
     </a>

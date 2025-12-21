@@ -1,4 +1,4 @@
-export interface BootstrapPollDataProps {
+export type BootstrapPollDataProps = {
   isDev: boolean;
   version: string;
   appName: string;
@@ -8,4 +8,4 @@ export interface BootstrapPollDataProps {
   authorUrl: string;
   authorName: string;
   authorization: string;
-}
+};

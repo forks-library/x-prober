@@ -1,9 +1,9 @@
-export interface BrowserBenchmarkMarksProps {
+export type BrowserBenchmarkMarksProps = {
   js: number;
   dom: number;
   canvas: number;
-}
-export interface BrowserBenchmarkProps {
+};
+export type BrowserBenchmarkProps = {
   id: string;
   name: string;
   version: string;
@@ -11,4 +11,4 @@ export interface BrowserBenchmarkProps {
   date: string;
   total: number;
   detail: BrowserBenchmarkMarksProps;
-}
+};

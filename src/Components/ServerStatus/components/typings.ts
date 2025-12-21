@@ -1,14 +1,14 @@
-export interface ServerStatusUsageProps {
+export type ServerStatusUsageProps = {
   max: number;
   value: number;
-}
-export interface ServerStatusCpuUsageProps {
+};
+export type ServerStatusCpuUsageProps = {
   usage: number;
   idle: number;
   sys: number;
   user: number;
-}
-export interface ServerStatusPollDataProps {
+};
+export type ServerStatusPollDataProps = {
   sysLoad: number[];
   cpuUsage: ServerStatusCpuUsageProps;
   memRealUsage: ServerStatusUsageProps;
@@ -16,4 +16,4 @@ export interface ServerStatusPollDataProps {
   memCached: ServerStatusUsageProps;
   swapUsage: ServerStatusUsageProps;
   swapCached: ServerStatusUsageProps;
-}
+};

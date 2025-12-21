@@ -52,7 +52,7 @@ const BrowserBenchmarkResult: FC<{
   );
 };
 export const BrowserBenchmarkItem: FC<{
-  ua: string;
+  ua?: string;
   header: ReactNode;
   marks: BrowserBenchmarkMarksProps;
   maxMarks: number;

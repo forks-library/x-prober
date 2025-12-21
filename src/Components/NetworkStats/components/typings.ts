@@ -1,9 +1,9 @@
-export interface NetworkStatsItemProps {
+export type NetworkStatsItemProps = {
   id: string;
   rx: number;
   tx: number;
-}
-export interface NetworkStatsPollDataProps {
+};
+export type NetworkStatsPollDataProps = {
   networks: NetworkStatsItemProps[];
   timestamp: number;
-}
+};

@@ -1,9 +1,9 @@
 import { WindowConfig } from '../WindowConfig/components/index.ts';
 
-interface ServerFetchProps<T> {
+type ServerFetchProps<T> = {
   data: T | null;
   status: number;
-}
+};
 const isDev = import.meta.env?.MODE === 'development';
 export const serverFetchRoute = (action: string) => {
   return `${isDev ? '/api' : window.location.pathname}?action=${action}`;

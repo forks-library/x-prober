@@ -4,7 +4,6 @@ import { ModuleItem } from '@/Components/Module/components/item.tsx';
 import { UiDescription } from '@/Components/ui/description/index.tsx';
 import { BrowserBenchmarkBrowsers } from './browsers.tsx';
 import { BrowserBenchmarkConstants } from './constants.ts';
-import { BrowserBenchmarkMyBrowser } from './my-browser.tsx';
 export const BrowserBenchmark: FC = memo(() => {
   return (
     <ModuleItem

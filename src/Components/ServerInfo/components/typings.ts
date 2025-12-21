@@ -1,10 +1,10 @@
-export interface ServerInfoUptimeProps {
+export type ServerInfoUptimeProps = {
   days: number;
   hours: number;
   mins: number;
   secs: number;
-}
-export interface ServerInfoPollDataProps {
+};
+export type ServerInfoPollDataProps = {
   serverName: string;
   serverUtcTime: string;
   serverTime: string;
@@ -17,4 +17,4 @@ export interface ServerInfoPollDataProps {
   cpuModel: string;
   serverOs: string;
   scriptPath: string;
-}
+};

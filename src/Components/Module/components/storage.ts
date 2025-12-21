@@ -1,4 +1,6 @@
-import type { StoragePriorityItemProps } from './store.ts';const STORAGE_KEY = 'module-priority';
+import type { StoragePriorityItemProps } from './store.ts';
+
+const STORAGE_KEY = 'module-priority';
 export const ModuleStorage = {
   getItems(): Record<string, number> {
     const items = localStorage.getItem(STORAGE_KEY);

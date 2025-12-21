@@ -1,4 +1,4 @@
-export interface PhpInfoPollDataProps {
+export type PhpInfoPollDataProps = {
   phpVersion: string;
   sapi: string;
   displayErrors: boolean;
@@ -13,4 +13,4 @@ export interface PhpInfoPollDataProps {
   smtp: boolean;
   disableFunctions: string[];
   disableClasses: string[];
-}
+};

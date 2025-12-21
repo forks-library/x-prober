@@ -1,6 +1,6 @@
-interface ImportMetaEnv {
+type ImportMetaEnv = {
   MODE?: 'development' | 'production';
-}
-interface ImportMeta {
+};
+type ImportMeta = {
   env: ImportMetaEnv;
-}
+};

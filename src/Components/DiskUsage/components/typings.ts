@@ -1,8 +1,8 @@
-export interface DiskUsageItemProps {
+export type DiskUsageItemProps = {
   id: string;
   total: number;
   free: number;
-}
-export interface DiskUsagePollDataProps {
+};
+export type DiskUsagePollDataProps = {
   items: DiskUsageItemProps[];
-}
+};

@@ -48,8 +48,8 @@ export const UserConfigDisableFeature = {
   ServerIp: 'serverIp',
 };
 export type UserConfigNodeProps = [nodeName: string, url: string];
-export interface UserConfigProps {
+export type UserConfigProps = {
   serverBenchmarkCd?: number;
   nodes?: UserConfigNodeProps[];
   disabled?: UserConfigDisableFeatureKey;
-}
+};

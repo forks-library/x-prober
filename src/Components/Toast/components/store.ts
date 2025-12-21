@@ -1,5 +1,7 @@
 import { configure, makeAutoObservable, runInAction } from 'mobx';
-import type { ReactNode } from 'react';configure({
+import type { ReactNode } from 'react';
+
+configure({
   enforceActions: 'observed',
 });
 class Main {

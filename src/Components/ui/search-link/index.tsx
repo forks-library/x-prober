@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import styles from './index.module.scss';export const SearchLink: FC<{
+import styles from './index.module.scss';
+export const SearchLink: FC<{
   keyword: string;
 }> = ({ keyword }) => (
   <a

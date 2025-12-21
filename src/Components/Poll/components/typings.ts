@@ -11,7 +11,7 @@ import type { ServerStatusPollDataProps } from '@/Components/ServerStatus/compon
 import type { TemperatureSensorPollDataProps } from '@/Components/TemperatureSensor/components/typings.ts';
 import type { UserConfigProps } from '@/Components/UserConfig/typings.ts';
 
-export interface PollDataProps {
+export type PollDataProps = {
   config: ConfigProps | null;
   userConfig: UserConfigProps | null;
   database: DatabasePollDataProps | null;
@@ -24,4 +24,4 @@ export interface PollDataProps {
   serverInfo: ServerInfoPollDataProps | null;
   nodes: NodesPollDataProps | null;
   temperatureSensor: TemperatureSensorPollDataProps | null;
-}
+};

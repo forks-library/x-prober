@@ -1,8 +1,8 @@
-export interface ServerToBrowserPingItemProps {
+export type ServerToBrowserPingItemProps = {
   id: string;
   time: number;
-}
-export interface ServerToBrowserPingProps {
+};
+export type ServerToBrowserPingProps = {
   location: string;
   items: ServerToBrowserPingItemProps[];
-}
+};

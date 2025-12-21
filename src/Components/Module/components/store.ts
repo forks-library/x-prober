@@ -9,10 +9,10 @@ import type { ModuleProps, SortedModuleProps } from './typings.ts';
 configure({
   enforceActions: 'observed',
 });
-export interface StoragePriorityItemProps {
+export type StoragePriorityItemProps = {
   id: string;
   priority: number;
-}
+};
 const saveSortedStorage = (items: SortedModuleProps[]) => {
   const sorted: Record<string, number> = {};
   for (const item of items) {
