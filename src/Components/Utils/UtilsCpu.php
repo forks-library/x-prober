@@ -438,7 +438,7 @@ final class UtilsCpu
             return;
         }
         $line = $lines[0];
-        if (0 !== mb_strpos($line, 'cpu ')) {
+        if (0 !== strpos($line, 'cpu ')) {
             return;
         }
         $items = explode(' ', preg_replace('/\\s+/', ' ', $line));
