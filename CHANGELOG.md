@@ -2,6 +2,16 @@
 
 All Notable changes to `X-Prober` will be documented in this file
 
+## 9.1.1 - 2025-12-21
+
+### Fix
+
+- Fix mb_ function error in PHP7/PHP5
+
+### Optimize
+
+- Optimize interval data
+
 ## 9.1.0 - 2025-09-05
 
 ### Add

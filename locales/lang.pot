@@ -15,9 +15,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: gettext\n"
 
-msgid "Failed to fetch data. Please try again later."
-msgstr ""
-
 msgid "Touch to copy marks"
 msgstr ""
 
@@ -37,12 +34,6 @@ msgid "Benchmark my browser"
 msgstr ""
 
 msgid "Browser bench"
-msgstr ""
-
-msgid "Dark"
-msgstr ""
-
-msgid "Default"
 msgstr ""
 
 msgid "Database"
@@ -112,9 +103,6 @@ msgid "CPU"
 msgstr ""
 
 msgid "Nodes"
-msgstr ""
-
-msgid "Error: {{error}}"
 msgstr ""
 
 msgid "Ram"

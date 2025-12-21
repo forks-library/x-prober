@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: X-Prober\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-09-04 22:51+0800\n"
-"Last-Translator: Km.Van <kmvan.com@gmail.com>\n"
+"PO-Revision-Date: 2025-12-21 21:27+0800\n"
+"Last-Translator: Km.Van <kmvan@outlook.com>\n"
 "Language-Team: kmvan <kmvan.com@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,8 @@ msgstr ""
 "X-Poedit-KeywordsList: gettext\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-Flags-xgettext: --add-comments\n"
-
-msgid "Failed to fetch data. Please try again later."
-msgstr "无法获取数据，请稍后重试。"
 
 msgid "Touch to copy marks"
 msgstr "点击复制分数"
@@ -44,12 +41,6 @@ msgstr "测试浏览器性能"
 
 msgid "Browser bench"
 msgstr "浏览器性能"
-
-msgid "Dark"
-msgstr "深色模式"
-
-msgid "Default"
-msgstr "默认"
 
 msgid "Database"
 msgstr "数据库"
@@ -119,9 +110,6 @@ msgstr "处理器"
 
 msgid "Nodes"
 msgstr "节点"
-
-msgid "Error: {{error}}"
-msgstr "错误: {{error}}"
 
 msgid "Ram"
 msgstr "内存"
@@ -405,6 +393,18 @@ msgstr "不支持"
 
 msgid "Can not fetch IP"
 msgstr "无法获取 IP"
+
+#~ msgid "Failed to fetch data. Please try again later."
+#~ msgstr "无法获取数据，请稍后重试。"
+
+#~ msgid "Dark"
+#~ msgstr "深色模式"
+
+#~ msgid "Default"
+#~ msgstr "默认"
+
+#~ msgid "Error: {{error}}"
+#~ msgstr "错误: {{error}}"
 
 #~ msgid "Benchmark"
 #~ msgstr "性能测试"

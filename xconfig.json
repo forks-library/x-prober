@@ -1,10 +1,8 @@
 {
   // You can disable listed features: serverStatus, diskUsage, networkStats, ping, serverInfo, phpInfo, phpInfoDetail, phpDisabledFunctions, phpDisabledClasses, phpExtensions, phpExtensionsLoaded, database, myServerBenchmark, myInfo, serverIp
   // "disabled": ["serverIp", "phpInfoDetail"],
-
   // The server benchmark cooldown (seconds)
   "serverBenchmarkCd": 30,
-
   // You can set nodes for X-Prober
   "nodes": [
     // ["node-1", "http://localhost:5173"],
