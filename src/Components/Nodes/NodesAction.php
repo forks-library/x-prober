@@ -41,7 +41,7 @@ final class NodesAction
         }
         $isDev = \defined('XPROBER_IS_DEV') && XPROBER_IS_DEV;
         $url = $node['url'];
-        $isRemote = ( ! str_contains($url, 'localhost') || ! str_contains($url, '127.0.0.1'));
+        $isRemote = (false === strpos($url, 'localhost') && false === strpos($url, '127.0.0.1'));
         $params = 'action=poll';
         $url = ($isDev && ! $isRemote) ? "{$url}/api?{$params}" : "{$url}?{$params}";
 
