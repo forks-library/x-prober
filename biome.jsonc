@@ -11,7 +11,7 @@
     }
   },
   "extends": [
-    "ultracite/core",
-    "ultracite/react"
+    "ultracite/biome/core",
+    "ultracite/biome/react"
   ]
 }
