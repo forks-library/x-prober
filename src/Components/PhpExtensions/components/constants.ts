@@ -1,3 +1,1 @@
-export const PhpExtensionsConstants = {
-  id: 'phpExtensions',
-};
+export const PHP_EXTENSIONS_ID = "phpExtensions";

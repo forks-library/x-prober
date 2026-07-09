@@ -30,7 +30,11 @@ final class PollAction extends PoolConstants
             'Ping\\PingPoll',
         ] as $fn) {
             $class = "\\InnStudio\\Prober\\Components\\{$fn}";
-            $data = array_merge($data, (new $class())->render());
+            $render = (new $class())->render();
+            if ( ! $render || ! $render[array_keys($render)[0]]) {
+                continue;
+            }
+            $data = array_merge($data, $render);
         }
         (new RestResponse())
             ->setData($data)

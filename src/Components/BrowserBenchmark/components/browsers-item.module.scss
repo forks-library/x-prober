@@ -2,11 +2,11 @@
   --x-server-benchmark-bg: transparent;
   --x-server-benchmark-link-bg: hsl(0 0% 0% / 0.05);
   --x-server-benchmark-link-fg: hsl(0 0% 0% / 0.95);
-  @media (prefers-color-scheme: dark) {
-    // --x-server-benchmark-bg: hsl(0 0% 100% / 0.05);
-    --x-server-benchmark-link-fg: hsl(0 0% 100% / 0.95);
-    --x-server-benchmark-link-bg: hsl(0 0% 100% / 0.05);
-  }
+}
+:global([data-theme="dark"]) {
+  // --x-server-benchmark-bg: hsl(0 0% 100% / 0.05);
+  --x-server-benchmark-link-fg: hsl(0 0% 100% / 0.95);
+  --x-server-benchmark-link-bg: hsl(0 0% 100% / 0.05);
 }
 .main {
   display: grid;

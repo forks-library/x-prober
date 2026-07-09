@@ -1,17 +1,22 @@
-import { configure, makeAutoObservable } from 'mobx';configure({
-  enforceActions: 'observed',
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
+
+type State = {
+  activeIndex: number;
+  isOpen: boolean;
+  setActiveIndex: (activeIndex: number) => void;
+  setIsOpen: (isOpen: boolean) => void;
+};
+const store: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
+  activeIndex: 0,
+  isOpen: false,
+  setActiveIndex: (activeIndex) =>
+    set((state) => {
+      state.activeIndex = activeIndex;
+    }),
+  setIsOpen: (isOpen) =>
+    set((state) => {
+      state.isOpen = isOpen;
+    }),
 });
-class Main {
-  activeIndex = 0;
-  isOpen = false;
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setActiveIndex = (activeIndex: typeof this.activeIndex) => {
-    this.activeIndex = activeIndex;
-  };
-  setIsOpen = (isOpen: typeof this.isOpen) => {
-    this.isOpen = isOpen;
-  };
-}
-export const NavStore = new Main();
+export const useNavStore = create<State>()(immer(store));

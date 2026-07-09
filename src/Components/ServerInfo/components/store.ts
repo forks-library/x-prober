@@ -1,26 +1,30 @@
-import { configure, makeAutoObservable } from 'mobx';
-import { isDeepEqual } from '@/Components/Utils/components/is-deep-equal/index.ts';
-import type { ServerInfoPollDataProps } from './typings.ts';configure({
-  enforceActions: 'observed',
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import type { ServerInfoPollDataProps } from "./types.ts";
+
+type State = {
+  pollData: ServerInfoPollDataProps | null;
+  publicIpv4: string;
+  publicIpv6: string;
+  setPollData: (pollData: ServerInfoPollDataProps | null) => void;
+  setPublicIpv4: (ipv4: string) => void;
+  setPublicIpv6: (ipv6: string) => void;
+};
+const store: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
+  pollData: null,
+  publicIpv4: "",
+  publicIpv6: "",
+  setPollData: (pollData) =>
+    set((state) => {
+      state.pollData = pollData;
+    }),
+  setPublicIpv4: (publicIpv4) =>
+    set((state) => {
+      state.publicIpv4 = publicIpv4;
+    }),
+  setPublicIpv6: (publicIpv6) =>
+    set((state) => {
+      state.publicIpv6 = publicIpv6;
+    }),
 });
-class Main {
-  pollData: ServerInfoPollDataProps | null = null;
-  publicIpv4 = '';
-  publicIpv6 = '';
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setPollData = (pollData: ServerInfoPollDataProps | null) => {
-    if (isDeepEqual(pollData, this.pollData)) {
-      return;
-    }
-    this.pollData = pollData;
-  };
-  setPublicIpv4 = (ipv4: string) => {
-    this.publicIpv4 = ipv4;
-  };
-  setPublicIpv6 = (ipv6: string) => {
-    this.publicIpv6 = ipv6;
-  };
-}
-export const ServerInfoStore = new Main();
+export const useServerInfoStore = create<State>()(immer(store));

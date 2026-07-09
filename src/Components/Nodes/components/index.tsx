@@ -1,24 +1,22 @@
-import { observer } from 'mobx-react-lite';
-import type { FC } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { ModuleItem } from '@/Components/Module/components/item.tsx';
-import { NodesConstants } from './constants.ts';
-import styles from './index.module.scss';
-import { Node } from './node.tsx';
-import { NodesStore } from './store';
-export const Nodes: FC = observer(() => {
-  const { pollData } = NodesStore;
-  const nodeIds = pollData?.nodesIds ?? [];
-  if (!nodeIds.length) {
+import type { FC } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { gettext } from "@/Components/Language/index.ts";
+import { ModuleItem } from "@/Components/Module/components/item.tsx";
+import { NODES_ID } from "./constants.ts";
+import styles from "./index.module.scss";
+import { Node } from "./node.tsx";
+import { useNodesStore } from "./store";
+
+export const Nodes: FC = () => {
+  const nodesIds = useNodesStore(useShallow((s) => s.pollData?.nodesIds ?? []));
+  if (!nodesIds.length) {
     return null;
   }
   return (
-    <ModuleItem id={NodesConstants.id} title={gettext('Nodes')}>
+    <ModuleItem id={NODES_ID} title={gettext("Nodes")}>
       <div className={styles.main}>
-        {nodeIds.map((id) => (
-          <Node id={id} key={id} />
-        ))}
+        {nodesIds.map((id) => <Node id={id} key={id} />)}
       </div>
     </ModuleItem>
   );
-});
+};

@@ -1,3 +1,1 @@
-export const ServerBenchmarkConstants = {
-  id: 'serverBenchmark',
-};
+export const SERVER_BENCHMARK_ID = "serverBenchmark";

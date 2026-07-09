@@ -1,18 +1,25 @@
-import { observer } from 'mobx-react-lite';
-import { type FC, useEffect } from 'react';
-import { Link } from '@/Components/Button/components/index.tsx';
-import { serverFetch } from '@/Components/Fetch/server-fetch.ts';
-import { gettext } from '@/Components/Language/index.ts';
-import { OK } from '@/Components/Rest/http-status.ts';
-import { template } from '@/Components/Utils/components/template.ts';
-import { versionCompare } from '@/Components/Utils/components/version-compare.ts';
-import { PhpInfoStore } from './store.ts';
-export const PhpInfoPhpVersion: FC = observer(() => {
-  const { pollData, latestPhpVersion, setLatestPhpVersion } = PhpInfoStore;
+import { type FC, useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { Link } from "@/Components/Button/components/index.tsx";
+import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
+import { gettext } from "@/Components/Language/index.ts";
+import { OK } from "@/Components/Rest/http-status.ts";
+import { template } from "@/Components/Utils/components/template.ts";
+import { versionCompare } from "@/Components/Utils/components/version-compare.ts";
+import { usePhpInfoStore } from "./store.ts";
+
+export const PhpInfoPhpVersion: FC = () => {
+  const { phpVersion, latestPhpVersion, setLatestPhpVersion } = usePhpInfoStore(
+    useShallow((s) => ({
+      latestPhpVersion: s.latestPhpVersion,
+      phpVersion: s.pollData?.phpVersion ?? "",
+      setLatestPhpVersion: s.setLatestPhpVersion,
+    })),
+  );
   useEffect(() => {
     const fetchData = async () => {
       const { data, status } = await serverFetch<{ version: string }>(
-        'latestPhpVersion'
+        "latestPhpVersion",
       );
       if (data?.version && status === OK) {
         setLatestPhpVersion(data.version);
@@ -20,22 +27,23 @@ export const PhpInfoPhpVersion: FC = observer(() => {
     };
     fetchData();
   }, [setLatestPhpVersion]);
-  const phpVersion = pollData?.phpVersion ?? '';
   const compare = versionCompare(phpVersion, latestPhpVersion);
   return (
     <Link
       href="https://www.php.net/"
-      title={gettext('Visit PHP.net Official website')}
+      title={gettext("Visit PHP.net Official website")}
     >
       {compare === -1
-        ? ` ${template(
-            gettext('{{oldVersion}} (Latest: {{latestPhpVersion}})'),
+        ? ` ${
+          template(
+            gettext("{{oldVersion}} (Latest: {{latestPhpVersion}})"),
             {
-              oldVersion: phpVersion,
               latestPhpVersion,
-            }
-          )}`
+              oldVersion: phpVersion,
+            },
+          )
+        }`
         : phpVersion}
     </Link>
   );
-});
+};

@@ -1,18 +1,21 @@
-import { configure, makeAutoObservable } from 'mobx';
-import { isDeepEqual } from '../Utils/components/is-deep-equal/index.ts';
-import type { ConfigProps } from './typings.ts';configure({
-  enforceActions: 'observed',
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import { isDeepEqual } from "../Utils/components/is-deep-equal/index.ts";
+import type { ConfigProps } from "./types.ts";
+
+type State = {
+  pollData: ConfigProps | null;
+  setPollData: (pollData: ConfigProps | null) => void;
+};
+const createStore: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
+  pollData: null,
+  setPollData: (data) => {
+    set((state) => {
+      if (isDeepEqual(data, state.pollData)) {
+        return;
+      }
+      state.pollData = data;
+    });
+  },
 });
-class Main {
-  pollData: ConfigProps | null = null;
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setPollData = (pollData: ConfigProps | null) => {
-    if (isDeepEqual(pollData, this.pollData)) {
-      return;
-    }
-    this.pollData = pollData;
-  };
-}
-export const ConfigStore = new Main();
+export const useConfigStore = create<State>()(immer(createStore));

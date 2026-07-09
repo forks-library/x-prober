@@ -2,11 +2,11 @@
   --x-sys-load-fg: var(--x-fg);
   --x-sys-load-bg: transparent;
   --x-sys-load-interval-bg: hsl(0 0% 0% / 0.1);
-  @media (prefers-color-scheme: dark) {
-    --x-sys-load-fg: var(--x-fg);
-    // --x-sys-load-bg: hsl(0 0% 100% / 0.05);
-    --x-sys-load-interval-bg: hsl(0 0% 100% / 0.1);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-sys-load-fg: var(--x-fg);
+  // --x-sys-load-bg: hsl(0 0% 100% / 0.05);
+  --x-sys-load-interval-bg: hsl(0 0% 100% / 0.1);
 }
 .main {
   display: grid;

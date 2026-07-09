@@ -1,3 +1,1 @@
-export const PhpInfoConstants = {
-  id: 'phpInfo',
-};
+export const PHP_INFO_ID = "phpInfo";

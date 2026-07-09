@@ -1,20 +1,22 @@
-import { observer } from 'mobx-react-lite';
-import { type FC, type RefObject, useCallback, useRef } from 'react';
-import { Button } from '@/Components/Button/components/index.tsx';
-import { ButtonStatus } from '@/Components/Button/components/typings.ts';
-import { serverFetch } from '@/Components/Fetch/server-fetch.ts';
-import { gettext } from '@/Components/Language/index.ts';
-import { ModuleGroup } from '@/Components/Module/components/group.tsx';
-import { OK } from '@/Components/Rest/http-status.ts';
-import { calculateMdev } from '@/Components/Utils/components/mdev.ts';
-import { template } from '@/Components/Utils/components/template.ts';
-import { UiSingleColContainer } from '@/Components/ui/col/single-container.tsx';
-import type { ServerToBrowserPingItemProps } from '../typings.ts';
-import { PingStore } from './store.ts';
-import styles from './style.module.scss';
+import { type FC, type RefObject, useCallback, useRef } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { Button } from "@/Components/Button/components/index.tsx";
+import { ButtonStatus } from "@/Components/Button/components/types.ts";
+import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
+import { gettext } from "@/Components/Language/index.ts";
+import { ModuleGroup } from "@/Components/Module/components/group.tsx";
+import { OK } from "@/Components/Rest/http-status.ts";
+import { calculateMdev } from "@/Components/Utils/components/mdev.ts";
+import { template } from "@/Components/Utils/components/template.ts";
+import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
+import { usePingStore } from "./store.ts";
+import styles from "./style.module.scss";
+import type { ServerToBrowserPingItemProps } from "./types.ts";
 
-const Results: FC = observer(() => {
-  const { serverToBrowserPingItems } = PingStore;
+const Results: FC = () => {
+  const serverToBrowserPingItems = usePingStore(
+    useShallow((s) => s.serverToBrowserPingItems),
+  );
   const count = serverToBrowserPingItems.length;
   const items = serverToBrowserPingItems.map(({ time }) => time);
   const avg = count ? (items.reduce((a, b) => a + b, 0) / count).toFixed(2) : 0;
@@ -25,55 +27,64 @@ const Results: FC = observer(() => {
     <div className={styles.result}>
       {template(
         gettext(
-          '{{times}} times, min/avg/max/mdev = {{min}}/{{avg}}/{{max}}/{{mdev}} ms'
+          "{{times}} times, min/avg/max/mdev = {{min}}/{{avg}}/{{max}}/{{mdev}} ms",
         ),
-        { times: count, min, max, avg, mdev }
+        { avg, max, mdev, min, times: count },
       )}
     </div>
   );
-});
+};
 const ResultContainer: FC<{
   refContainer: RefObject<HTMLUListElement | null>;
-}> = observer(({ refContainer }) => {
-  const { serverToBrowserPingItems } = PingStore;
-  const count = serverToBrowserPingItems.length;
+}> = ({ refContainer }) => {
+  const serverToBrowserPingItems = usePingStore(
+    useShallow((s) => s.serverToBrowserPingItems),
+  );
+  const hasServerToBrowserPingItems = Boolean(serverToBrowserPingItems.length);
   return (
-    <ModuleGroup label={gettext('Results')}>
+    <ModuleGroup label={gettext("Results")}>
       <div className={styles.resultContainer}>
-        {!count && '-'}
-        {Boolean(count) && (
+        {!hasServerToBrowserPingItems && "-"}
+        {hasServerToBrowserPingItems && (
           <ul className={styles.itemContainer} ref={refContainer}>
             {serverToBrowserPingItems.map(({ id, time }) => (
               <li key={id}>{`${time} ms`}</li>
             ))}
           </ul>
         )}
-        {Boolean(count) && <Results />}
+        {hasServerToBrowserPingItems && <Results />}
       </div>
     </ModuleGroup>
   );
-});
-export const PingServerToBrowser: FC = observer(() => {
+};
+export const PingServerToBrowser: FC = () => {
   const {
-    setIsPing,
-    setIsPingServerToBrowser,
-    addServerToBrowserPingItem,
     isPing,
     isPingServerToBrowser,
-  } = PingStore;
+    setIsPingServerToBrowser,
+    addServerToBrowserPingItem,
+  } = usePingStore(
+    useShallow((s) => ({
+      addServerToBrowserPingItem: s.addServerToBrowserPingItem,
+      isPing: s.isPingServerToBrowser || s.isPingServerToServer,
+      isPingServerToBrowser: s.isPingServerToBrowser,
+      setIsPingServerToBrowser: s.setIsPingServerToBrowser,
+    })),
+  );
   const refItemContainer = useRef<HTMLUListElement | null>(null);
   const refPingTimer = useRef<number>(0);
-  const SERVER_TIME_MULTIPLIER = 1000;
-  const TIMEOUT_TIMER_MS = 1000;
-  const SCROLL_TIMER_MS = 100;
+  const ServerTimeMultiplier = 1000;
+  const TimeoutTimerMs = 1000;
+  const ScrollTimerMs = 100;
   const ping = useCallback(async (): Promise<void> => {
     const start = Date.now();
-    const { data, status } =
-      await serverFetch<ServerToBrowserPingItemProps>('ping');
+    const { data, status } = await serverFetch<ServerToBrowserPingItemProps>(
+      "ping",
+    );
     if (data?.time && status === OK) {
       const { id, time } = data;
       const end = Date.now();
-      const serverTime = time * SERVER_TIME_MULTIPLIER;
+      const serverTime = time * ServerTimeMultiplier;
       addServerToBrowserPingItem({
         id,
         time: Math.floor(end - start - serverTime),
@@ -87,44 +98,36 @@ export const PingServerToBrowser: FC = observer(() => {
         if (st < sh) {
           refItemContainer.current.scrollTop = sh;
         }
-      }, SCROLL_TIMER_MS);
+      }, ScrollTimerMs);
     }
   }, [addServerToBrowserPingItem]);
   const pingLoop = useCallback(async (): Promise<void> => {
     await ping();
     refPingTimer.current = window.setTimeout(async () => {
       await pingLoop();
-    }, TIMEOUT_TIMER_MS);
+    }, TimeoutTimerMs);
   }, [ping]);
   const handlePing = useCallback(async () => {
     if (isPing || isPingServerToBrowser) {
-      setIsPing(false);
       setIsPingServerToBrowser(false);
       clearTimeout(refPingTimer.current);
       return;
     }
-    setIsPing(true);
     setIsPingServerToBrowser(true);
     await pingLoop();
-  }, [
-    isPing,
-    isPingServerToBrowser,
-    pingLoop,
-    setIsPing,
-    setIsPingServerToBrowser,
-  ]);
+  }, [isPing, isPingServerToBrowser, pingLoop, setIsPingServerToBrowser]);
   // const count = serverToBrowserPingItems.length;
   return (
     <UiSingleColContainer>
-      <ModuleGroup label={gettext('Server ⇄ Browser')}>
+      <ModuleGroup label={gettext("Server ⇄ Browser")}>
         <Button
           onClick={handlePing}
           status={isPing ? ButtonStatus.Loading : ButtonStatus.Pointer}
         >
-          {isPing ? gettext('Stop ping') : gettext('Start ping')}
+          {isPing ? gettext("Stop ping") : gettext("Start ping")}
         </Button>
       </ModuleGroup>
       <ResultContainer refContainer={refItemContainer} />
     </UiSingleColContainer>
   );
-});
+};

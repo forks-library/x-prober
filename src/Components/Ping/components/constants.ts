@@ -1,3 +1,1 @@
-export const PingConstants = {
-  id: 'ping',
-};
+export const PING_ID = "ping";

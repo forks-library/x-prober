@@ -1,15 +1,16 @@
-import type { CSSProperties, FC, ReactNode } from 'react';
-import styles from './group.module.scss';
+import type { CSSProperties, FC, ReactNode } from "react";
+import styles from "./group.module.scss";
+
 export const ModuleGroup: FC<{
   label?: ReactNode;
   children: ReactNode;
   title?: string;
   minWidth?: number;
   maxWidth?: number;
-}> = ({ label = '', title = '', minWidth = 4, maxWidth = 8, children }) => {
+}> = ({ label = "", title = "", minWidth = 4, maxWidth = 8, children }) => {
   const style = {
-    '--min-width': `${minWidth}rem`,
-    '--max-width': `${maxWidth}rem`,
+    "--max-width": `${maxWidth}rem`,
+    "--min-width": `${minWidth}rem`,
   } as CSSProperties;
   return (
     <div className={styles.main} style={style}>

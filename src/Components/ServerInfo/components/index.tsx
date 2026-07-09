@@ -1,30 +1,31 @@
-import { observer } from 'mobx-react-lite';
-import { type FC, memo, type ReactNode, useEffect } from 'react';
-import { serverFetch } from '@/Components/Fetch/server-fetch.ts';
-import { gettext } from '@/Components/Language/index.ts';
-import { Location } from '@/Components/Location/components/index.tsx';
-import { ModuleGroup } from '@/Components/Module/components/group.tsx';
-import { ModuleItem } from '@/Components/Module/components/item.tsx';
-import { OK } from '@/Components/Rest/http-status.ts';
-import { template } from '@/Components/Utils/components/template';
-import { UiMultiColContainer } from '@/Components/ui/col/multi-container.tsx';
-import { UiSingleColContainer } from '@/Components/ui/col/single-container.tsx';
-import { ServerInfoConstants } from './constants.ts';
-import { ServerInfoStore } from './store.ts';
-import type { ServerInfoPollDataProps } from './typings.ts';
+import { type FC, memo, type ReactNode, useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
+import { gettext } from "@/Components/Language/index.ts";
+import { Location } from "@/Components/Location/components/index.tsx";
+import { ModuleGroup } from "@/Components/Module/components/group.tsx";
+import { ModuleItem } from "@/Components/Module/components/item.tsx";
+import { OK } from "@/Components/Rest/http-status.ts";
+import { template } from "@/Components/Utils/components/template";
+import { UiMultiColContainer } from "@/Components/ui/col/multi-container.tsx";
+import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
+import { SERVER_INFO_ID } from "./constants.ts";
+import { useServerInfoStore } from "./store.ts";
+import type { ServerInfoPollDataProps } from "./types.ts";
 
+const DEFAULT_UPTIME = { days: 0, hours: 0, mins: 0, secs: 0 };
 const ServerTime: FC<{
-  serverUptime: ServerInfoPollDataProps['serverUptime'];
-  serverTime: ServerInfoPollDataProps['serverTime'];
-}> = observer(({ serverUptime, serverTime }) => {
+  serverUptime: ServerInfoPollDataProps["serverUptime"];
+  serverTime: ServerInfoPollDataProps["serverTime"];
+}> = ({ serverUptime, serverTime }) => {
   const { days, hours, mins, secs } = serverUptime;
   const uptime = template(
-    gettext('{{days}}d {{hours}}h {{mins}}min {{secs}}s'),
-    { days, hours, mins, secs }
+    gettext("{{days}}d {{hours}}h {{mins}}min {{secs}}s"),
+    { days, hours, mins, secs },
   );
   const items = [
-    [gettext('Time'), serverTime],
-    [gettext('Uptime'), uptime],
+    [gettext("Time"), serverTime],
+    [gettext("Uptime"), uptime],
   ];
   return (
     <>
@@ -35,21 +36,21 @@ const ServerTime: FC<{
       ))}
     </>
   );
-});
+};
 const SingleItems: FC<{
-  cpuModel: ServerInfoPollDataProps['cpuModel'];
-  serverOs: ServerInfoPollDataProps['serverOs'];
-  scriptPath: ServerInfoPollDataProps['scriptPath'];
+  cpuModel: ServerInfoPollDataProps["cpuModel"];
+  serverOs: ServerInfoPollDataProps["serverOs"];
+  scriptPath: ServerInfoPollDataProps["scriptPath"];
   publicIpv4: string;
 }> = memo(({ cpuModel, serverOs, scriptPath, publicIpv4 }) => {
   const items: [string, ReactNode][] = [
     [
-      gettext('Location (IPv4)'),
+      gettext("Location (IPv4)"),
       <Location ip={publicIpv4} key="serverLocalIpv4" />,
     ],
-    [gettext('CPU model'), cpuModel ?? gettext('Unavailable')],
-    [gettext('OS'), serverOs ?? gettext('Unavailable')],
-    [gettext('Script path'), scriptPath ?? gettext('Unavailable')],
+    [gettext("CPU model"), cpuModel ?? gettext("Unavailable")],
+    [gettext("OS"), serverOs ?? gettext("Unavailable")],
+    [gettext("Script path"), scriptPath ?? gettext("Unavailable")],
   ];
   return (
     <UiSingleColContainer>
@@ -62,8 +63,8 @@ const SingleItems: FC<{
   );
 });
 const MultiItems: FC<{
-  serverName: ServerInfoPollDataProps['serverName'];
-  serverSoftware: ServerInfoPollDataProps['serverSoftware'];
+  serverName: ServerInfoPollDataProps["serverName"];
+  serverSoftware: ServerInfoPollDataProps["serverSoftware"];
   publicIpv4: string;
   publicIpv6: string;
   localIpv4: string;
@@ -78,12 +79,12 @@ const MultiItems: FC<{
     localIpv6,
   }) => {
     const items: [string, ReactNode][] = [
-      [gettext('Name'), serverName ?? gettext('Unavailable')],
-      [gettext('Web server'), serverSoftware ?? gettext('Unavailable')],
-      [gettext('Public IPv4'), publicIpv4 || '-'],
-      [gettext('Public IPv6'), publicIpv6 || '-'],
-      [gettext('Local IPv4'), localIpv4 || '-'],
-      [gettext('Local IPv6'), localIpv6 || '-'],
+      [gettext("Name"), serverName ?? gettext("Unavailable")],
+      [gettext("Web server"), serverSoftware ?? gettext("Unavailable")],
+      [gettext("Public IPv4"), publicIpv4 || "-"],
+      [gettext("Public IPv6"), publicIpv6 || "-"],
+      [gettext("Local IPv4"), localIpv4 || "-"],
+      [gettext("Local IPv6"), localIpv6 || "-"],
     ];
     return (
       <>
@@ -94,16 +95,50 @@ const MultiItems: FC<{
         ))}
       </>
     );
-  }
+  },
 );
-export const ServerInfo: FC = observer(() => {
-  const { pollData, publicIpv4, publicIpv6, setPublicIpv4, setPublicIpv6 } =
-    ServerInfoStore;
+export const LiveUptime: FC = () => {
+  const { serverTime, serverUptime } = useServerInfoStore(
+    useShallow((s) => ({
+      serverTime: s.pollData?.serverTime ?? "-",
+      serverUptime: s.pollData?.serverUptime ?? DEFAULT_UPTIME,
+    })),
+  );
+  return <ServerTime serverTime={serverTime} serverUptime={serverUptime} />;
+};
+export const ServerInfo: FC = () => {
+  const setPublicIpv4 = useServerInfoStore((s) => s.setPublicIpv4);
+  const setPublicIpv6 = useServerInfoStore((s) => s.setPublicIpv6);
+  const {
+    hasPollData,
+    publicIpv4,
+    publicIpv6,
+    localIpv4,
+    localIpv6,
+    serverName,
+    serverSoftware,
+    cpuModel,
+    scriptPath,
+    serverOs,
+  } = useServerInfoStore(
+    useShallow((s) => ({
+      cpuModel: s.pollData?.cpuModel ?? "-",
+      hasPollData: Boolean(s.pollData),
+      localIpv4: s.pollData?.localIpv4 ?? "-",
+      localIpv6: s.pollData?.localIpv6 ?? "-",
+      publicIpv4: s.publicIpv4,
+      publicIpv6: s.publicIpv6,
+      scriptPath: s.pollData?.scriptPath ?? "-",
+      serverName: s.pollData?.serverName ?? "-",
+      serverOs: s.pollData?.serverOs ?? "-",
+      serverSoftware: s.pollData?.serverSoftware ?? "-",
+    })),
+  );
   // fetch ipv4
   useEffect(() => {
     const fetchData = async () => {
       const { data, status } = await serverFetch<{ ip: string }>(
-        'serverPublicIpv4'
+        "serverPublicIpv4",
       );
       if (data?.ip && status === OK) {
         setPublicIpv4(data.ip);
@@ -115,7 +150,7 @@ export const ServerInfo: FC = observer(() => {
   useEffect(() => {
     const fetchData = async () => {
       const { data, status } = await serverFetch<{ ip: string }>(
-        'serverPublicIpv6'
+        "serverPublicIpv6",
       );
       if (data?.ip && status === OK) {
         setPublicIpv6(data.ip);
@@ -123,31 +158,28 @@ export const ServerInfo: FC = observer(() => {
     };
     fetchData();
   }, [setPublicIpv6]);
-  if (!pollData) {
+  if (!hasPollData) {
     return null;
   }
   return (
-    <ModuleItem id={ServerInfoConstants.id} title={gettext('Server Info')}>
+    <ModuleItem id={SERVER_INFO_ID} title={gettext("Server Info")}>
       <UiMultiColContainer minWidth={20}>
-        <ServerTime
-          serverTime={pollData.serverTime}
-          serverUptime={pollData.serverUptime}
-        />
+        <LiveUptime />
         <MultiItems
-          localIpv4={pollData.localIpv4}
-          localIpv6={pollData.localIpv6}
+          localIpv4={localIpv4}
+          localIpv6={localIpv6}
           publicIpv4={publicIpv4}
           publicIpv6={publicIpv6}
-          serverName={pollData.serverName}
-          serverSoftware={pollData.serverSoftware}
+          serverName={serverName}
+          serverSoftware={serverSoftware}
         />
       </UiMultiColContainer>
       <SingleItems
-        cpuModel={pollData.cpuModel}
+        cpuModel={cpuModel}
         publicIpv4={publicIpv4}
-        scriptPath={pollData.scriptPath}
-        serverOs={pollData.serverOs}
+        scriptPath={scriptPath}
+        serverOs={serverOs}
       />
     </ModuleItem>
   );
-});
+};

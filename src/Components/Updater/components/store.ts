@@ -1,44 +1,32 @@
-import { configure, makeAutoObservable } from 'mobx';
-import { ConfigStore } from '@/Components/Config/store.ts';
-import { gettext } from '@/Components/Language/index.ts';
-import { template } from '@/Components/Utils/components/template';
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
-configure({
-  enforceActions: 'observed',
+type State = {
+  isUpdating: boolean;
+  hasUpdateError: boolean;
+  targetVersion: string;
+  setTargetVersion: (targetVersion: string) => void;
+  setIsUpdating: (isUpdating: boolean) => void;
+  setHasUpdateError: (hasUpdateError: boolean) => void;
+};
+const createStore: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
+  isUpdating: false,
+  hasUpdateError: false,
+  targetVersion: "",
+  setTargetVersion: (targetVersion: string) => {
+    set((state) => {
+      state.targetVersion = targetVersion;
+    });
+  },
+  setIsUpdating: (isUpdating: boolean) => {
+    set((state) => {
+      state.isUpdating = isUpdating;
+    });
+  },
+  setHasUpdateError: (hasUpdateError: boolean) => {
+    set((state) => {
+      state.hasUpdateError = hasUpdateError;
+    });
+  },
 });
-class Main {
-  isUpdating = false;
-  isUpdateError = false;
-  targetVersion = '';
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setTargetVersion = (targetVersion: string) => {
-    this.targetVersion = targetVersion;
-  };
-  setIsUpdating = (isUpdating: boolean) => {
-    this.isUpdating = isUpdating;
-  };
-  setIsUpdateError = (isUpdateError: boolean) => {
-    this.isUpdateError = isUpdateError;
-  };
-  get notiText(): string {
-    if (this.isUpdating) {
-      return gettext('⏳ Updating, please wait a second...');
-    }
-    if (this.isUpdateError) {
-      return gettext('❌ Update error, click here to try again?');
-    }
-    if (this.targetVersion) {
-      return template(
-        gettext('✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}'),
-        {
-          oldVersion: ConfigStore.pollData?.APP_VERSION ?? '-',
-          newVersion: this.targetVersion,
-        }
-      );
-    }
-    return '';
-  }
-}
-export const UpdaterStore = new Main();
+export const useUpdaterStore = create<State>()(immer(createStore));

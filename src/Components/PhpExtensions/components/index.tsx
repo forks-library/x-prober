@@ -1,95 +1,115 @@
-import { observer } from 'mobx-react-lite';
-import { type FC, memo } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { ModuleGroup } from '@/Components/Module/components/group.tsx';
-import { ModuleItem } from '@/Components/Module/components/item.tsx';
-import { UiMultiColContainer } from '@/Components/ui/col/multi-container.tsx';
-import { UiSingleColContainer } from '@/Components/ui/col/single-container.tsx';
-import { EnableStatus } from '@/Components/ui/enable-status/index.tsx';
-import { SearchLink } from '@/Components/ui/search-link/index.tsx';
-import { PhpExtensionsConstants } from './constants.ts';
-import { PhpExtensionsStore } from './store.ts';
-export const PhpExtensions: FC = memo(
-  observer(() => {
-    const { pollData } = PhpExtensionsStore;
-    if (!pollData) {
-      return null;
+import { type FC, memo, useMemo } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { gettext } from "@/Components/Language/index.ts";
+import { ModuleGroup } from "@/Components/Module/components/group.tsx";
+import { ModuleItem } from "@/Components/Module/components/item.tsx";
+import { UiMultiColContainer } from "@/Components/ui/col/multi-container.tsx";
+import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
+import { EnableStatus } from "@/Components/ui/enable-status/index.tsx";
+import { SearchLink } from "@/Components/ui/search-link/index.tsx";
+import { PHP_EXTENSIONS_ID } from "./constants.ts";
+import { usePhpExtensionsStore } from "./store.ts";
+export const PhpExtensions: FC = memo(() => {
+  const shortItemsRaw = usePhpExtensionsStore(
+    useShallow((s) => {
+      if (!s.pollData) {
+        return null;
+      }
+      return {
+        curl: s.pollData.curl,
+        exif: s.pollData.exif,
+        fileinfo: s.pollData.fileinfo,
+        gmagick: s.pollData.gmagick,
+        imagick: s.pollData.imagick,
+        ionCube: s.pollData.ionCube,
+        ldap: s.pollData.ldap,
+        mbstring: s.pollData.mbstring,
+        memcache: s.pollData.memcache,
+        memcached: s.pollData.memcached,
+        mysqli: s.pollData.mysqli,
+        opcache: s.pollData.opcache,
+        opcacheEnabled: s.pollData.opcacheEnabled,
+        opcacheJitEnabled: s.pollData.opcacheJitEnabled,
+        phalcon: s.pollData.phalcon,
+        redis: s.pollData.redis,
+        simplexml: s.pollData.simplexml,
+        sockets: s.pollData.sockets,
+        sourceGuardian: s.pollData.sourceGuardian,
+        sqlite3: s.pollData.sqlite3,
+        swoole: s.pollData.swoole,
+        xdebug: s.pollData.xdebug,
+        zendOptimizer: s.pollData.zendOptimizer,
+        zip: s.pollData.zip,
+      };
+    }),
+  );
+  const loadedExtensions = usePhpExtensionsStore(
+    useShallow((s) => s.pollData?.loadedExtensions),
+  );
+  const sortedShortItems = useMemo(() => {
+    if (!shortItemsRaw) {
+      return [];
     }
-    const shortItems: [string, boolean][] = [
-      ['Redis', Boolean(pollData.redis)],
-      ['SQLite3', Boolean(pollData.sqlite3)],
-      ['Memcache', Boolean(pollData.memcache)],
-      ['Memcached', Boolean(pollData.memcached)],
-      ['Opcache', Boolean(pollData.opcache)],
-      [gettext('Opcache enabled'), Boolean(pollData.opcacheEnabled)],
-      [gettext('Opcache JIT enabled'), Boolean(pollData.opcacheJitEnabled)],
-      ['Swoole', Boolean(pollData.swoole)],
-      ['Image Magick', Boolean(pollData.imagick)],
-      ['Graphics Magick', Boolean(pollData.gmagick)],
-      ['Exif', Boolean(pollData.exif)],
-      ['Fileinfo', Boolean(pollData.fileinfo)],
-      ['SimpleXML', Boolean(pollData.simplexml)],
-      ['Sockets', Boolean(pollData.sockets)],
-      ['MySQLi', Boolean(pollData.mysqli)],
-      ['Zip', Boolean(pollData.zip)],
-      ['Multibyte String', Boolean(pollData.mbstring)],
-      ['Phalcon', Boolean(pollData.phalcon)],
-      ['Xdebug', Boolean(pollData.xdebug)],
-      ['Zend Optimizer', Boolean(pollData.zendOptimizer)],
-      ['ionCube', Boolean(pollData.ionCube)],
-      ['Source Guardian', Boolean(pollData.sourceGuardian)],
-      ['LDAP', Boolean(pollData.ldap)],
-      ['cURL', Boolean(pollData.curl)],
+    const items: [string, boolean][] = [
+      ["Redis", Boolean(shortItemsRaw.redis)],
+      ["SQLite3", Boolean(shortItemsRaw.sqlite3)],
+      ["Memcache", Boolean(shortItemsRaw.memcache)],
+      ["Memcached", Boolean(shortItemsRaw.memcached)],
+      ["Opcache", Boolean(shortItemsRaw.opcache)],
+      [gettext("Opcache enabled"), Boolean(shortItemsRaw.opcacheEnabled)],
+      [
+        gettext("Opcache JIT enabled"),
+        Boolean(shortItemsRaw.opcacheJitEnabled),
+      ],
+      ["Swoole", Boolean(shortItemsRaw.swoole)],
+      ["Image Magick", Boolean(shortItemsRaw.imagick)],
+      ["Graphics Magick", Boolean(shortItemsRaw.gmagick)],
+      ["Exif", Boolean(shortItemsRaw.exif)],
+      ["Fileinfo", Boolean(shortItemsRaw.fileinfo)],
+      ["SimpleXML", Boolean(shortItemsRaw.simplexml)],
+      ["Sockets", Boolean(shortItemsRaw.sockets)],
+      ["MySQLi", Boolean(shortItemsRaw.mysqli)],
+      ["Zip", Boolean(shortItemsRaw.zip)],
+      ["Multibyte String", Boolean(shortItemsRaw.mbstring)],
+      ["Phalcon", Boolean(shortItemsRaw.phalcon)],
+      ["Xdebug", Boolean(shortItemsRaw.xdebug)],
+      ["Zend Optimizer", Boolean(shortItemsRaw.zendOptimizer)],
+      ["ionCube", Boolean(shortItemsRaw.ionCube)],
+      ["Source Guardian", Boolean(shortItemsRaw.sourceGuardian)],
+      ["LDAP", Boolean(shortItemsRaw.ldap)],
+      ["cURL", Boolean(shortItemsRaw.curl)],
     ];
-    shortItems.slice().sort((a, b) => {
-      const x = a[0].toLowerCase();
-      const y = b[0].toLowerCase();
-      if (x < y) {
-        return -1;
-      }
-      if (x > y) {
-        return 1;
-      }
-      return 0;
-    });
-    const longItems: string[] = pollData.loadedExtensions || [];
-    longItems.slice().sort((a, b) => {
-      const x = a.toLowerCase();
-      const y = b.toLowerCase();
-      if (x < y) {
-        return -1;
-      }
-      if (x > y) {
-        return 1;
-      }
-      return 0;
-    });
-    return (
-      <ModuleItem
-        id={PhpExtensionsConstants.id}
-        title={gettext('PHP Extensions')}
-      >
-        <UiMultiColContainer minWidth={14}>
-          {shortItems.map(([name, enabled]) => (
-            <ModuleGroup key={name} label={name} maxWidth={10} minWidth={4}>
-              <EnableStatus isEnable={enabled} />
-            </ModuleGroup>
-          ))}
-        </UiMultiColContainer>
-        <UiSingleColContainer>
-          {Boolean(longItems.length) && (
-            <ModuleGroup
-              label={gettext('Loaded extensions')}
-              maxWidth={6}
-              minWidth={4}
-            >
-              {longItems.map((id) => (
-                <SearchLink key={id} keyword={id} />
-              ))}
-            </ModuleGroup>
-          )}
-        </UiSingleColContainer>
-      </ModuleItem>
-    );
-  })
-);
+    return items.sort((a, b) => a[0].localeCompare(b[0]));
+  }, [shortItemsRaw]);
+  const sortedLongItems = useMemo(() => {
+    if (!loadedExtensions) {
+      return [];
+    }
+    return loadedExtensions.slice().sort((a, b) => a.localeCompare(b));
+  }, [loadedExtensions]);
+  if (!shortItemsRaw) {
+    return null;
+  }
+  return (
+    <ModuleItem id={PHP_EXTENSIONS_ID} title={gettext("PHP Extensions")}>
+      <UiMultiColContainer minWidth={14}>
+        {sortedShortItems.map(([name, enabled]) => (
+          <ModuleGroup key={name} label={name} maxWidth={10} minWidth={4}>
+            <EnableStatus isEnable={enabled} />
+          </ModuleGroup>
+        ))}
+      </UiMultiColContainer>
+      <UiSingleColContainer>
+        {Boolean(sortedLongItems.length) && (
+          <ModuleGroup
+            label={gettext("Loaded extensions")}
+            maxWidth={6}
+            minWidth={4}
+          >
+            {sortedLongItems.map((id) => <SearchLink key={id} keyword={id} />)}
+          </ModuleGroup>
+        )}
+      </UiSingleColContainer>
+    </ModuleItem>
+  );
+});

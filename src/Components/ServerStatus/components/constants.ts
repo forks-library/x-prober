@@ -1,3 +1,1 @@
-export const ServerStatusConstants = {
-  id: 'serverStatus',
-};
+export const SERVER_STATUS_ID = "serverStatus";

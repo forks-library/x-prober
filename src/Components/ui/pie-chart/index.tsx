@@ -1,6 +1,7 @@
-import type { FC } from 'react';
-import styles from './index.module.scss';
-import type { PieChartStatusKey } from './typings.ts';
+import type { FC } from "react";
+import styles from "./index.module.scss";
+import type { PieChartStatusKey } from "./types.ts";
+
 export const PieChart: FC<{
   percent: number;
   status: PieChartStatusKey;

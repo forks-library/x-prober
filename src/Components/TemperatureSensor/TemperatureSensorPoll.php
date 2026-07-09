@@ -3,7 +3,6 @@
 namespace InnStudio\Prober\Components\TemperatureSensor;
 
 use Exception;
-use InnStudio\Prober\Components\Config\ConfigApi;
 use InnStudio\Prober\Components\UserConfig\UserConfigApi;
 
 final class TemperatureSensorPoll
@@ -17,30 +16,17 @@ final class TemperatureSensorPoll
             ];
         }
         $items = $this->getItems();
-        if ( ! $items) {
-            return [
-                $id => null,
-            ];
-        }
-        if ($items) {
-            return [
-                $id => $items,
-            ];
-        }
         $cpuTemp = $this->getCpuTemp();
-        if ( ! $cpuTemp) {
-            return [
-                $id => null,
+        if (false !== $cpuTemp) {
+            $items[] = [
+                'id' => 'cpu',
+                'name' => 'CPU',
+                'celsius' => round($cpuTemp / 1000, 2),
             ];
         }
-        $items[] = [
-            'id' => 'cpu',
-            'name' => 'CPU',
-            'celsius' => round((float) $cpuTemp / 1000, 2),
-        ];
 
         return [
-            $id => $items,
+            $id => $items ?: null,
         ];
     }
 
@@ -53,9 +39,9 @@ final class TemperatureSensorPoll
         curl_setopt_array($ch, [
             \CURLOPT_URL => $url,
             \CURLOPT_RETURNTRANSFER => true,
+            \CURLOPT_TIMEOUT => 2,
         ]);
         $res = curl_exec($ch);
-        curl_close($ch);
 
         return (string) $res;
     }
@@ -63,9 +49,12 @@ final class TemperatureSensorPoll
     private function getItems()
     {
         $items = [];
-        foreach (ConfigApi::$config['APP_TEMPERATURE_SENSOR_PORTS'] as $port) {
-            // check curl
-            $res = $this->curl(ConfigApi::$config['APP_TEMPERATURE_SENSOR_URL'] . ":{$port}");
+        $urls = UserConfigApi::get('temperatureSensors') ?: [];
+        if ( ! $urls) {
+            return [];
+        }
+        foreach ($urls as $url) {
+            $res = $this->curl($url);
             if ( ! $res) {
                 continue;
             }
@@ -73,8 +62,7 @@ final class TemperatureSensorPoll
             if ( ! $item || ! \is_array($item)) {
                 continue;
             }
-            $items = $item;
-            break;
+            $items[] = $item;
         }
 
         return $items;
@@ -84,10 +72,13 @@ final class TemperatureSensorPoll
     {
         try {
             $path = '/sys/class/thermal/thermal_zone0/temp';
+            if ( ! is_readable($path)) {
+                return false;
+            }
 
-            return file_exists($path) ? (int) file_get_contents($path) : 0;
+            return (float) file_get_contents($path);
         } catch (Exception $e) {
-            return 0;
+            return false;
         }
     }
 }

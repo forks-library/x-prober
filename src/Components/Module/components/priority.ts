@@ -1,28 +1,47 @@
-import { BrowserBenchmarkConstants } from '@/Components/BrowserBenchmark/components/constants.ts';
-import { PingConstants } from '@/Components/Ping/components/constants.ts';
-import { DatabaseConstants } from '../../Database/components/constants.ts';
-import { DiskUsageConstants } from '../../DiskUsage/components/constants.ts';
-import { MyInfoConstants } from '../../MyInfo/components/constants.ts';
-import { NetworkStatsConstants } from '../../NetworkStats/components/constants.ts';
-import { NodesConstants } from '../../Nodes/components/constants.ts';
-import { PhpExtensionsConstants } from '../../PhpExtensions/components/constants.ts';
-import { PhpInfoConstants } from '../../PhpInfo/components/constants.ts';
-import { ServerBenchmarkConstants } from '../../ServerBenchmark/components/constants.ts';
-import { ServerInfoConstants } from '../../ServerInfo/components/constants.ts';
-import { ServerStatusConstants } from '../../ServerStatus/components/constants.ts';
-import { TemperatureSensorConstants } from '../../TemperatureSensor/components/constants.ts';
-export const ModulePriority = [
-  NodesConstants.id,
-  TemperatureSensorConstants.id,
-  ServerStatusConstants.id,
-  NetworkStatsConstants.id,
-  DiskUsageConstants.id,
-  ServerInfoConstants.id,
-  PingConstants.id,
-  PhpInfoConstants.id,
-  PhpExtensionsConstants.id,
-  DatabaseConstants.id,
-  ServerBenchmarkConstants.id,
-  BrowserBenchmarkConstants.id,
-  MyInfoConstants.id,
-];
+import { BROWSER_BENCHMARK_ID } from "@/Components/BrowserBenchmark/components/constants";
+import { DATABASE_ID } from "@/Components/Database/components/constants";
+import { DISK_USAGE_ID } from "@/Components/DiskUsage/components/constants";
+import { MY_INFO_ID } from "@/Components/MyInfo/components/constants";
+import { NETWORK_STATS_ID } from "@/Components/NetworkStats/components/constants";
+import { NODES_ID } from "@/Components/Nodes/components/constants";
+import { PHP_EXTENSIONS_ID } from "@/Components/PhpExtensions/components/constants";
+import { PHP_INFO_ID } from "@/Components/PhpInfo/components/constants";
+import { PING_ID } from "@/Components/Ping/components/constants";
+import { SERVER_BENCHMARK_ID } from "@/Components/ServerBenchmark/components/constants";
+import { SERVER_INFO_ID } from "@/Components/ServerInfo/components/constants";
+import { SERVER_STATUS_ID } from "@/Components/ServerStatus/components/constants";
+import { TEMPERATURE_SENSOR_ID } from "@/Components/TemperatureSensor/components/constants";
+
+const STORAGE_KEY = "module-priority:v1";
+export const DEFAULT_MODULE_PRIORITES = [
+  NODES_ID,
+  TEMPERATURE_SENSOR_ID,
+  SERVER_STATUS_ID,
+  NETWORK_STATS_ID,
+  DISK_USAGE_ID,
+  PING_ID,
+  SERVER_INFO_ID,
+  PHP_INFO_ID,
+  PHP_EXTENSIONS_ID,
+  DATABASE_ID,
+  SERVER_BENCHMARK_ID,
+  BROWSER_BENCHMARK_ID,
+  MY_INFO_ID,
+] as const;
+export const getStorageModulePriorities = (): string[] => {
+  const items = localStorage.getItem(STORAGE_KEY);
+  if (!items) {
+    return [];
+  }
+  try {
+    const data = JSON.parse(items);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+};
+export const getStorageModulePriority = (id: string): number =>
+  getStorageModulePriorities().indexOf(id);
+export const setStorageModulePriorities = (ids: string[]) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+};

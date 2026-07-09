@@ -1,9 +1,10 @@
-import type { ModuleProps } from '@/Components/Module/components/typings.ts';
-import { DiskUsage as content } from '.';
-import { DiskUsageConstants } from './constants';
-import { DiskUsageNav as nav } from './nav';
+import type { ModuleProps } from "@/Components/Module/components/types";
+import { DiskUsage as content } from ".";
+import { DISK_USAGE_ID as id } from "./constants";
+import { DiskUsageNav as nav } from "./nav";
+
 export const DiskUsageLoader: ModuleProps = {
-  id: DiskUsageConstants.id,
   content,
+  id,
   nav,
 };

@@ -1,29 +1,31 @@
-import { observer } from 'mobx-react-lite';
-import type { FC } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { Meter } from '@/Components/Meter/components';
-import { ModuleGroup } from '@/Components/Module/components/group.tsx';
-import { ModuleItem } from '@/Components/Module/components/item.tsx';
-import { template } from '@/Components/Utils/components/template';
-import { UiSingleColContainer } from '@/Components/ui/col/single-container.tsx';
-import { TemperatureSensorConstants } from './constants.ts';
-import { TemperatureSensorStore } from './store.ts';
-export const TemperatureSensor: FC = observer(() => {
-  const { pollData } = TemperatureSensorStore;
-  if (!pollData?.items?.length) {
+import type { FC } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { gettext } from "@/Components/Language/index.ts";
+import { Meter } from "@/Components/Meter/components";
+import { ModuleGroup } from "@/Components/Module/components/group.tsx";
+import { ModuleItem } from "@/Components/Module/components/item.tsx";
+import { template } from "@/Components/Utils/components/template";
+import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
+import { TEMPERATURE_SENSOR_ID } from "./constants.ts";
+import { useTemperatureSensorStore } from "./store.ts";
+
+export const TemperatureSensor: FC = () => {
+  const items = useTemperatureSensorStore(
+    useShallow((s) => s.pollData?.items ?? []),
+  );
+  if (!items.length) {
     return null;
   }
-  const { items } = pollData;
   return (
     <ModuleItem
-      id={TemperatureSensorConstants.id}
-      title={gettext('Temperature sensor')}
+      id={TEMPERATURE_SENSOR_ID}
+      title={gettext("Temperature sensor")}
     >
       <UiSingleColContainer>
         {items.map(({ id, name, celsius }) => (
           <ModuleGroup
             key={id}
-            title={template(gettext('{{sensor}} temperature'), {
+            title={template(gettext("{{sensor}} temperature"), {
               sensor: name,
             })}
           >
@@ -38,4 +40,4 @@ export const TemperatureSensor: FC = observer(() => {
       </UiSingleColContainer>
     </ModuleItem>
   );
-});
+};

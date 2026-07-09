@@ -2,11 +2,11 @@
   --x-card-legend-arrow-fg: var(--x-card-legend-fg);
   --x-card-legend-arrow-bg-hover: hsl(0 0% 0% / 0.05);
   --x-card-legend-arrow-bg-active: hsl(0 0% 0% / 0.1);
-  @media (prefers-color-scheme: dark) {
-    --x-card-legend-arrow-fg: var(--x-card-legend-fg);
-    --x-card-legend-arrow-bg-hover: hsl(0 0% 100% / 0.05);
-    --x-card-legend-arrow-bg-active: hsl(0 0% 100% / 0.1);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-card-legend-arrow-fg: var(--x-card-legend-fg);
+  --x-card-legend-arrow-bg-hover: hsl(0 0% 100% / 0.05);
+  --x-card-legend-arrow-bg-active: hsl(0 0% 100% / 0.1);
 }
 .arrow {
   display: flex;

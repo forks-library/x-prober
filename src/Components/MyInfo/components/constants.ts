@@ -1,3 +1,1 @@
-export const MyInfoConstants = {
-  id: 'myInfo',
-};
+export const MY_INFO_ID = "myInfo";

@@ -2,13 +2,13 @@
 
 namespace InnStudio\Prober\Components\UserConfig;
 
-use InnStudio\Prober\Components\Utils\UtilsApi;
+use InnStudio\Prober\Components\Utils\UtilsTomlParser;
 
 final class UserConfigApi
 {
     private static $conf;
 
-    private static $filename = 'xconfig.json';
+    private static $filename = 'xconfig.toml';
 
     public static function isDisabled($id)
     {
@@ -30,11 +30,21 @@ final class UserConfigApi
         if ( ! \defined('XPROBER_DIR')) {
             return '';
         }
+        $filename = self::$filename;
         if (\defined('XPROBER_IS_DEV') && XPROBER_IS_DEV) {
-            return \dirname(XPROBER_DIR) . '/' . self::$filename;
+            $path = \dirname(XPROBER_DIR) . "/{$filename}";
+            if ( ! file_exists($path) || ! is_readable($path)) {
+                return '';
+            }
+
+            return $path;
+        }
+        $path = XPROBER_DIR . "/{$filename}";
+        if ( ! file_exists($path) || ! is_readable($path)) {
+            return '';
         }
 
-        return XPROBER_DIR . '/' . self::$filename;
+        return $path;
     }
 
     private static function setConf()
@@ -42,12 +52,20 @@ final class UserConfigApi
         if (null !== self::$conf) {
             return;
         }
-        if ( ! is_readable(self::getFilePath())) {
+        $path = self::getFilePath();
+        if ( ! $path) {
             self::$conf = null;
 
             return;
         }
-        $conf = UtilsApi::jsonDecode(file_get_contents(self::getFilePath()));
+        $content = file_get_contents($path);
+        if ( ! $content) {
+            self::$conf = null;
+
+            return;
+        }
+        // toml
+        $conf = UtilsTomlParser::parse($content);
         if ( ! $conf) {
             self::$conf = null;
 

@@ -1,16 +1,13 @@
-import { configure, makeAutoObservable } from 'mobx';
-import type { PollDataProps } from './typings.ts';
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import type { PollData } from "./types.ts";
 
-configure({
-  enforceActions: 'observed',
+type State = {
+  pollData: PollData | null;
+  setPollData: (pollData: PollData | null) => void;
+};
+const actions: StateCreator<State> = (set) => ({
+  pollData: null,
+  setPollData: (pollData) => set(() => ({ pollData })),
 });
-class Main {
-  pollData: PollDataProps | null = null;
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setPollData = (data: PollDataProps | null) => {
-    this.pollData = data;
-  };
-}
-export const PollStore = new Main();
+export const usePollStore = create<State>()(immer(actions));

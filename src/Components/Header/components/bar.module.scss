@@ -2,11 +2,11 @@
   --x-bar-fg: hsl(0 0% 0% / 0.5);
   --x-bar-bg-hover: hsl(0 0% 0% / 0.1);
   --x-bar-bg-active: hsl(0 0% 0% / 0.15);
-  @media (prefers-color-scheme: dark) {
-    --x-bar-fg: hsl(0 0% 100% / 0.5);
-    --x-bar-bg-hover: hsl(0 0% 100% / 0.1);
-    --x-bar-bg-active: hsl(0 0% 100% / 0.15);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-bar-fg: hsl(0 0% 100% / 0.5);
+  --x-bar-bg-hover: hsl(0 0% 100% / 0.1);
+  --x-bar-bg-active: hsl(0 0% 100% / 0.15);
 }
 .main {
   display: grid;

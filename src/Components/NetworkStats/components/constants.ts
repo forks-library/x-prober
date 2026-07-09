@@ -1,3 +1,1 @@
-export const NetworkStatsConstants = {
-  id: 'networkStats',
-};
+export const NETWORK_STATS_ID = "networkStats";

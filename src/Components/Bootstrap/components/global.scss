@@ -1,10 +1,8 @@
 :root {
-  // --x-html-bg: var(--x-fg);
   --x-fg: hsl(0 0% 10%);
   --x-body-fg: hsl(0 0% 10%);
   --x-body-bg: hsl(0 0% 90%);
-  @media (prefers-color-scheme: dark) {
-    // --x-html-bg: hsl(0, 0%, 0%);
+  &[data-theme="dark"] {
     --x-fg: hsl(0 0% 90%);
     --x-body-fg: hsl(0 0% 90%);
     --x-body-bg: hsl(0 0% 0%);
@@ -24,7 +22,6 @@ html {
 body {
   display: grid;
   place-content: safe center;
-  vertical-align: middle;
   gap: var(--x-gutter);
   margin: 0;
   background: var(--x-body-bg);

@@ -2,11 +2,11 @@
   --x-card-des-fg: var(--x-fg);
   --x-card-des-bg: hsl(0 0% 100% / 0.1);
   --x-card-des-accent: hsl(0 0% 0% / 0.5);
-  @media (prefers-color-scheme: dark) {
-    --x-card-des-fg: var(--x-fg);
-    --x-card-des-bg: hsl(0 0% 100% / 0.1);
-    --x-card-des-accent: hsl(209, 100%, 63%);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-card-des-fg: var(--x-fg);
+  --x-card-des-bg: hsl(0 0% 100% / 0.1);
+  --x-card-des-accent: hsl(209, 100%, 63%);
 }
 .main {
   display: grid;

@@ -20,11 +20,6 @@
     "https://api.inn-studio.com/download/?id=xprober-browser-benchmarks"
   ],
   "APP_CONFIG_URL_DEV": "http://localhost:8000/AppConfig.json",
-  "APP_TEMPERATURE_SENSOR_URL": "http://127.0.0.1",
-  "APP_TEMPERATURE_SENSOR_PORTS": [
-    2048,
-    4096
-  ],
   "AUTHOR_NAME": "INN STUDIO",
   "LATEST_PHP_STABLE_VERSION": "8",
   "LATEST_NGINX_STABLE_VERSION": "1.22.0",

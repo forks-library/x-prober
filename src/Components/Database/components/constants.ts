@@ -1,3 +1,1 @@
-export const DatabaseConstants = {
-  id: 'database',
-};
+export const DATABASE_ID = "database";

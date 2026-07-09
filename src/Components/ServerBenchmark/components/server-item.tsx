@@ -1,11 +1,13 @@
-import copyToClipboard from 'copy-to-clipboard';
-import type { FC, MouseEvent, ReactNode } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { template } from '@/Components/Utils/components/template.ts';
-import { UiRuby } from '@/Components/ui/ruby/index.tsx';
-import { ServerBenchmarkMarksMeter } from './marks-meter.tsx';
-import styles from './server-item.module.scss';
-import type { ServerBenchmarkMarksProps } from './typings.ts';const ServerBenchmarkResult: FC<{
+import copyToClipboard from "copy-to-clipboard";
+import type { FC, MouseEvent, ReactNode } from "react";
+import { gettext } from "@/Components/Language/index.ts";
+import { template } from "@/Components/Utils/components/template.ts";
+import { UiRuby } from "@/Components/ui/ruby/index.tsx";
+import { ServerBenchmarkMarksMeter } from "./marks-meter.tsx";
+import styles from "./server-item.module.scss";
+import type { ServerBenchmarkMarksProps } from "./types.ts";
+
+const ServerBenchmarkResult: FC<{
   cpu: number;
   read: number;
   write: number;
@@ -17,7 +19,7 @@ import type { ServerBenchmarkMarksProps } from './typings.ts';const ServerBenchm
   const writeString = write.toLocaleString();
   const totalString = total.toLocaleString();
   const totalText = template(
-    '{{cpu}} (CPU) + {{read}} (Read) + {{write}} (Write) = {{total}}',
+    "{{cpu}} (CPU) + {{read}} (Read) + {{write}} (Write) = {{total}}",
     {
       cpu: cpuString,
       read: readString,
@@ -35,16 +37,16 @@ import type { ServerBenchmarkMarksProps } from './typings.ts';const ServerBenchm
     <button
       className={styles.marks}
       onClick={handleCopyMarks}
-      title={gettext('Touch to copy marks')}
+      title={gettext("Touch to copy marks")}
       type="button"
     >
       <UiRuby rt="CPU" ruby={cpuString} />
       {sign}
-      <UiRuby rt={gettext('Read')} ruby={readString} />
+      <UiRuby rt={gettext("Read")} ruby={readString} />
       {sign}
-      <UiRuby rt={gettext('Write')} ruby={writeString} />
+      <UiRuby rt={gettext("Write")} ruby={writeString} />
       <span className={styles.sign}>=</span>
-      <UiRuby isResult rt={date || ''} ruby={totalString} />
+      <UiRuby isResult rt={date || ""} ruby={totalString} />
     </button>
   );
 };

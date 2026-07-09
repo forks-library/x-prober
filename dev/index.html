@@ -3,14 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="renderer" content="webkit">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta content="webkit" name="renderer">
     <title>Dev mode</title>
-    <script>window.GLOBAL_CONFIG = {
-            IS_DEV: true
-        };</script>
-    <script type="module" src="/main.tsx"></script>
+    <script>"use strict";
+        (() => {
+            window.GLOBAL_CONFIG = {
+                IS_DEV: true,
+            };
+            try {
+                // 1. 尝试读取用户存储的偏好
+                const storedTheme = localStorage.getItem("theme");
+                let theme = storedTheme; // 如果有存储，直接用
+
+                // 2. 如果没有存储，则检测系统偏好
+                if (!storedTheme) {
+                    const prefersDark = window.matchMedia(
+                        "(prefers-color-scheme: dark)"
+                    ).matches;
+                    theme = prefersDark ? "dark" : "light";
+                }
+
+                // 3. 将主题应用到根元素
+                document.documentElement.setAttribute("data-theme", theme);
+
+                // 4. （可选）如果想让后续 JS 也能读到，可以同步存入 localStorage，但建议让用户主动选择时才存，避免覆盖“未选择”状态
+                //    如果不想存储系统偏好，则不执行 localStorage.setItem
+            } catch (e) {
+                console.error(e);
+            }
+        })();
+    </script>
+    <script src="/main.tsx" type="module"></script>
     <style>
         :root {
             --x-init-fg: hsl(0 0% 10%);
@@ -18,14 +43,14 @@
             --x-init-body-bg: hsl(0 0% 90%);
             --x-init-loading-bg: hsl(0 0% 90%);
             --x-init-loading-fg: hsl(0 0% 10%);
+        }
 
-            @media (prefers-color-scheme: dark) {
-                --x-init-fg: hsl(0 0% 90%);
-                --x-init-body-fg: hsl(0 0% 90%);
-                --x-init-body-bg: hsl(0 0% 0%);
-                --x-init-loading-bg: hsl(0 0% 0%);
-                --x-init-loading-fg: hsl(0 0% 90%);
-            }
+        [data-theme="dark"] {
+            --x-init-fg: hsl(0 0% 90%);
+            --x-init-body-fg: hsl(0 0% 90%);
+            --x-init-body-bg: hsl(0 0% 0%);
+            --x-init-loading-bg: hsl(0 0% 0%);
+            --x-init-loading-fg: hsl(0 0% 90%);
         }
 
         @keyframes spin {
@@ -63,11 +88,10 @@
             content: "";
         }
     </style>
-
 </head>
 
 <body>
-    <div id=loading>Loading...</div>
+    <div id="loading">Loading...</div>
 </body>
 
 </html>

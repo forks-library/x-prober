@@ -1,3 +1,1 @@
-export const NodesConstants = {
-  id: 'nodes',
-};
+export const NODES_ID = "nodes";

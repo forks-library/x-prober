@@ -5,8 +5,10 @@
   --x-radius: 0.5rem;
   --x-fg: hsl(0, 0%, 20%);
   --x-bg: hsl(0, 0%, 97%);
-  --x-text-font-family: Verdana, Geneva, Tahoma, sans-serif;
-  --x-code-font-family: monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+  --x-text-font-family: "Noto Sans SC", Verdana, Geneva, Tahoma, sans-serif, "Microsoft YaHei UI";
+  --x-code-font-family:
+    "Noto Sans Mono", monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", sans-serif,
+    "Microsoft YaHei UI";
 
   --x-app-border-color: var(--x-fg);
   --x-app-bg: var(--x-bg);

@@ -1,18 +1,17 @@
-import { configure, makeAutoObservable } from 'mobx';
-import { isDeepEqual } from '@/Components/Utils/components/is-deep-equal/index.ts';
-import type { PhpExtensionsPollDataProps } from './typings.ts';configure({
-  enforceActions: 'observed',
+import { create, type StateCreator } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import type { PhpExtensionsPollDataProps } from "./types.ts";
+
+type State = {
+  pollData: PhpExtensionsPollDataProps | null;
+  setPollData: (pollData: PhpExtensionsPollDataProps | null) => void;
+};
+const store: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
+  latestPhpVersion: "",
+  pollData: null,
+  setPollData: (data) =>
+    set((state) => {
+      state.pollData = data;
+    }),
 });
-class Main {
-  pollData: PhpExtensionsPollDataProps | null = null;
-  constructor() {
-    makeAutoObservable(this);
-  }
-  setPollData = (pollData: PhpExtensionsPollDataProps | null) => {
-    if (isDeepEqual(pollData, this.pollData)) {
-      return;
-    }
-    this.pollData = pollData;
-  };
-}
-export const PhpExtensionsStore = new Main();
+export const usePhpExtensionsStore = create<State>()(immer(store));

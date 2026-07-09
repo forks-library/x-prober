@@ -1,9 +1,15 @@
-import { observer } from 'mobx-react-lite';
-import type { FC, MouseEvent } from 'react';
-import { NavStore } from '@/Components/Nav/components/store.ts';
-import styles from './bar.module.scss';
-export const HeaderBar: FC = observer(() => {
-  const { isOpen, setIsOpen } = NavStore;
+import type { FC, MouseEvent } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { useNavStore } from "@/Components/Nav/components/store.ts";
+import styles from "./bar.module.scss";
+
+export const HeaderBar: FC = () => {
+  const { isOpen, setIsOpen } = useNavStore(
+    useShallow((s) => ({
+      isOpen: s.isOpen,
+      setIsOpen: s.setIsOpen,
+    })),
+  );
   const handleToggleMenu = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -21,4 +27,4 @@ export const HeaderBar: FC = observer(() => {
       <span className={styles.line} />
     </button>
   );
-});
+};

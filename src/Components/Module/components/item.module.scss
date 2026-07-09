@@ -6,17 +6,18 @@
   --x-module-header-title-fg: hsl(0 0% 0% / 0.7);
   --x-module-header-title-bg: hsl(0 0% 0% / 0.1);
   --x-module-body-bg: var(--x-module-header-bg);
-  --x-module-box-shadow: hsla(0 0% 20% 0.3) 0px -1px 0px hsl(0 0% 100%) 0px 1px 0px inset,
+  --x-module-box-shadow:
+    hsla(0 0% 20% 0.3) 0px -1px 0px hsl(0 0% 100%) 0px 1px 0px inset,
     hsla(0 0% 20% 0.3) 0px -1px 0px inset hsl(0 0% 100%) 0px 1px 0px;
-  @media (prefers-color-scheme: dark) {
-    --x-module-bg: hsl(0 0% 15% / 0.95);
-    --x-module-header-bg: hsl(0 0% 100% / 0.1);
-    --x-module-header-fg: hsl(0 0% 100% / 0.7);
-    --x-module-header-title-fg: hsl(0 0% 100% / 0.7);
-    --x-module-header-title-bg: hsl(0 0% 100% / 0.1);
-    --x-module-body-bg: var(--x-module-header-bg);
-    --x-module-box-shadow: 0px 0px 0px 1px hsl(0 0% 0%) inset;
-  }
+}
+:global([data-theme="dark"]) {
+  --x-module-bg: hsl(0 0% 15% / 0.95);
+  --x-module-header-bg: hsl(0 0% 100% / 0.1);
+  --x-module-header-fg: hsl(0 0% 100% / 0.7);
+  --x-module-header-title-fg: hsl(0 0% 100% / 0.7);
+  --x-module-header-title-bg: hsl(0 0% 100% / 0.1);
+  --x-module-body-bg: var(--x-module-header-bg);
+  --x-module-box-shadow: 0px 0px 0px 1px hsl(0 0% 0%) inset;
 }
 .main {
   position: relative;

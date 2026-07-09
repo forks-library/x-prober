@@ -2,11 +2,11 @@
   --x-card-group-label-fg: var(--x-fg);
   --x-card-group-split-color: hsl(0 0% 0% / 0.1);
   --x-card-group-bg-hover: hsl(0 0% 0% / 0.05);
-  @media (prefers-color-scheme: dark) {
-    --x-card-group-label-fg: var(--x-fg);
-    --x-card-group-split-color: hsl(0 0% 100% / 0.1);
-    --x-card-group-bg-hover: hsl(0 0% 100% / 0.05);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-card-group-label-fg: var(--x-fg);
+  --x-card-group-split-color: hsl(0 0% 100% / 0.1);
+  --x-card-group-bg-hover: hsl(0 0% 100% / 0.05);
 }
 .main {
   display: grid;

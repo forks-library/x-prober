@@ -3,13 +3,12 @@
   --x-network-stats-tx-bg: hsl(23 100% 38% / 0.1);
   --x-network-stats-rx-fg: hsl(120 100% 23%);
   --x-network-stats-rx-bg: hsl(120 100% 23% / 0.1);
-
-  @media (prefers-color-scheme: dark) {
-    --x-network-stats-tx-fg: hsl(23 100% 58%);
-    --x-network-stats-tx-bg: hsl(23 100% 58% /0.15);
-    --x-network-stats-rx-fg: hsl(120 100% 43%);
-    --x-network-stats-rx-bg: hsl(120 100% 43% / 0.15);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-network-stats-tx-fg: hsl(23 100% 58%);
+  --x-network-stats-tx-bg: hsl(23 100% 58% /0.15);
+  --x-network-stats-rx-fg: hsl(120 100% 43%);
+  --x-network-stats-rx-bg: hsl(120 100% 43% / 0.15);
 }
 .main {
   display: grid;

@@ -4,13 +4,13 @@
   --x-pip-chat-fg-medium: hsl(49, 87%, 41%);
   --x-pip-chat-fg-high: hsl(0, 74%, 49%);
   --x-pip-chat-text-fg: hsl(0 0% 0%);
-  @media (prefers-color-scheme: dark) {
-    --x-pip-chat-bg: hsl(0 0% 100% / 0.1);
-    --x-pip-chat-fg-low: hsl(106, 87%, 41%);
-    --x-pip-chat-fg-medium: hsl(49, 87%, 41%);
-    --x-pip-chat-fg-high: hsl(0, 74%, 49%);
-    --x-pip-chat-text-fg: hsl(0 0% 100%);
-  }
+}
+:global([data-theme="dark"]) {
+  --x-pip-chat-bg: hsl(0 0% 100% / 0.1);
+  --x-pip-chat-fg-low: hsl(106, 87%, 41%);
+  --x-pip-chat-fg-medium: hsl(49, 87%, 41%);
+  --x-pip-chat-fg-high: hsl(0, 74%, 49%);
+  --x-pip-chat-text-fg: hsl(0 0% 100%);
 }
 .pieBg {
   stroke: var(--x-pip-chat-bg);

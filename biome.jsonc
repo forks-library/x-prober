@@ -1,16 +1,44 @@
 {
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/remix",
+    "ultracite/biome/vitest"
+  ],
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
   "linter": {
     "rules": {
+      "a11y": {
+        "useKeyWithClickEvents": "warn"
+      },
       "complexity": {
-        "noExcessiveCognitiveComplexity": "off"
+        "noExcessiveCognitiveComplexity": "warn"
+      },
+      "suspicious": {
+        "noAlert": "warn",
+        "noConsole": "warn"
+      },
+      "performance": {
+        "noAwaitInLoops": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "useNamingConvention": "warn",
+        "noMagicNumbers": "warn",
+        "useConsistentTypeDefinitions": {
+          "level": "warn",
+          "options": {
+            "style": "type"
+          }
+        }
       }
     }
-  },
-  "extends": [
-    "ultracite"
-  ]
+  }
 }

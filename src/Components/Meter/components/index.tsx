@@ -1,31 +1,30 @@
 import {
   type FC,
-  type MouseEvent,
   memo,
+  type MouseEvent,
   type ReactNode,
   useCallback,
-} from 'react';
-import { ToastStore } from '@/Components/Toast/components/store';
-import { formatBytes } from '@/Components/Utils/components/format-bytes';
-import styles from './index.module.scss';
+} from "react";
+import { useToastStore } from "@/Components/Toast/components/store.ts";
+import { formatBytes } from "@/Components/Utils/components/format-bytes";
+import styles from "./index.module.scss";
+
 export const MeterCore: FC<{
   value: number;
   max?: number;
   low?: number;
   high?: number;
   optimum?: number;
-}> = memo(({ value, max = 100, low = 60, optimum, high = 80 }) => {
-  return (
-    <meter
-      className={styles.core}
-      high={high}
-      low={low}
-      max={max}
-      optimum={optimum}
-      value={value}
-    />
-  );
-});
+}> = memo(({ value, max = 100, low = 60, optimum, high = 80 }) => (
+  <meter
+    className={styles.core}
+    high={high}
+    low={low}
+    max={max}
+    optimum={optimum}
+    value={value}
+  />
+));
 const MemoMeter: FC<{
   title?: string;
   name?: string;
@@ -40,27 +39,28 @@ const MemoMeter: FC<{
   children?: ReactNode;
 }> = ({
   title,
-  name = '',
+  name = "",
   value,
   max,
   isCapacity,
-  percentTag = '%',
+  percentTag = "%",
   percent,
   percentRender,
   progressPercent,
 }) => {
+  const open = useToastStore((s) => s.open);
   const handleNameClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       e.stopPropagation();
       const content = title || name;
-      ToastStore.open(content);
+      open(content);
       if (title?.length ?? 0 >= 20) {
         return;
       }
       navigator.clipboard.writeText(name);
     },
-    [name, title]
+    [name, title, open],
   );
   const percentFallback = max === 0 || value === 0 ? 0 : (value / max) * 100;
   const overview = isCapacity

@@ -1,5 +1,5 @@
 @mixin config {
-  @media (prefers-color-scheme: dark) {
+  :global([data-theme="dark"]) {
     :root {
       --x-fg: hsl(0, 0%, 80%);
       --x-bg: hsl(0, 0%, 0%);

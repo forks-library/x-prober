@@ -35,14 +35,13 @@ final class Render
     --x-init-body-bg: hsl(0 0% 90%);
     --x-init-loading-bg: hsl(0 0% 90%);
     --x-init-loading-fg: hsl(0 0% 10%);
-
-    @media (prefers-color-scheme: dark) {
-        --x-init-fg: hsl(0 0% 90%);
-        --x-init-body-fg: hsl(0 0% 90%);
-        --x-init-body-bg: hsl(0 0% 0%);
-        --x-init-loading-bg: hsl(0 0% 0%);
-        --x-init-loading-fg: hsl(0 0% 90%);
-    }
+}
+[data-theme="dark"] {
+    --x-init-fg: hsl(0 0% 90%);
+    --x-init-body-fg: hsl(0 0% 90%);
+    --x-init-body-bg: hsl(0 0% 0%);
+    --x-init-loading-bg: hsl(0 0% 0%);
+    --x-init-loading-fg: hsl(0 0% 90%);
 }
 @keyframes spin {
     to {
