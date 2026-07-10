@@ -5,6 +5,7 @@
   --x-nav-bg-hover: oklch(0% 0 0 / 0.1);
   --x-nav-bg-active: oklch(0% 0 0 / 0.15);
   --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(0% 0 0 / 0.1), transparent);
+  --x-nav-text-shadow: 0 1px 2px oklch(100% 0 0 / 0.3);
 }
 :global([data-theme="dark"]) {
   --x-nav-fg: oklch(100% 0 0 / 0.9);
@@ -12,6 +13,7 @@
   --x-nav-bg-hover: oklch(100% 0 0 / 0.1);
   --x-nav-bg-active: oklch(100% 0 0 / 0.15);
   --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(100% 0 0 / 0.1), transparent);
+  --x-nav-text-shadow: 0 1px 2px oklch(0% 0 0 / 0.3);
 }
 .wrap {
   display: flex;
@@ -39,9 +41,9 @@
 }
 .link {
   position: relative;
-  // border-right: 1px solid var(--x-nav-border-color);
   padding: var(--x-gutter);
   color: var(--x-nav-fg);
+  text-shadow: var(--x-nav-text-shadow);
   white-space: nowrap;
   &::after {
     position: absolute;
