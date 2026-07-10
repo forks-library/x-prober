@@ -14,24 +14,16 @@
         THEME: "",
       };
       try {
-        // 1. 尝试读取用户存储的偏好
-        const storedTheme = localStorage.getItem("x-theme");
-        let theme = storedTheme; // 如果有存储，直接用
-
-        // 2. 如果没有存储，则检测系统偏好
-        if (!storedTheme) {
-          const prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-          ).matches;
-          theme = prefersDark ? "dark" : "light";
-          window.THEME = theme;
+        const storedTheme = String(localStorage.getItem("x-theme:v1") ?? "");
+        let theme = storedTheme;
+        if (storedTheme) {
+          window.GLOBAL_CONFIG.THEME = storedTheme;
+        } else {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
         }
-
-        // 3. 将主题应用到根元素
         document.documentElement.setAttribute("data-theme", theme);
-
-        // 4. （可选）如果想让后续 JS 也能读到，可以同步存入 localStorage，但建议让用户主动选择时才存，避免覆盖“未选择”状态
-        //    如果不想存储系统偏好，则不执行 localStorage.setItem
       } catch (e) {
         console.error(e);
       }
