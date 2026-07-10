@@ -1,4 +1,4 @@
-import "@/Components/ColorScheme/components/config.scss";
+import "@/Components/Theme/components/config.scss";
 import { type FC, useEffect, useRef, useState } from "react";
 import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
 import { Footer } from "@/Components/Footer/components/index.tsx";
@@ -11,6 +11,7 @@ import { Modules } from "@/Components/Module/components/index.tsx";
 import { Nav } from "@/Components/Nav/components/index.tsx";
 import { usePollStore } from "@/Components/Poll/components/store.ts";
 import { OK } from "@/Components/Rest/http-status.ts";
+import { Theme } from "@/Components/Theme/components/index.tsx";
 import { useToastStore } from "@/Components/Toast/components/store.ts";
 import { useUpdaterStore } from "@/Components/Updater/components/store.ts";
 import { useInterval } from "@/Components/Utils/components/use-interval.ts";
@@ -23,11 +24,7 @@ export const Bootstrap: FC = () => {
   const isFetchingRef = useRef(false);
   const openToast = useToastStore((s) => s.open);
   const isUpdating = useUpdaterStore((s) => s.isUpdating);
-
-  // 轮询间隔控制
   const pollDelay = isUpdating ? null : TIMER;
-
-  // 核心数据分发逻辑
   const fetchPollData = async () => {
     if (isUpdating || isFetchingRef.current) {
       return;
@@ -52,12 +49,10 @@ export const Bootstrap: FC = () => {
     }
   };
 
-  // 优化点：进入页面立刻执行一次，避免 useInterval 产生 2 秒的白屏等待时间
   useEffect(() => {
     fetchPollData();
   }, []);
 
-  // 启动后续定时轮询
   useInterval(async () => {
     await fetchPollData();
   }, pollDelay);
@@ -69,6 +64,7 @@ export const Bootstrap: FC = () => {
   return (
     <>
       <Header />
+      <Theme />
       <Modules />
       <Footer />
       <Nav />

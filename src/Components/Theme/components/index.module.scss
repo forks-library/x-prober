@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  all: unset;
+  cursor: pointer;
+  background: var(--x-theme-button-bg);
+  padding: 0 var(--x-gutter);
+  color: oklch(0% 0 0 / 0.8);
+  // light
+  &:hover {
+    filter: brightness(1.1);
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+
+  &[data-active] {
+    transform: scale(1.25);
+    z-index: 1;
+  }
+  &:first-child {
+    border-top-left-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+  }
+  &:last-child {
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+  }
+  // dark
+  &[data-is-dark] {
+    color: oklch(100% 0 0 / 0.8);
+    &:hover {
+      filter: brightness(1.5);
+    }
+    &:active {
+      filter: brightness(0.9);
+    }
+    &[data-active] {
+      // box-shadow: 0 0 0 2px oklch(100% 0 0 / 0.8);
+      pointer-events: none;
+    }
+  }
+}

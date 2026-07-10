@@ -2,96 +2,98 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <meta content="webkit" name="renderer">
-    <title>Dev mode</title>
-    <script>"use strict";
-        (() => {
-            window.GLOBAL_CONFIG = {
-                IS_DEV: true,
-            };
-            try {
-                // 1. 尝试读取用户存储的偏好
-                const storedTheme = localStorage.getItem("theme");
-                let theme = storedTheme; // 如果有存储，直接用
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <meta content="webkit" name="renderer">
+  <title>Dev mode</title>
+  <script>"use strict";
+    (() => {
+      window.GLOBAL_CONFIG = {
+        IS_DEV: true,
+        THEME: "",
+      };
+      try {
+        // 1. 尝试读取用户存储的偏好
+        const storedTheme = localStorage.getItem("x-theme");
+        let theme = storedTheme; // 如果有存储，直接用
 
-                // 2. 如果没有存储，则检测系统偏好
-                if (!storedTheme) {
-                    const prefersDark = window.matchMedia(
-                        "(prefers-color-scheme: dark)"
-                    ).matches;
-                    theme = prefersDark ? "dark" : "light";
-                }
-
-                // 3. 将主题应用到根元素
-                document.documentElement.setAttribute("data-theme", theme);
-
-                // 4. （可选）如果想让后续 JS 也能读到，可以同步存入 localStorage，但建议让用户主动选择时才存，避免覆盖“未选择”状态
-                //    如果不想存储系统偏好，则不执行 localStorage.setItem
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    </script>
-    <script src="/main.tsx" type="module"></script>
-    <style>
-        :root {
-            --x-init-fg: hsl(0 0% 10%);
-            --x-init-body-fg: hsl(0 0% 10%);
-            --x-init-body-bg: hsl(0 0% 90%);
-            --x-init-loading-bg: hsl(0 0% 90%);
-            --x-init-loading-fg: hsl(0 0% 10%);
+        // 2. 如果没有存储，则检测系统偏好
+        if (!storedTheme) {
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          theme = prefersDark ? "dark" : "light";
+          window.THEME = theme;
         }
 
-        [data-theme="dark"] {
-            --x-init-fg: hsl(0 0% 90%);
-            --x-init-body-fg: hsl(0 0% 90%);
-            --x-init-body-bg: hsl(0 0% 0%);
-            --x-init-loading-bg: hsl(0 0% 0%);
-            --x-init-loading-fg: hsl(0 0% 90%);
-        }
+        // 3. 将主题应用到根元素
+        document.documentElement.setAttribute("data-theme", theme);
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        // 4. （可选）如果想让后续 JS 也能读到，可以同步存入 localStorage，但建议让用户主动选择时才存，避免覆盖“未选择”状态
+        //    如果不想存储系统偏好，则不执行 localStorage.setItem
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  </script>
+  <script src="/main.tsx" type="module"></script>
+  <style>
+    :root {
+      --x-init-fg: hsl(0 0% 10%);
+      --x-init-body-fg: hsl(0 0% 10%);
+      --x-init-body-bg: hsl(0 0% 90%);
+      --x-init-loading-bg: hsl(0 0% 90%);
+      --x-init-loading-fg: hsl(0 0% 10%);
+    }
 
-        body {
-            gap: var(--x-init-gutter);
-            margin: 0;
-            background: var(--x-init-body-bg);
-            padding: 0;
-            color: var(--x-init-body-fg);
-            line-height: 1.5;
-        }
+    [data-theme="dark"] {
+      --x-init-fg: hsl(0 0% 90%);
+      --x-init-body-fg: hsl(0 0% 90%);
+      --x-init-body-bg: hsl(0 0% 0%);
+      --x-init-loading-bg: hsl(0 0% 0%);
+      --x-init-loading-fg: hsl(0 0% 90%);
+    }
 
-        #loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5em;
-            height: 100svh;
-            font-family: monospace;
-        }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-        #loading::before {
-            animation: spin 1s linear infinite;
-            box-sizing: border-box;
-            border: 1px solid var(--x-init-loading-bg);
-            border-top-color: var(--x-init-loading-fg);
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            content: "";
-        }
-    </style>
+    body {
+      gap: var(--x-init-gutter);
+      margin: 0;
+      background: var(--x-init-body-bg);
+      padding: 0;
+      color: var(--x-init-body-fg);
+      line-height: 1.5;
+    }
+
+    #loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5em;
+      height: 100svh;
+      font-family: monospace;
+    }
+
+    #loading::before {
+      animation: spin 1s linear infinite;
+      box-sizing: border-box;
+      border: 1px solid var(--x-init-loading-bg);
+      border-top-color: var(--x-init-loading-fg);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      content: "";
+    }
+  </style>
 </head>
 
 <body>
-    <div id="loading">Loading...</div>
+  <div id="loading">Loading...</div>
 </body>
 
 </html>
