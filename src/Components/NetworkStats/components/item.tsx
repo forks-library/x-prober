@@ -1,14 +1,16 @@
-import type { FC } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { formatBytes } from '@/Components/Utils/components/format-bytes';
-import { template } from '@/Components/Utils/components/template.ts';
-import styles from './item.module.scss';interface NetworksStatsItemProps {
+import type { FC } from "react";
+import { gettext } from "@/Components/Language/index.ts";
+import { formatBytes } from "@/Components/Utils/components/format-bytes.ts";
+import { template } from "@/Components/Utils/components/template.ts";
+import styles from "./item.module.scss";
+
+type NetworksStatsItemProps = {
   id: string;
-  totalRx: number;
   rateRx: number;
-  totalTx: number;
   rateTx: number;
-}
+  totalRx: number;
+  totalTx: number;
+};
 export const NetworksStatsItem: FC<NetworksStatsItemProps> = ({
   id,
   totalRx = 0,
@@ -24,7 +26,7 @@ export const NetworksStatsItem: FC<NetworksStatsItemProps> = ({
       <div className={styles.id}>{id}</div>
       <div className={styles.rx}>
         <div className={styles.type}>
-          {template(gettext('Recived: {{total}}'), {
+          {template(gettext("Recived: {{total}}"), {
             total: formatBytes(totalRx),
           })}
         </div>
@@ -32,7 +34,7 @@ export const NetworksStatsItem: FC<NetworksStatsItemProps> = ({
       </div>
       <div className={styles.tx}>
         <div className={styles.type}>
-          {template(gettext('Sent: {{total}}'), {
+          {template(gettext("Sent: {{total}}"), {
             total: formatBytes(totalTx),
           })}
         </div>

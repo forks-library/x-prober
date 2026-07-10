@@ -23,9 +23,9 @@ const ServerBenchmarkResult: FC<{
     {
       cpu: cpuString,
       read: readString,
-      write: writeString,
       total: totalString,
-    }
+      write: writeString,
+    },
   );
   const sign = <span className={styles.sign}>+</span>;
   const handleCopyMarks = (e: MouseEvent<HTMLButtonElement>) => {

@@ -21,11 +21,11 @@ const BrowserBenchmarkResult: FC<{
   const totalText = template(
     "{{js}} (JS) + {{dom}} (DOM) + {{canvas}} (Canvas) = {{total}}",
     {
-      js: jsString,
-      dom: domString,
       canvas: canvasString,
+      dom: domString,
+      js: jsString,
       total: totalString,
-    }
+    },
   );
   const sign = <span className={styles.sign}>+</span>;
   const handleCopyMarks = (e: MouseEvent<HTMLButtonElement>) => {

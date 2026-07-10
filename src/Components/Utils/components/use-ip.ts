@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { gettext } from '@/Components/Language/index.ts';
-import { OK } from '@/Components/Rest/http-status.ts';
+import { useEffect, useState } from "react";
+import { gettext } from "@/Components/Language/index.ts";
+import { OK } from "@/Components/Rest/http-status.ts";
 
-interface UseIpProps {
+type UseIpProps = {
   ip: string;
-  msg: string;
   isLoading: boolean;
-}
+  msg: string;
+};
 export const useIp = (type: 4 | 6): UseIpProps => {
   const [data, setData] = useState<UseIpProps>({
-    ip: '',
-    msg: gettext('Loading...'),
+    ip: "",
     isLoading: true,
+    msg: gettext("Loading..."),
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -19,17 +19,17 @@ export const useIp = (type: 4 | 6): UseIpProps => {
       await res
         .json()
         .catch(() => {
-          setData({ ip: '', msg: gettext('Not support'), isLoading: false });
+          setData({ ip: "", isLoading: false, msg: gettext("Not support") });
         })
         .then((ipData) => {
           if (ipData?.ip && res.status === OK) {
-            setData({ ip: ipData.ip, msg: '', isLoading: false });
+            setData({ ip: ipData.ip, isLoading: false, msg: "" });
             return;
           }
           setData({
-            ip: '',
-            msg: gettext('Can not fetch IP'),
+            ip: "",
             isLoading: false,
+            msg: gettext("Can not fetch IP"),
           });
         });
     };
