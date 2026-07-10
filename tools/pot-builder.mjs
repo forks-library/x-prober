@@ -1,11 +1,13 @@
 /**
  * @version 1.0.1
  */
-import { lstatSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { extname } from 'node:path';
+import { lstatSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { extname } from "node:path";
+
+const GETTEXT_REG = /gettext\s*\(\s*(".+?")\s*,*\s*(".+?")*\s*\)/gm;
 export class PotBuilder {
-  potPath = '';
-  sourceDir = '';
+  potPath = "";
+  sourceDir = "";
   entries = {};
   /**
    * @type {string[]}
@@ -14,30 +16,33 @@ export class PotBuilder {
   constructor({ potPath, sourceDir }) {
     this.potPath = potPath;
     this.sourceDir = sourceDir;
+  }
+  build() {
     this.fetchDirOrFile(this.sourceDir);
-    this.filePaths.map(this.buildEntries);
+    for (const path of this.filePaths) {
+      this.buildEntries(path);
+    }
     this.buildPotFile();
   }
-  buildEntries = (path) => {
+  buildEntries(path) {
     const code = readFileSync(path).toString();
-    const reg = /gettext\s*\(\s*('.+?')\s*,*\s*('.+?')*\s*\)/gm;
-    const matches = code.matchAll(reg);
+    const matches = code.matchAll(GETTEXT_REG);
     if (matches) {
       for (const match of matches) {
         const msgid = match[1].slice(1, -1);
-        const msgctxt = (match[2] || '').slice(1, -1);
+        const msgctxt = (match[2] || "").slice(1, -1);
         if (this.entries[`${msgid}${msgctxt}`]) {
           continue;
         }
         this.entries[`${msgid}${msgctxt}`] = `
-${msgctxt ? `msgctxt ${JSON.stringify(msgctxt)}` : ''}
+${msgctxt ? `msgctxt ${JSON.stringify(msgctxt)}` : ""}
 msgid ${JSON.stringify(msgid)}
 msgstr ""
 `.trim();
       }
     }
-  };
-  buildPotFile = () => {
+  }
+  buildPotFile() {
     const toWriteData = `
 #, fuzzy
 msgid ""
@@ -56,17 +61,17 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\\n"
 "X-Poedit-KeywordsList: gettext\\n"
 
-${Object.values(this.entries).join('\n\n')}
+${Object.values(this.entries).join("\n\n")}
 `.trim();
-    writeFileSync(this.potPath, toWriteData, 'utf8');
-  };
-  fetchDirOrFile = (filePathOrDir) => {
+    writeFileSync(this.potPath, toWriteData, "utf8");
+  }
+  fetchDirOrFile(filePathOrDir) {
     if (lstatSync(filePathOrDir).isDirectory()) {
-      readdirSync(filePathOrDir).map((p) =>
-        this.fetchDirOrFile(`${filePathOrDir}/${p}`)
-      );
-    } else if (['.ts', '.tsx'].includes(extname(filePathOrDir))) {
+      for (const path of readdirSync(filePathOrDir)) {
+        this.fetchDirOrFile(`${filePathOrDir}/${path}`);
+      }
+    } else if ([".ts", ".tsx"].includes(extname(filePathOrDir))) {
       this.filePaths.push(filePathOrDir);
     }
-  };
+  }
 }

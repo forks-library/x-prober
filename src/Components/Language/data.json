@@ -1,10 +1,10 @@
 {
   "": {
-    "ja": "Project-Id-Version: X-Prober\nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-05 08:46+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Poedit 3.4.2\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: gettext\n",
-    "zh": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:51+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
-    "zhcn": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:51+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
+    "ja": "Project-Id-Version: X-Prober\nPOT-Creation-Date: \nPO-Revision-Date: 2026-07-10 21:38+0800\nLast-Translator: Km.Van <kmvan@outlook.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Poedit 3.7\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: gettext\n",
+    "zh": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2026-07-10 21:34+0800\nLast-Translator: Km.Van <kmvan@outlook.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.7\nX-Poedit-Flags-xgettext: --add-comments\n",
+    "zhcn": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2026-07-10 21:34+0800\nLast-Translator: Km.Van <kmvan@outlook.com>\nLanguage-Team: kmvan <kmvan.com@gmail.com>\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.7\nX-Poedit-Flags-xgettext: --add-comments\n",
     "zhhk": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-04 22:53+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: zh_HK\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-Poedit-Flags-xgettext: --add-comments\n",
-    "zhtw": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2025-09-05 08:47+0800\nLast-Translator: Km.Van <kmvan.com@gmail.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: zh_TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.4.2\nX-ZhConverter: 繁化姬 dict-b76338ce-r665 @ 2019/11/20 14:24:08 | https://zhconvert.org\nX-Poedit-Flags-xgettext: --add-comments\n"
+    "zhtw": "Project-Id-Version: X-Prober\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: \nPO-Revision-Date: 2026-07-10 21:36+0800\nLast-Translator: Km.Van <kmvan@outlook.com>\nLanguage-Team: Km.Van <inn-studio.com>\nLanguage: zh_TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Poedit-KeywordsList: gettext\nX-Poedit-Basepath: .\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 3.7\nX-ZhConverter: 繁化姬 dict-b76338ce-r665 @ 2019/11/20 14:24:08 | https://zhconvert.org\nX-Poedit-Flags-xgettext: --add-comments\n"
   },
   "{{days}}d {{hours}}h {{mins}}min {{secs}}s": {
     "ja": "{{days}}日 {{hours}}時間 {{mins}}分 {{secs}}秒",
@@ -112,11 +112,7 @@
     "zhtw": "緩衝區是記憶體中的區塊 I/O 緩衝，生命週期較短。在 Linux 核心 2.4 版之前，頁面快取和緩衝區快取是分開的。自 2.4 版起，兩者已統一，緩衝區代表未存入頁面快取的原始磁碟區塊（即非檔案資料）。"
   },
   "Cached memory is memory that Linux uses for disk caching. However, this does not count as \"used\" memory, since it will be freed when applications require it. Hence you do not have to worry if a large amount is being used.": {
-    "ja": "キャッシュメモリはディスクキャッシュ用に確保された領域です。アプリケーションが必要時に解放されるため「使用中」メモリにはカウントされず、使用量が多くても問題ありません。",
-    "zh": "缓存内存是 Linux 用于磁盘缓存的内存空间，不计入“已用”内存，因为应用程序需要时会自动释放。因此即使使用量较大也无需担心。",
-    "zhcn": "缓存内存是 Linux 用于磁盘缓存的内存空间，不计入“已用”内存，因为应用程序需要时会自动释放。因此即使使用量较大也无需担心。",
-    "zhhk": "快取記憶體是 Linux 用於磁碟快取的空間，不計入「已用」記憶體，因應用程式需要時會自動釋放。故即使使用量較大亦無需擔心。",
-    "zhtw": "快取記憶體是 Linux 用於磁碟快取的空間，不計入「已用」記憶體，因應用程式需要時會自動釋放。故即使使用量較大亦無需擔心。"
+    "zhhk": "快取記憶體是 Linux 用於磁碟快取的空間，不計入「已用」記憶體，因應用程式需要時會自動釋放。故即使使用量較大亦無需擔心。"
   },
   "Can not fetch IP": {
     "ja": "IP取得失敗",
@@ -189,11 +185,7 @@
     "zhtw": "CPU 使用率"
   },
   "Dark": {
-    "ja": "ダークモード",
-    "zh": "深色模式",
-    "zhcn": "深色模式",
-    "zhhk": "暗黑模式",
-    "zhtw": "深色模式"
+    "zhhk": "暗黑模式"
   },
   "Database": {
     "ja": "データベース",
@@ -210,11 +202,7 @@
     "zhtw": "資料庫"
   },
   "Default": {
-    "ja": "デフォルト",
-    "zh": "默认",
-    "zhcn": "默认",
-    "zhhk": "預設",
-    "zhtw": "預設"
+    "zhhk": "預設"
   },
   "Detail": {
     "ja": "詳細",
@@ -342,12 +330,14 @@
     "zhhk": "JS 瀏覽器語言",
     "zhtw": "JS瀏覽器語言"
   },
+  "LiangYe": {
+    "ja": "良夜",
+    "zh": "良夜",
+    "zhcn": "良夜",
+    "zhtw": "良夜"
+  },
   "Linux comes with many commands to check memory usage. The \"free\" command usually displays the total amount of free and used physical and swap memory in the system, as well as the buffers used by the kernel. The \"top\" command provides a dynamic real-time view of a running system.": {
-    "ja": "Linuxにはメモリ使用量確認コマンドが複数存在します。「free」コマンドは物理メモリ/スワップの使用状況とカーネルバッファを表示し、「top」コマンドはシステムのリアルタイム状態を動的に表示します。",
-    "zh": "Linux 提供多种内存检测命令：“free”命令显示系统物理内存和交换空间的总用量及内核缓冲区；“top”命令提供运行中系统的实时动态视图。",
-    "zhcn": "Linux 提供多种内存检测命令：“free”命令显示系统物理内存和交换空间的总用量及内核缓冲区；“top”命令提供运行中系统的实时动态视图。",
-    "zhhk": "Linux 提供多種記憶體檢測指令：「free」指令顯示系統實體記憶體及交換區的總用量與緩衝區使用情況；「top」指令則提供運行中系統的即時動態檢視。",
-    "zhtw": "Linux 提供多種記憶體檢測指令：「free」指令顯示系統實體記憶體及交換區的總用量與緩衝區使用情況；「top」指令則提供運行中系統的即時動態檢視。"
+    "zhhk": "Linux 提供多種記憶體檢測指令：「free」指令顯示系統實體記憶體及交換區的總用量與緩衝區使用情況；「top」指令則提供運行中系統的即時動態檢視。"
   },
   "Loaded extensions": {
     "ja": "ロード済み拡張機能",
@@ -489,6 +479,12 @@
     "zhhk": "網絡錯誤，請稍後重試。",
     "zhtw": "網路錯誤，請稍後重試。"
   },
+  "Network error. Please check your connection.": {
+    "ja": "ネットワークエラー。接続を確認してください。",
+    "zh": "网络错误，请检查您与服务器的网络。",
+    "zhcn": "网络错误，请检查您与服务器的网络。",
+    "zhtw": "網路錯誤，請檢查您與服務器的網路。"
+  },
   "Network Stats": {
     "ja": "ネットワーク統計",
     "zh": "网络统计",
@@ -609,11 +605,7 @@
     "zhtw": "讀取"
   },
   "Recived: {{total}}": {
-    "ja": "受信: {{total}}",
-    "zh": "接收: {{total}}",
-    "zhcn": "接收: {{total}}",
-    "zhhk": "接收: {{total}}",
-    "zhtw": "接收: {{total}}"
+    "zhhk": "接收: {{total}}"
   },
   "Results": {
     "ja": "診断結果",
@@ -644,11 +636,7 @@
     "zhtw": "腳本路徑"
   },
   "Sent: {{total}}": {
-    "ja": "送信: {{total}}",
-    "zh": "发送: {{total}}",
-    "zhcn": "发送: {{total}}",
-    "zhhk": "傳送: {{total}}",
-    "zhtw": "傳送: {{total}}"
+    "zhhk": "傳送: {{total}}"
   },
   "Server ⇄ Browser": {
     "ja": "サーバー ⇄ ブラウザー",
@@ -749,11 +737,7 @@
     "zhtw": "溫度感測器"
   },
   "Testing, please wait...": {
-    "ja": "テスト実行中...",
-    "zh": "测试中，请稍候...",
-    "zhcn": "测试中，请稍候...",
-    "zhhk": "測試中，請稍候...",
-    "zhtw": "測試中，請稍候..."
+    "zhhk": "測試中，請稍候..."
   },
   "Time": {
     "ja": "時間",
@@ -852,5 +836,11 @@
     "zhcn": "写入",
     "zhhk": "寫入",
     "zhtw": "寫入"
+  },
+  "XiGuang": {
+    "ja": "曦光",
+    "zh": "曦光",
+    "zhcn": "曦光",
+    "zhtw": "曦光"
   }
 }

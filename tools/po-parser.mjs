@@ -1,14 +1,12 @@
 /**
- * @version 1.0.1
+ * @version 1.0.2
  */
 
-import { existsSync, readFileSync } from 'node:fs';
-import gettextParser from 'gettext-parser';
+import { existsSync, readFileSync } from "node:fs";
+import gettextParser from "gettext-parser";
 
-const PARSE_REGEX =
-  /(msgctxt\s+"(.+?)"\s+)?msgid\s+"(.+?)"\s+msgstr\s+"(.+?)"/gm;
 export class PoParser {
-  poPath = '';
+  poPath = "";
   items = {};
   constructor({ poPath }) {
     this.poPath = poPath;
@@ -16,15 +14,15 @@ export class PoParser {
       throw new Error(`${this.poPath} not exists`);
     }
   }
-  parse = () => {
+  parse() {
     const input = readFileSync(this.poPath);
     const po = gettextParser.po.parse(input);
     for (const group of Object.values(po.translations)) {
       for (const item of Object.values(group)) {
         const id = item.msgid;
-        const str = item.msgstr[0];
-        const ctxt = item?.msgctxt || '';
-        const key = ctxt !== '' ? `${ctxt}|${id}` : id;
+        const [str] = item.msgstr;
+        const ctxt = item?.msgctxt || "";
+        const key = ctxt === "" ? id : `${ctxt}|${id}`;
         this.items[key] = str;
       }
     }
@@ -35,5 +33,5 @@ export class PoParser {
         return r;
       }, {});
     return this.items;
-  };
+  }
 }

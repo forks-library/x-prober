@@ -18,6 +18,9 @@ msgstr ""
 msgid "Failed to fetch data. Please try again later."
 msgstr ""
 
+msgid "Network error. Please check your connection."
+msgstr ""
+
 msgid "Touch to copy marks"
 msgstr ""
 
@@ -37,12 +40,6 @@ msgid "Benchmark my browser"
 msgstr ""
 
 msgid "Browser bench"
-msgstr ""
-
-msgid "Dark"
-msgstr ""
-
-msgid "Default"
 msgstr ""
 
 msgid "Database"
@@ -219,13 +216,10 @@ msgstr ""
 msgid "Different versions cannot be compared, and different time servers have different loads, just for reference."
 msgstr ""
 
-msgid "Testing, please wait..."
+msgid "Please wait {{seconds}}s"
 msgstr ""
 
 msgid "Network error, please try again later."
-msgstr ""
-
-msgid "Please wait {{seconds}}s"
 msgstr ""
 
 msgid "Benchmark my server"
@@ -312,13 +306,7 @@ msgstr ""
 msgid "Memory cached"
 msgstr ""
 
-msgid "Cached memory is memory that Linux uses for disk caching. However, this does not count as \"used\" memory, since it will be freed when applications require it. Hence you do not have to worry if a large amount is being used."
-msgstr ""
-
 msgid "Memory real usage"
-msgstr ""
-
-msgid "Linux comes with many commands to check memory usage. The \"free\" command usually displays the total amount of free and used physical and swap memory in the system, as well as the buffers used by the kernel. The \"top\" command provides a dynamic real-time view of a running system."
 msgstr ""
 
 msgid "Swap cached"
@@ -345,16 +333,13 @@ msgstr ""
 msgid "Temperature"
 msgstr ""
 
+msgid "LiangYe"
+msgstr ""
+
+msgid "XiGuang"
+msgstr ""
+
 msgid "Click to close"
-msgstr ""
-
-msgid "⏳ Updating, please wait a second..."
-msgstr ""
-
-msgid "❌ Update error, click here to try again?"
-msgstr ""
-
-msgid "✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}"
 msgstr ""
 
 msgid "Update success, refreshing..."
@@ -367,6 +352,15 @@ msgid "Can not update file, please check the server permissions and space."
 msgstr ""
 
 msgid "Click to update"
+msgstr ""
+
+msgid "⏳ Updating, please wait a second..."
+msgstr ""
+
+msgid "❌ Update error, click here to try again?"
+msgstr ""
+
+msgid "✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}"
 msgstr ""
 
 msgid "Loading..."

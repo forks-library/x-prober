@@ -1,30 +1,28 @@
 /**
- * @version 1.0.0
+ * @version 1.0.1
  */
 
-import { writeFileSync } from 'node:fs';
-import path, { basename, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import DeepSort from 'deep-sort-object';
-import FastGlob from 'fast-glob';
-import { PoParser } from './po-parser.mjs';
-import { PotBuilder } from './pot-builder.mjs';
+import { writeFileSync } from "node:fs";
+import { glob } from "node:fs/promises";
+import path, { basename, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import DeepSort from "deep-sort-object";
+import { PoParser } from "./po-parser.mjs";
+import { PotBuilder } from "./pot-builder.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 class LangBuilder {
   data = {};
-  constructor() {
-    this.build();
-  }
-  setData = async () => {
+  async setData() {
     new PotBuilder({
-      potPath: path.resolve(__dirname, '../locales/lang.pot'),
-      sourceDir: path.resolve(__dirname, '../src'),
-    });
-    const files = await FastGlob(path.resolve(__dirname, '../locales/*.po'));
-    for (const file of files) {
-      const lang = basename(file, '.po');
-      const langId = lang.replace('_', '').toLowerCase();
+      potPath: path.resolve(__dirname, "../locales/lang.pot"),
+      sourceDir: path.resolve(__dirname, "../src"),
+    }).build();
+    for await (const entry of await glob(
+      path.resolve(__dirname, "../locales/*.po")
+    )) {
+      const lang = basename(entry, ".po");
+      const langId = lang.replace("_", "").toLowerCase();
       const parser = new PoParser({
         poPath: path.resolve(__dirname, `../locales/${lang}.po`),
       });
@@ -38,15 +36,15 @@ class LangBuilder {
         }
       }
     }
-  };
-  build = async () => {
+  }
+  async build() {
     await this.setData();
     this.data = DeepSort(this.data);
     const jsonPath = path.resolve(
       __dirname,
-      '../src/Components/Language/data.json'
+      "../src/Components/Language/data.json"
     );
     writeFileSync(jsonPath, JSON.stringify(this.data, null, 2));
-  };
+  }
 }
-new LangBuilder();
+new LangBuilder().build();
