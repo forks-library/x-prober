@@ -1,6 +1,6 @@
 :root {
   --x-meter-height: 5px;
-  --x-meter-bg: oklch(0% 0 0 / 0.1);
+  --x-meter-bg: linear-gradient(to bottom, oklch(0% 0 0 / 0.1), oklch(0% 0 0 / 0.05));
   --x-meter-bar-bg: hsl(0 0% 0% / 0.1);
   --x-meter-value-bg: hsl(120 100% 40%);
   --x-meter-value-optimum-bg: hsl(120 100% 30%);
@@ -8,7 +8,7 @@
   --x-meter-value-even-less-good-bg: hsl(12 100% 39%);
 }
 :global([data-theme="dark"]) {
-  --x-meter-bg: oklch(100% 0 0 / 0.1);
+  --x-meter-bg: linear-gradient(to bottom, oklch(100% 0 0 / 0.15), oklch(100% 0 0 / 0.1));
   --x-meter-bar-bg: hsl(0 0% 100% / 0.1);
   --x-meter-value-optimum-bg: hsl(120 100% 30%);
   --x-meter-value-suboptimum-bg: hsl(36 77% 54%);
@@ -48,8 +48,9 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   max-width: 15rem;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
+  -webkit-line-clamp: 2;
 }
 .overview {
   grid-area: x-meter-overview;
@@ -79,5 +80,8 @@
     // transition: width 1s;
     border-radius: 10rem;
     background: var(--x-meter-value-even-less-good-bg);
+  }
+  &::-moz-meter-optimum::slider-fill {
+    display: none;
   }
 }

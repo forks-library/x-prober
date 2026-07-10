@@ -6,7 +6,7 @@ import {
   useCallback,
 } from "react";
 import { useToastStore } from "@/Components/Toast/components/store.ts";
-import { formatBytes } from "@/Components/Utils/components/format-bytes";
+import { formatBytes } from "@/Components/Utils/components/format-bytes.ts";
 import styles from "./index.module.scss";
 
 export const MeterCore: FC<{
