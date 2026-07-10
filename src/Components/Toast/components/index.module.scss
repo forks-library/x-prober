@@ -1,9 +1,9 @@
 :root {
-  --x-toast-fg: hsl(0 0% 100% / 0.95);
-  --x-toast-bg: hsl(0 0% 0% / 0.75);
-  :global([data-theme="dark"]) {
-    --x-toast-fg: hsl(0 0% 100% / 0.95);
-    --x-toast-bg: hsl(0 0% 100% / 0.15);
+  --x-toast-fg: oklch(0% 0 0 / 0.9);
+  --x-toast-bg: oklch(0% 0 0 / 0.1);
+  &:global([data-theme="dark"]) {
+    --x-toast-fg: oklch(100% 0 0 / 0.9);
+    --x-toast-bg: oklch(100% 0 0 / 0.1);
   }
 }
 .main {
@@ -17,9 +17,7 @@
   border: none;
   border-radius: var(--x-gutter);
   background: var(--x-toast-bg);
-  padding: var(--x-gutter);
-  // width: 20rem;
+  padding: var(--x-gutter-sm) var(--x-gutter);
   max-width: 80vw;
   color: var(--x-toast-fg);
-  text-align: justify;
 }
