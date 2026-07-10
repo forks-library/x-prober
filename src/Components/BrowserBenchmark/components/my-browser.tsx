@@ -69,6 +69,7 @@ export const BrowserBenchmarkMyBrowser = () => {
       header={header}
       marks={marks}
       maxMarks={maxMarks}
+      ua=""
     />
   );
 };
