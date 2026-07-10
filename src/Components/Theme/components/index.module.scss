@@ -19,6 +19,7 @@
   &[data-active] {
     transform: scale(1.25);
     z-index: 1;
+    pointer-events: none;
   }
   &:first-child {
     border-top-left-radius: 10rem;
@@ -36,10 +37,6 @@
     }
     &:active {
       filter: brightness(0.9);
-    }
-    &[data-active] {
-      // box-shadow: 0 0 0 2px oklch(100% 0 0 / 0.8);
-      pointer-events: none;
     }
   }
 }
