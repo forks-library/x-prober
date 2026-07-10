@@ -5,7 +5,7 @@ import { ModuleItem } from "@/Components/Module/components/item.tsx";
 import { NODES_ID } from "./constants.ts";
 import styles from "./index.module.scss";
 import { Node } from "./node.tsx";
-import { useNodesStore } from "./store";
+import { useNodesStore } from "./store.ts";
 
 export const Nodes: FC = () => {
   const nodesIds = useNodesStore(useShallow((s) => s.pollData?.nodesIds ?? []));

@@ -28,22 +28,20 @@ export const PhpInfoPhpVersion: FC = () => {
     fetchData();
   }, [setLatestPhpVersion]);
   const compare = versionCompare(phpVersion, latestPhpVersion);
+  const hasNewVersion = compare === -1;
   return (
     <Link
       href="https://www.php.net/"
       title={gettext("Visit PHP.net Official website")}
     >
-      {compare === -1
-        ? ` ${
-          template(
-            gettext("{{oldVersion}} (Latest: {{latestPhpVersion}})"),
-            {
-              latestPhpVersion,
-              oldVersion: phpVersion,
-            },
-          )
-        }`
-        : phpVersion}
+      {hasNewVersion && template(
+        gettext("{{oldVersion}} (Latest: {{latestPhpVersion}})"),
+        {
+          latestPhpVersion,
+          oldVersion: phpVersion,
+        },
+      )}
+      {hasNewVersion || phpVersion}
     </Link>
   );
 };

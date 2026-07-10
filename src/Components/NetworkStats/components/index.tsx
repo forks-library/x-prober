@@ -5,8 +5,8 @@ import { ModuleItem } from "@/Components/Module/components/item.tsx";
 import { usePrevious } from "@/Components/Utils/components/use-previous.ts";
 import { NETWORK_STATS_ID } from "./constants.ts";
 import styles from "./index.module.scss";
-import { NetworksStatsItem } from "./item";
-import { useNetworkStatsStore } from "./store";
+import { NetworksStatsItem } from "./item.tsx";
+import { useNetworkStatsStore } from "./store.ts";
 
 export const NetworkStats: FC = () => {
   const { networks, networksCount, timestamp } = useNetworkStatsStore(

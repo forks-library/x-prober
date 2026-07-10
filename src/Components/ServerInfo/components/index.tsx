@@ -6,7 +6,7 @@ import { Location } from "@/Components/Location/components/index.tsx";
 import { ModuleGroup } from "@/Components/Module/components/group.tsx";
 import { ModuleItem } from "@/Components/Module/components/item.tsx";
 import { OK } from "@/Components/Rest/http-status.ts";
-import { template } from "@/Components/Utils/components/template";
+import { template } from "@/Components/Utils/components/template.ts";
 import { UiMultiColContainer } from "@/Components/ui/col/multi-container.tsx";
 import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
 import { SERVER_INFO_ID } from "./constants.ts";

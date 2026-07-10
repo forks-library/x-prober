@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC, useCallback, useEffect, useState } from "react";
 import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
 import { gettext } from "@/Components/Language/index.ts";
 import { Placeholder } from "@/Components/Placeholder/index.tsx";
@@ -16,61 +16,80 @@ import { NodesRam } from "./ram.tsx";
 import { NodesSwap } from "./swap.tsx";
 
 const TIMER = 2000;
+
 export const Node: FC<{ id: string }> = ({ id }) => {
   const [loading, setLoading] = useState(true);
-  const isUpdating = useUpdaterStore((s) => s.isUpdating);
   const [error, setError] = useState(0);
   const [pollData, setPollData] = useState<PollData | null>(null);
+  const isUpdating = useUpdaterStore((s) => s.isUpdating);
   const pollDelay = isUpdating ? null : TIMER;
-  const fetchData = async () => {
+
+  // 使用 useCallback 包裹，避免每次渲染生成新的函数实例
+  const fetchData = useCallback(async () => {
+    if (isUpdating) {
+      return;
+    }
+
     try {
-      if (isUpdating) {
-        return;
-      }
       const { data, status } = await serverFetch<PollData>(
         `nodes&nodeId=${id}`,
       );
+
       if (!data || status !== OK) {
         setError(status);
       } else {
         setPollData(data);
-      }
-      if (loading) {
-        setLoading(false);
+        setError(0); // 如果后续成功了，重置错误状态
       }
     } catch (err) {
       console.error("Error fetching node data:", err);
       setError(-1);
-    }
-  };
-  useInterval(async () => {
-    await fetchData();
-    if (loading) {
+    } finally {
+      // 无论成功或失败，只要请求过一次就关闭 loading
       setLoading(false);
     }
-  }, pollDelay);
-  const serverStatus = pollData?.serverStatus ?? null;
-  const diskUsage = pollData?.diskUsage ?? null;
-  const networkStats = pollData?.networkStats ?? null;
-  const memRealUsage = pollData?.serverStatus?.memRealUsage ?? null;
-  const memSwapUsage = pollData?.serverStatus?.swapUsage ?? null;
-  const sysLoad = serverStatus?.sysLoad ?? [];
-  const cpuUsage = serverStatus?.cpuUsage ?? null;
+  }, [id, isUpdating]);
+
+  // 1. 组件挂载或 id 变化时，立即执行一次获取，避免延迟闪烁
+  useEffect(() => {
+    setLoading(true);
+    fetchData();
+  }, [fetchData]);
+
+  // 2. 后续的轮询逻辑
+  useInterval(fetchData, pollDelay);
+
+  // 解构数据，提供默认值
+  const {
+    serverStatus = null,
+    diskUsage = null,
+    networkStats = null,
+  } = pollData || {};
+  const {
+    memRealUsage = null,
+    swapUsage = null,
+    sysLoad = [],
+    cpuUsage = null,
+  } = serverStatus || {};
+
   return (
     <div className={styles.main}>
       <header className={styles.name}>{id}</header>
+
       {error !== 0 && (
         <UiError>{template(gettext("Error: {{error}}"), { error })}</UiError>
       )}
-      {loading && <Placeholder height={10} />}
-      {!loading && serverStatus && (
-        <>
-          {cpuUsage ? <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} /> : null}
-          {memRealUsage ? <NodesRam data={memRealUsage} /> : null}
-          {memSwapUsage ? <NodesSwap data={memSwapUsage} /> : null}
-          {diskUsage ? <NodesDisk data={diskUsage} /> : null}
-          {networkStats ? <NodesNetworkStats data={networkStats} /> : null}
-        </>
+
+      {loading ? <Placeholder height={10} /> : (
+        !serverStatus || (
+          <>
+            {!cpuUsage || <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} />}
+            {!memRealUsage || <NodesRam data={memRealUsage} />}
+            {!swapUsage || <NodesSwap data={swapUsage} />}
+            {!diskUsage || <NodesDisk data={diskUsage} />}
+            {!networkStats || <NodesNetworkStats data={networkStats} />}
+          </>
+        )
       )}
     </div>
   );

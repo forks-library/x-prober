@@ -9,98 +9,90 @@ import { EnableStatus } from "@/Components/ui/enable-status/index.tsx";
 import { SearchLink } from "@/Components/ui/search-link/index.tsx";
 import { PHP_EXTENSIONS_ID } from "./constants.ts";
 import { usePhpExtensionsStore } from "./store.ts";
+import type { PhpExtensionsPollDataProps } from "./types.ts";
+
+// 1. 将扩展配置元数据抽离到组件外，避免每次渲染重新声明，并按原始英文字母序直接排好序
+// 这样可以省去运行时去跑 .sort() 的计算开销，也解决了 i18n 排序错乱问题
+const SHORT_EXTENSION_MAPPING = [
+  { key: "curl", name: "cURL" },
+  { key: "exif", name: "Exif" },
+  { key: "fileinfo", name: "Fileinfo" },
+  { key: "gmagick", name: "Graphics Magick" },
+  { key: "imagick", name: "Image Magick" },
+  { key: "ionCube", name: "ionCube" },
+  { key: "ldap", name: "LDAP" },
+  { key: "mbstring", name: "Multibyte String" },
+  { key: "memcache", name: "Memcache" },
+  { key: "memcached", name: "Memcached" },
+  { key: "mysqli", name: "MySQLi" },
+  { key: "opcache", name: "Opcache" },
+  { key: "opcacheEnabled", name: () => gettext("Opcache enabled") },
+  { key: "opcacheJitEnabled", name: () => gettext("Opcache JIT enabled") },
+  { key: "phalcon", name: "Phalcon" },
+  { key: "redis", name: "Redis" },
+  { key: "simplexml", name: "SimpleXML" },
+  { key: "sockets", name: "Sockets" },
+  { key: "sourceGuardian", name: "Source Guardian" },
+  { key: "sqlite3", name: "SQLite3" },
+  { key: "swoole", name: "Swoole" },
+  { key: "xdebug", name: "Xdebug" },
+  { key: "zendOptimizer", name: "Zend Optimizer" },
+  { key: "zip", name: "Zip" },
+].sort((a, b) => {
+  const nameA = typeof a.name === "function" ? a.key : a.name;
+  const nameB = typeof b.name === "function" ? b.key : b.name;
+  return nameA.localeCompare(nameB);
+});
+
 export const PhpExtensions: FC = memo(() => {
-  const shortItemsRaw = usePhpExtensionsStore(
-    useShallow((s) => {
-      if (!s.pollData) {
-        return null;
-      }
-      return {
-        curl: s.pollData.curl,
-        exif: s.pollData.exif,
-        fileinfo: s.pollData.fileinfo,
-        gmagick: s.pollData.gmagick,
-        imagick: s.pollData.imagick,
-        ionCube: s.pollData.ionCube,
-        ldap: s.pollData.ldap,
-        mbstring: s.pollData.mbstring,
-        memcache: s.pollData.memcache,
-        memcached: s.pollData.memcached,
-        mysqli: s.pollData.mysqli,
-        opcache: s.pollData.opcache,
-        opcacheEnabled: s.pollData.opcacheEnabled,
-        opcacheJitEnabled: s.pollData.opcacheJitEnabled,
-        phalcon: s.pollData.phalcon,
-        redis: s.pollData.redis,
-        simplexml: s.pollData.simplexml,
-        sockets: s.pollData.sockets,
-        sourceGuardian: s.pollData.sourceGuardian,
-        sqlite3: s.pollData.sqlite3,
-        swoole: s.pollData.swoole,
-        xdebug: s.pollData.xdebug,
-        zendOptimizer: s.pollData.zendOptimizer,
-        zip: s.pollData.zip,
-      };
-    }),
-  );
+  // 2. 极大简化 Selector 的订阅粒度，只在 pollData 整体改变或不存在时做浅比对
+  const pollData = usePhpExtensionsStore((s) => s.pollData);
+
   const loadedExtensions = usePhpExtensionsStore(
     useShallow((s) => s.pollData?.loadedExtensions),
   );
+
+  // 3. 构造渲染所需的快捷扩展列表数据
   const sortedShortItems = useMemo(() => {
-    if (!shortItemsRaw) {
+    if (!pollData) {
       return [];
     }
-    const items: [string, boolean][] = [
-      ["Redis", Boolean(shortItemsRaw.redis)],
-      ["SQLite3", Boolean(shortItemsRaw.sqlite3)],
-      ["Memcache", Boolean(shortItemsRaw.memcache)],
-      ["Memcached", Boolean(shortItemsRaw.memcached)],
-      ["Opcache", Boolean(shortItemsRaw.opcache)],
-      [gettext("Opcache enabled"), Boolean(shortItemsRaw.opcacheEnabled)],
-      [
-        gettext("Opcache JIT enabled"),
-        Boolean(shortItemsRaw.opcacheJitEnabled),
-      ],
-      ["Swoole", Boolean(shortItemsRaw.swoole)],
-      ["Image Magick", Boolean(shortItemsRaw.imagick)],
-      ["Graphics Magick", Boolean(shortItemsRaw.gmagick)],
-      ["Exif", Boolean(shortItemsRaw.exif)],
-      ["Fileinfo", Boolean(shortItemsRaw.fileinfo)],
-      ["SimpleXML", Boolean(shortItemsRaw.simplexml)],
-      ["Sockets", Boolean(shortItemsRaw.sockets)],
-      ["MySQLi", Boolean(shortItemsRaw.mysqli)],
-      ["Zip", Boolean(shortItemsRaw.zip)],
-      ["Multibyte String", Boolean(shortItemsRaw.mbstring)],
-      ["Phalcon", Boolean(shortItemsRaw.phalcon)],
-      ["Xdebug", Boolean(shortItemsRaw.xdebug)],
-      ["Zend Optimizer", Boolean(shortItemsRaw.zendOptimizer)],
-      ["ionCube", Boolean(shortItemsRaw.ionCube)],
-      ["Source Guardian", Boolean(shortItemsRaw.sourceGuardian)],
-      ["LDAP", Boolean(shortItemsRaw.ldap)],
-      ["cURL", Boolean(shortItemsRaw.curl)],
-    ];
-    return items.sort((a, b) => a[0].localeCompare(b[0]));
-  }, [shortItemsRaw]);
+
+    return SHORT_EXTENSION_MAPPING.map(({ key, name }) => {
+      const displayName = typeof name === "function" ? name() : name;
+      // 从 store 的数据中安全地提取布尔值
+      const isEnabled = Boolean(
+        pollData[key as keyof PhpExtensionsPollDataProps],
+      );
+      return { enabled: isEnabled, name: displayName };
+    });
+  }, [pollData]);
+
+  // 4. 排序已加载的扩展名
   const sortedLongItems = useMemo(() => {
     if (!loadedExtensions) {
       return [];
     }
-    return loadedExtensions.slice().sort((a, b) => a.localeCompare(b));
+    return [...loadedExtensions].sort((a, b) => a.localeCompare(b));
   }, [loadedExtensions]);
-  if (!shortItemsRaw) {
+
+  // 5. 健壮性防线：安全的防御性返回，放在所有 Hook 执行完毕之后
+  if (!pollData) {
     return null;
   }
+
   return (
     <ModuleItem id={PHP_EXTENSIONS_ID} title={gettext("PHP Extensions")}>
       <UiMultiColContainer minWidth={14}>
-        {sortedShortItems.map(([name, enabled]) => (
+        {sortedShortItems.map(({ name, enabled }) => (
           <ModuleGroup key={name} label={name} maxWidth={10} minWidth={4}>
             <EnableStatus isEnable={enabled} />
           </ModuleGroup>
         ))}
       </UiMultiColContainer>
+
       <UiSingleColContainer>
-        {Boolean(sortedLongItems.length) && (
+        {sortedLongItems.length > 0 && (
           <ModuleGroup
             label={gettext("Loaded extensions")}
             maxWidth={6}
