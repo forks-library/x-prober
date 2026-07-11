@@ -21,11 +21,11 @@ final class UpdaterActionVersion
             curl_setopt($curl, \CURLOPT_TIMEOUT, 3);
             $data = curl_exec($curl);
             curl_close($curl);
-            if ( ! $data) {
+            if ( !$data) {
                 continue;
             }
             $data = json_decode($data, true);
-            if ( ! $data) {
+            if ( !$data) {
                 continue;
             }
             $response

@@ -14,7 +14,7 @@ final class UtilsMemory
         if (null === $memInfo) {
             $memInfoFile = '/proc/meminfo';
             error_reporting(0);
-            if ( ! is_readable($memInfoFile)) {
+            if ( !is_readable($memInfoFile)) {
                 error_reporting(\E_ALL);
                 $memInfo = 0;
 
@@ -27,7 +27,7 @@ final class UtilsMemory
             ], '', $memInfo);
             $lines = [];
             foreach (explode("\n", $memInfo) as $line) {
-                if ( ! $line) {
+                if ( !$line) {
                     continue;
                 }
                 $line = explode(':', $line);
@@ -35,7 +35,7 @@ final class UtilsMemory
             }
             $memInfo = $lines;
         }
-        if ( ! isset($memInfo['MemTotal'])) {
+        if ( !isset($memInfo['MemTotal'])) {
             return 0;
         }
         switch ($key) {
@@ -55,7 +55,7 @@ final class UtilsMemory
             case 'MemUsage':
                 return isset($memInfo['MemFree']) ? $memInfo['MemTotal'] - $memInfo['MemFree'] : 0;
             case 'SwapUsage':
-                if ( ! isset($memInfo['SwapTotal']) || ! isset($memInfo['SwapFree'])) {
+                if ( !isset($memInfo['SwapTotal']) || !isset($memInfo['SwapFree'])) {
                     return 0;
                 }
 

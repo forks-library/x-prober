@@ -12,7 +12,7 @@ final class EventsApi
 
     public static function on($name, $callback, $priority = 10)
     {
-        if ( ! isset(self::$events[$name])) {
+        if ( !isset(self::$events[$name])) {
             self::$events[$name] = [];
         }
         self::$events[$name][] = [
@@ -28,7 +28,7 @@ final class EventsApi
         $return = isset($args[1]) ? $args[1] : null;
         unset($args[0], $args[1]);
         $events = isset(self::$events[$name]) ? self::$events[$name] : false;
-        if ( ! $events) {
+        if ( !$events) {
             return $return;
         }
         $sortArr = [];

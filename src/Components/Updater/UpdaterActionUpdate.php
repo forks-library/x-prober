@@ -21,7 +21,7 @@ final class UpdaterActionUpdate
                 ->end();
         }
         // check file writable
-        if ( ! is_writable(__FILE__)) {
+        if ( !is_writable(__FILE__)) {
             $response
                 ->setStatus(StatusCode::INSUFFICIENT_STORAGE)
                 ->end();
@@ -37,7 +37,7 @@ final class UpdaterActionUpdate
                 break;
             }
         }
-        if ( ! $code) {
+        if ( !$code) {
             $response
                 ->setStatus(StatusCode::NOT_FOUND)
                 ->end();

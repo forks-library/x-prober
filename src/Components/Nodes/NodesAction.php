@@ -15,13 +15,13 @@ final class NodesAction
         }
         $nodeId = filter_input(\INPUT_GET, 'nodeId', \FILTER_DEFAULT);
         $response = new RestResponse();
-        if ( ! $nodeId) {
+        if ( !$nodeId) {
             $response
                 ->setStatus(StatusCode::BAD_REQUEST)
                 ->end();
         }
         $data = $this->getNodeData($nodeId);
-        if ( ! $data) {
+        if ( !$data) {
             $response
                 ->setStatus(StatusCode::NO_CONTENT)
                 ->end();
@@ -36,14 +36,14 @@ final class NodesAction
         $node = UtilsApi::arrayFind(NodesApi::getUserConfigNodes(), function ($item) use ($nodeId) {
             return isset($item['url']) && isset($item['id']) && $item['id'] === $nodeId;
         });
-        if ( ! $node) {
+        if ( !$node) {
             return;
         }
         $isDev = \defined('XPROBER_IS_DEV') && XPROBER_IS_DEV;
         $url = $node['url'];
-        $isRemote = ( ! str_contains($url, 'localhost') || ! str_contains($url, '127.0.0.1'));
+        $isRemote = ( !str_contains($url, 'localhost') || !str_contains($url, '127.0.0.1'));
         $params = 'action=poll';
-        $url = ($isDev && ! $isRemote) ? "{$url}/api?{$params}" : "{$url}?{$params}";
+        $url = ($isDev && !$isRemote) ? "{$url}/api?{$params}" : "{$url}?{$params}";
 
         return $this->getRemoteData($url);
     }

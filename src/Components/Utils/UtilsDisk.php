@@ -16,7 +16,7 @@ final class UtilsDisk
 
     private static function getLinuxItems()
     {
-        if ( ! \function_exists('shell_exec')) {
+        if ( !\function_exists('shell_exec')) {
             return [
                 [
                     'id' => __DIR__,
@@ -52,7 +52,7 @@ final class UtilsDisk
                 'total' => $total,
             ];
         }
-        if ( ! $items) {
+        if ( !$items) {
             return [];
         }
         // sort by total desc

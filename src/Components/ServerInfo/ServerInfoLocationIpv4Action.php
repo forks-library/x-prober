@@ -22,7 +22,7 @@ final class ServerInfoLocationIpv4Action
         }
         $response = new RestResponse();
         $ip = UtilsServerIp::getPublicIpV4();
-        if ( ! $ip) {
+        if ( !$ip) {
             $response
                 ->setStatus(StatusCode::INTERNAL_SERVER_ERROR)
                 ->end();

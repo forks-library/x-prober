@@ -25,11 +25,11 @@ final class BrowserBenchmarkBrowsersAction
             curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
             $data = (string) curl_exec($curl);
             curl_close($curl);
-            if ( ! $data) {
+            if ( !$data) {
                 continue;
             }
             $json = json_decode($data, true);
-            if ( ! $json) {
+            if ( !$json) {
                 continue;
             }
             $reponse
@@ -44,15 +44,15 @@ final class BrowserBenchmarkBrowsersAction
     private function getDevItems()
     {
         $path = Bootstrap::$dir . '/browser-benchmarks.json';
-        if ( ! file_exists($path)) {
+        if ( !file_exists($path)) {
             return [];
         }
         $data = file_get_contents($path);
-        if ( ! $data) {
+        if ( !$data) {
             return [];
         }
         $items = json_decode($data, true);
-        if ( ! $items) {
+        if ( !$items) {
             return [];
         }
 

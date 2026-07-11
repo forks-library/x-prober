@@ -13,7 +13,7 @@ final class Action
         // delay for server benchmark
         (new ServerBenchmarkDelay())->delay();
         $action = (string) filter_input(\INPUT_GET, 'action', \FILTER_DEFAULT);
-        if ( ! $action) {
+        if ( !$action) {
             return;
         }
         // for php54

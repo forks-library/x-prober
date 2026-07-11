@@ -19,7 +19,7 @@ final class RestResponse
 
     public function setHeader($key, $value, $replace = true)
     {
-        if ($replace || ! isset($this->headers[$key])) {
+        if ($replace || !isset($this->headers[$key])) {
             $this->headers[$key] = $value;
         } else {
             $this->headers[$key] .= ", {$value}";

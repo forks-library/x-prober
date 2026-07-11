@@ -261,12 +261,12 @@ final class UtilsCpu
         $searchImplementer = self::match($content, 'CPU implementer');
         $implementer = \count($searchImplementer) ? $searchImplementer[0] : '';
         $implementer = isset(self::$HW_IMPLEMENTER[$implementer]) ? self::$HW_IMPLEMENTER[$implementer] : '';
-        if ( ! $implementer) {
+        if ( !$implementer) {
             return [];
         }
         $searchPart = self::match($content, 'CPU part');
         $part = \count($searchPart) ? $searchPart[0] : '';
-        if ( ! $part) {
+        if ( !$part) {
             return [$implementer];
         }
         $parts = $implementer[0];
@@ -282,18 +282,18 @@ final class UtilsCpu
     {
         $filePath = '/proc/cpuinfo';
         error_reporting(0);
-        if ( ! is_readable($filePath)) {
+        if ( !is_readable($filePath)) {
             error_reporting(\E_ALL);
 
             return 0;
         }
         $content = file_get_contents($filePath);
-        if ( ! $content) {
+        if ( !$content) {
             return 0;
         }
         if (self::isArm($content)) {
             $cores = substr_count($content, 'processor');
-            if ( ! $cores) {
+            if ( !$cores) {
                 return 0;
             }
         }
@@ -305,18 +305,18 @@ final class UtilsCpu
     {
         $filePath = '/proc/cpuinfo';
         error_reporting(0);
-        if ( ! is_readable($filePath)) {
+        if ( !is_readable($filePath)) {
             error_reporting(\E_ALL);
 
             return '';
         }
         $content = file_get_contents($filePath);
-        if ( ! $content) {
+        if ( !$content) {
             return '';
         }
         if (self::isArm($content)) {
             $cores = substr_count($content, 'processor');
-            if ( ! $cores) {
+            if ( !$cores) {
                 return '';
             }
 
@@ -324,7 +324,7 @@ final class UtilsCpu
         }
         // cpu cores
         $cores = self::getCores();
-        if ( ! $cores) {
+        if ( !$cores) {
             return '';
         }
         // cpu model name
@@ -360,7 +360,7 @@ final class UtilsCpu
             $usage['user'] = $total;
         // exec
         } else {
-            if ( ! \function_exists('exec')) {
+            if ( !\function_exists('exec')) {
                 return;
             }
             $p = [];
@@ -380,7 +380,7 @@ final class UtilsCpu
         static $prev = null;
         $statFile = '/proc/stat';
         error_reporting(0);
-        if ( ! is_readable($statFile)) {
+        if ( !is_readable($statFile)) {
             error_reporting(\E_ALL);
 
             return [
@@ -434,7 +434,7 @@ final class UtilsCpu
     private static function parseLinuxCpuStats($statFile)
     {
         $lines = file($statFile, \FILE_IGNORE_NEW_LINES | \FILE_SKIP_EMPTY_LINES);
-        if ( ! $lines) {
+        if ( !$lines) {
             return;
         }
         $line = $lines[0];

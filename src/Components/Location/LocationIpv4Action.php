@@ -23,7 +23,7 @@ final class LocationIpv4Action
         $ip = filter_input(\INPUT_GET, 'ip', \FILTER_VALIDATE_IP, [
             'flags' => \FILTER_FLAG_IPV4,
         ]);
-        if ( ! $ip) {
+        if ( !$ip) {
             $response
                 ->setStatus(StatusCode::BAD_REQUEST)
                 ->end();

@@ -32,7 +32,7 @@ final class TemperatureSensorPoll
 
     private function curl($url)
     {
-        if ( ! \function_exists('curl_init')) {
+        if ( !\function_exists('curl_init')) {
             return (string) file_get_contents($url);
         }
         $ch = curl_init();
@@ -42,6 +42,7 @@ final class TemperatureSensorPoll
             \CURLOPT_TIMEOUT => 2,
         ]);
         $res = curl_exec($ch);
+        curl_close($ch);
 
         return (string) $res;
     }
@@ -50,16 +51,16 @@ final class TemperatureSensorPoll
     {
         $items = [];
         $urls = UserConfigApi::get('temperatureSensors') ?: [];
-        if ( ! $urls) {
+        if (!$urls) {
             return [];
         }
         foreach ($urls as $url) {
             $res = $this->curl($url);
-            if ( ! $res) {
+            if (!$res) {
                 continue;
             }
             $item = json_decode($res, true);
-            if ( ! $item || ! \is_array($item)) {
+            if (!$item || !\is_array($item)) {
                 continue;
             }
             $items[] = $item;
@@ -72,7 +73,7 @@ final class TemperatureSensorPoll
     {
         try {
             $path = '/sys/class/thermal/thermal_zone0/temp';
-            if ( ! is_readable($path)) {
+            if (!is_readable($path)) {
                 return false;
             }
 

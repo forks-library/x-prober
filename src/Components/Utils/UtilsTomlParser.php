@@ -23,7 +23,7 @@ final class UtilsTomlParser
 
                 $current_group = &$result;
                 foreach ($groups as $g) {
-                    if ( ! isset($current_group[$g])) {
+                    if ( !isset($current_group[$g])) {
                         $current_group[$g] = [];
                     }
                     $current_group = &$current_group[$g];
@@ -32,7 +32,7 @@ final class UtilsTomlParser
             }
 
             if (false !== strpos($line, '=')) {
-                [$key, $value] = explode('=', $line, 2);
+                list($key, $value) = explode('=', $line, 2);
                 $key = trim($key);
                 $value = trim($value);
 
@@ -85,14 +85,14 @@ final class UtilsTomlParser
             while ($i < $len) {
                 $char = $inner[$i];
 
-                if ( ! $in_string && ('"' === $char || "'" === $char)) {
+                if ( !$in_string && ('"' === $char || "'" === $char)) {
                     $in_string = true;
                     $string_char = $char;
                     $current .= $char;
                 } elseif ($in_string && $char === $string_char && '\\' !== $inner[$i - 1]) {
                     $in_string = false;
                     $current .= $char;
-                } elseif ( ! $in_string && ',' === $char) {
+                } elseif ( !$in_string && ',' === $char) {
                     $items[] = self::parse_value(trim($current));
                     $current = '';
                 } else {

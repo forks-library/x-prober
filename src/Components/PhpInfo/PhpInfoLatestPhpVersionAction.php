@@ -22,19 +22,19 @@ final class PhpInfoLatestPhpVersionAction
                 ->end();
         }
         $content = file_get_contents('https://www.php.net/releases/?json');
-        if ( ! $content) {
+        if ( !$content) {
             $response
                 ->setStatus(StatusCode::NO_CONTENT)
                 ->end();
         }
         $versions = json_decode($content, true);
-        if ( ! $versions) {
+        if ( !$versions) {
             $response
                 ->setStatus(StatusCode::NO_CONTENT)
                 ->end();
         }
         $version = isset($versions[ConfigApi::$config['LATEST_PHP_STABLE_VERSION']]['version']) ? $versions[ConfigApi::$config['LATEST_PHP_STABLE_VERSION']]['version'] : '';
-        if ( ! $version) {
+        if ( !$version) {
             $response
                 ->setStatus(StatusCode::NO_CONTENT)
                 ->end();

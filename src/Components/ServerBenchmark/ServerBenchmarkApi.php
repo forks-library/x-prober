@@ -41,7 +41,7 @@ class ServerBenchmarkApi
     {
         $recorder = self::getRecorder();
         $expired = isset($recorder['expired']) ? (int) $recorder['expired'] : 0;
-        if ( ! $expired) {
+        if ( !$expired) {
             return 0;
         }
 
@@ -72,7 +72,7 @@ class ServerBenchmarkApi
     public static function getWritePoints()
     {
         $tmpDir = sys_get_temp_dir();
-        if ( ! is_writable($tmpDir)) {
+        if ( !is_writable($tmpDir)) {
             return 0;
         }
         $i = 0;
@@ -92,7 +92,7 @@ class ServerBenchmarkApi
     {
         $tmpDir = sys_get_temp_dir();
         error_reporting(0);
-        if ( ! is_readable($tmpDir)) {
+        if ( !is_readable($tmpDir)) {
             error_reporting(\E_ALL);
 
             return 0;
@@ -100,7 +100,7 @@ class ServerBenchmarkApi
         $i = 0;
         $start = microtime(true);
         $filePath = "{$tmpDir}/innStudioIoBenchmark";
-        if ( ! file_exists($filePath)) {
+        if ( !file_exists($filePath)) {
             file_put_contents($filePath, 'innStudioReadBenchmark');
         }
         while (microtime(true) - $start < .5) {
@@ -146,17 +146,17 @@ class ServerBenchmarkApi
             'running' => 0,
         ];
         error_reporting(0);
-        if ( ! is_readable($path)) {
+        if ( !is_readable($path)) {
             error_reporting(\E_ALL);
 
             return $defaults;
         }
         $data = (string) file_get_contents($path);
-        if ( ! $data) {
+        if ( !$data) {
             return $defaults;
         }
         $data = json_decode($data, true);
-        if ( ! $data) {
+        if ( !$data) {
             return $defaults;
         }
 

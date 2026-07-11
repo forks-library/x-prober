@@ -8,7 +8,7 @@ final class UtilsClientIp
     {
         $keys = ['HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'];
         foreach ($keys as $key) {
-            if ( ! isset($_SERVER[$key])) {
+            if ( !isset($_SERVER[$key])) {
                 continue;
             }
             $ip = array_filter(explode(',', $_SERVER[$key]));
@@ -27,7 +27,7 @@ final class UtilsClientIp
     {
         $keys = ['HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'];
         foreach ($keys as $key) {
-            if ( ! isset($_SERVER[$key])) {
+            if ( !isset($_SERVER[$key])) {
                 continue;
             }
             $ip = array_filter(explode(',', $_SERVER[$key]));

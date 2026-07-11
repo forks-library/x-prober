@@ -9,7 +9,7 @@ class NodesApi
     public static function getUserConfigNodes()
     {
         $items = UserConfigApi::get(NodesConstants::ID);
-        if ( ! $items || ! \is_array($items)) {
+        if ( !$items || !\is_array($items)) {
             return [];
         }
 

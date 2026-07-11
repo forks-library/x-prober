@@ -31,7 +31,7 @@ final class UtilsLocation
             $content = file_get_contents($url);
         }
         $item = json_decode($content, true) ?: null;
-        if ( ! $item) {
+        if ( !$item) {
             return;
         }
         // get langcode from en-US,en;q=0.9,zh-CN;q=0.8,zh-TW;q=0.7,zh;q=0.6
@@ -51,7 +51,7 @@ final class UtilsLocation
                 $langcode = 'zh-CN';
                 break;
         }
-        if ( ! \in_array($langcode, ['en', 'de', 'es', 'ru', 'pt-BR', 'fr', 'zh-CN'], true)) {
+        if ( !\in_array($langcode, ['en', 'de', 'es', 'ru', 'pt-BR', 'fr', 'zh-CN'], true)) {
             $langcode = 'en';
         }
 

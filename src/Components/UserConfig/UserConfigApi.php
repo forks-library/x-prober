@@ -27,20 +27,20 @@ final class UserConfigApi
 
     private static function getFilePath()
     {
-        if ( ! \defined('XPROBER_DIR')) {
+        if ( !\defined('XPROBER_DIR')) {
             return '';
         }
         $filename = self::$filename;
         if (\defined('XPROBER_IS_DEV') && XPROBER_IS_DEV) {
             $path = \dirname(XPROBER_DIR) . "/{$filename}";
-            if ( ! file_exists($path) || ! is_readable($path)) {
+            if ( !file_exists($path) || !is_readable($path)) {
                 return '';
             }
 
             return $path;
         }
         $path = XPROBER_DIR . "/{$filename}";
-        if ( ! file_exists($path) || ! is_readable($path)) {
+        if ( !file_exists($path) || !is_readable($path)) {
             return '';
         }
 
@@ -53,20 +53,20 @@ final class UserConfigApi
             return;
         }
         $path = self::getFilePath();
-        if ( ! $path) {
+        if ( !$path) {
             self::$conf = null;
 
             return;
         }
         $content = file_get_contents($path);
-        if ( ! $content) {
+        if ( !$content) {
             self::$conf = null;
 
             return;
         }
         // toml
         $conf = UtilsTomlParser::parse($content);
-        if ( ! $conf) {
+        if ( !$conf) {
             self::$conf = null;
 
             return;

@@ -13,7 +13,7 @@ final class UtilsNetwork
     {
         $filePath = '/proc/net/dev';
         error_reporting(0);
-        if ( ! is_readable($filePath)) {
+        if ( !is_readable($filePath)) {
             error_reporting(\E_ALL);
 
             return;
@@ -31,7 +31,7 @@ final class UtilsNetwork
             $numberArr = explode(' ', trim($lineArr[1]));
             $rx = (float) $numberArr[0];
             $tx = (float) $numberArr[8];
-            if ( ! $rx && ! $tx) {
+            if ( !$rx && !$tx) {
                 continue;
             }
             $eths[] = [

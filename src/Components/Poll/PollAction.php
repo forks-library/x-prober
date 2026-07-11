@@ -31,7 +31,7 @@ final class PollAction extends PoolConstants
         ] as $fn) {
             $class = "\\InnStudio\\Prober\\Components\\{$fn}";
             $render = (new $class())->render();
-            if ( ! $render || ! $render[array_keys($render)[0]]) {
+            if ( !$render || !$render[array_keys($render)[0]]) {
                 continue;
             }
             $data = array_merge($data, $render);

@@ -18,7 +18,7 @@ final class UtilsTime
     {
         $filePath = '/proc/uptime';
         error_reporting(0);
-        if ( ! is_file($filePath)) {
+        if ( !is_file($filePath)) {
             error_reporting(\E_ALL);
 
             return [

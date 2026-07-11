@@ -17,7 +17,7 @@ final class NodesPoll
         $items = array_map(function ($item) {
             return $item['id'];
         }, NodesApi::getUserConfigNodes());
-        if ( ! $items) {
+        if ( !$items) {
             return [
                 $id => null,
             ];
