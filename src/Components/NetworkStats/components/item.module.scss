@@ -16,7 +16,7 @@
     "network-stats-item-id network-stats-item-id"
     "network-stats-item-rx network-stats-item-tx";
   gap: 1px;
-  font-family: "Arial Black", sans-serif;
+  font-family: "Arial Black", var(--x-code-font-family);
 }
 .id {
   grid-area: network-stats-item-id;

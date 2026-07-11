@@ -5,10 +5,11 @@
   --x-radius: 0.5rem;
   --x-fg: hsl(0, 0%, 20%);
   --x-bg: hsl(0, 0%, 97%);
-  --x-text-font-family: "Noto Sans SC", Verdana, Geneva, Tahoma, sans-serif, "Microsoft YaHei UI";
+  --x-text-font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "PingFang TC",
+    "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
   --x-code-font-family:
-    "Noto Sans Mono", monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", sans-serif,
-    "Microsoft YaHei UI";
+    "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", "PingFang SC", "Microsoft YaHei", monospace;
 
   --x-app-border-color: var(--x-fg);
   --x-app-bg: var(--x-bg);

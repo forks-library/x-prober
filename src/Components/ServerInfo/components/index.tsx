@@ -55,7 +55,7 @@ const SingleItems: FC<{
   return (
     <UiSingleColContainer>
       {items.map(([title, content]) => (
-        <ModuleGroup key={title} label={title} maxWidth={6}>
+        <ModuleGroup key={title} label={title} maxWidth={7}>
           {content}
         </ModuleGroup>
       ))}

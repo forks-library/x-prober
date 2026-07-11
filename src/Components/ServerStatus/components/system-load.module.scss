@@ -49,6 +49,5 @@
   background: var(--x-sys-load-interval-bg);
   padding: 0 var(--x-gutter);
   color: var(--x-sys-load-fg);
-  font-weight: bold;
-  font-family: "Arial Black", sans-serif, monospace;
+  font-family: "Arial Black", var(--x-code-font-family);
 }

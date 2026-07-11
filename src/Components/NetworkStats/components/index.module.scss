@@ -31,7 +31,7 @@
 }
 
 .rate {
-  font-family: "Arial Black", sans-serif;
+  font-family: "Arial Black", var(--x-code-font-family);
   &::before {
     margin-right: 0.5rem;
   }
