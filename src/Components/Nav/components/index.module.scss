@@ -1,11 +1,12 @@
 @use "@/Components/Style/components/device.scss" as m;
 :root {
   --x-nav-fg: oklch(0% 0 0 / 0.9);
-  --x-nav-bg: oklch(0% 0 0 / 0.1);
-  --x-nav-bg-hover: oklch(0% 0 0 / 0.1);
-  --x-nav-bg-active: oklch(0% 0 0 / 0.15);
+  --x-nav-bg: oklch(100% 0 0 / 0.9);
+  --x-nav-bg-hover: oklch(0% 0 0 / 0.05);
+  --x-nav-bg-active: oklch(0% 0 0 / 0.1);
   --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(0% 0 0 / 0.1), transparent);
   --x-nav-text-shadow: 0 1px 2px oklch(100% 0 0 / 0.3);
+  --x-nav-box-shadow: 0 0 3px oklch(0% 0 0 / 0.1);
 }
 :global([data-theme="dark"]) {
   --x-nav-fg: oklch(100% 0 0 / 0.9);
@@ -23,6 +24,7 @@
   left: 0;
   justify-content: center;
   z-index: 10;
+  padding: 5px;
   overflow: hidden;
   @include m.device(lg) {
     bottom: var(--x-gutter-sm);
@@ -32,6 +34,7 @@
   display: flex;
   align-items: center;
   backdrop-filter: blur(5px);
+  box-shadow: var(--x-nav-box-shadow);
   background: var(--x-nav-bg);
   overflow-x: auto;
   @include m.device(lg) {
