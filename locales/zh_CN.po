@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: X-Prober\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-10 21:34+0800\n"
+"PO-Revision-Date: 2026-07-11 16:33+0800\n"
 "Last-Translator: Km.Van <kmvan@outlook.com>\n"
 "Language-Team: kmvan <kmvan.com@gmail.com>\n"
 "Language: zh_CN\n"
@@ -18,24 +18,24 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments\n"
 
 msgid "Failed to fetch data. Please try again later."
-msgstr "无法获取数据，请稍后重试。"
+msgstr "无法获取数据，请稍后再试。"
 
 msgid "Network error. Please check your connection."
-msgstr "网络错误，请检查您与服务器的网络。"
+msgstr "网络错误，请检查您的网络链接。"
 
 msgid "Touch to copy marks"
-msgstr "点击复制分数"
+msgstr "复制分数"
 
 msgid "Can not fetch marks data from GitHub."
-msgstr "无法从GitHub获取测试数据。"
+msgstr "无法从 GitHub 中获取跑分数据。"
 
 msgid "Browser Benchmark"
-msgstr "浏览器性能测试"
+msgstr "浏览器跑分"
 
 msgid ""
 "Different versions cannot be compared, and different time clients have "
 "different loads, just for reference."
-msgstr "不同版本无法直接比较，不同时间浏览器负载各异，结果仅供参考。"
+msgstr "不同版本的不能比较，不同的时间服务器存在不同的负载，仅作参考。"
 
 msgid ""
 "Running the benchmark may freeze the browser interface for a few seconds. Do "
@@ -43,10 +43,10 @@ msgid ""
 msgstr "执行性能测试可能会冻结浏览器界面数秒，是否继续？"
 
 msgid "Benchmark my browser"
-msgstr "测试浏览器性能"
+msgstr "测试我的浏览器"
 
 msgid "Browser bench"
-msgstr "浏览器性能"
+msgstr "浏览器测试"
 
 msgid "Database"
 msgstr "数据库"
@@ -55,16 +55,16 @@ msgid "DB"
 msgstr "数据库"
 
 msgid "Disk Usage"
-msgstr "磁盘使用量"
+msgstr "磁盘用量"
 
 msgid "Disk"
 msgstr "磁盘"
 
 msgid "Generate by {{appName}} and developed by {{authorName}}"
-msgstr "由 {{appName}} 生成并由 {{authorName}} 开发"
+msgstr "由 {{appName}} 生成，由 {{authorName}} 开发"
 
 msgid "Can not fetch location."
-msgstr "无法获取位置信息。"
+msgstr "无法获取地理位置。"
 
 msgid "Click to fetch"
 msgstr "点击获取"
@@ -82,7 +82,7 @@ msgid "IPv6"
 msgstr "IPv6"
 
 msgid "Location (IPv4)"
-msgstr "位置 (IPv4)"
+msgstr "位置（IPv4）"
 
 msgid "Browser UA"
 msgstr "浏览器 UA"
@@ -100,43 +100,49 @@ msgid "Mine"
 msgstr "我的"
 
 msgid "Network Stats"
-msgstr "网络统计"
+msgstr "流量统计"
+
+msgid "Recived: {{total}}"
+msgstr "接收：{{total}}"
+
+msgid "Sent: {{total}}"
+msgstr "发送：{{total}}"
 
 msgid "Network"
 msgstr "网络"
 
 msgid "CPU"
-msgstr "处理器"
+msgstr "CPU"
 
 msgid "Nodes"
 msgstr "节点"
 
 msgid "Error: {{error}}"
-msgstr "错误: {{error}}"
+msgstr "错误：{{error}}"
 
 msgid "Ram"
 msgstr "内存"
 
 msgid "Swap"
-msgstr "交换空间"
+msgstr "Swap"
 
 msgid "Opcache enabled"
-msgstr "Opcache 已启用"
+msgstr "OPcache 已启用"
 
 msgid "Opcache JIT enabled"
-msgstr "Opcache JIT 已启用"
+msgstr "OPcache JIT 已启用"
 
 msgid "PHP Extensions"
 msgstr "PHP 扩展"
 
 msgid "Loaded extensions"
-msgstr "已加载扩展"
+msgstr "已加载的扩展"
 
 msgid "PHP Ext"
-msgstr "PHP扩展"
+msgstr "PHP 扩展"
 
 msgid "Detail"
-msgstr "详情"
+msgstr "详细"
 
 msgid "Version"
 msgstr "版本"
@@ -151,40 +157,40 @@ msgid "Error reporting"
 msgstr "错误报告"
 
 msgid "Max memory limit"
-msgstr "最大内存限制"
+msgstr "运行内存限制"
 
 msgid "Max POST size"
-msgstr "最大 POST 大小"
+msgstr "POST 提交限制"
 
 msgid "Max upload size"
-msgstr "最大上传大小"
+msgstr "上传文件限制"
 
 msgid "Max input variables"
-msgstr "最大输入变量数"
+msgstr "提交表单限制"
 
 msgid "Max execution time"
-msgstr "最长执行时间"
+msgstr "运行超时秒数"
 
 msgid "Timeout for socket"
-msgstr "Socket 超时时间"
+msgstr "Socket 超时秒数"
 
 msgid "Treatment URLs file"
-msgstr "远程文件处理"
+msgstr "文件远端打开"
 
 msgid "SMTP support"
 msgstr "SMTP 支持"
 
 msgid "Disabled functions"
-msgstr "禁用函数"
+msgstr "已禁用的函数"
 
 msgid "Disabled classes"
-msgstr "禁用类"
+msgstr "已禁用的类"
 
 msgid "PHP Information"
 msgstr "PHP 信息"
 
 msgid "PHP Info"
-msgstr "PHP信息"
+msgstr "PHP 信息"
 
 msgid "Visit PHP.net Official website"
 msgstr "访问 PHP.net 官网"
@@ -193,7 +199,7 @@ msgid "{{oldVersion}} (Latest: {{latestPhpVersion}})"
 msgstr "{{oldVersion}}（最新版：{{latestPhpVersion}}）"
 
 msgid "Ping"
-msgstr "网络检测"
+msgstr "Ping"
 
 msgid "{{times}} times, min/avg/max/mdev = {{min}}/{{avg}}/{{max}}/{{mdev}} ms"
 msgstr ""
@@ -212,33 +218,33 @@ msgid "Start ping"
 msgstr "开始 Ping"
 
 msgid "Server Benchmark"
-msgstr "服务器性能测试"
+msgstr "服务器跑分"
 
 msgid ""
 "Different versions cannot be compared, and different time servers have "
 "different loads, just for reference."
-msgstr "不同版本无法直接比较，不同时间服务器负载各异，结果仅供参考。"
+msgstr "不同版本的不能比较，不同的时间服务器存在不同的负载，仅作参考。"
 
 msgid "Please wait {{seconds}}s"
 msgstr "请等待 {{seconds}} 秒"
 
 msgid "Network error, please try again later."
-msgstr "网络错误，请稍后重试。"
+msgstr "网络错误，请稍候重试。"
 
 msgid "Benchmark my server"
-msgstr "测试服务器性能"
+msgstr "测试我的服务器"
 
 msgid "Server bench"
-msgstr "服务器性能"
+msgstr "服务器测试"
 
 msgid "Read"
-msgstr "读取"
+msgstr "读"
 
 msgid "Write"
-msgstr "写入"
+msgstr "写"
 
 msgid "Visit probe page"
-msgstr "访问检测页面"
+msgstr "查看探针页面"
 
 msgid "Download speed test"
 msgstr "下载速度测试"
@@ -292,7 +298,7 @@ msgid "Info"
 msgstr "信息"
 
 msgid "CPU usage"
-msgstr "CPU 使用率"
+msgstr "CPU 占用"
 
 msgid "idle: {{idle}} \\nnice: {{nice}} \\nsys: {{sys}} \\nuser: {{user}}"
 msgstr ""
@@ -302,7 +308,7 @@ msgid "Server Status"
 msgstr "服务器状态"
 
 msgid "Memory buffers"
-msgstr "内存缓冲区"
+msgstr "内存缓冲"
 
 msgid ""
 "Buffers are in-memory block I/O buffers. They are relatively short-lived. "
@@ -315,16 +321,33 @@ msgstr ""
 "（即非文件数据）。"
 
 msgid "Memory cached"
-msgstr "缓存内存"
+msgstr "内存缓存"
+
+msgid ""
+"Cached memory is memory that Linux uses for disk caching. However, this does "
+"not count as \"used\" memory, since it will be freed when applications "
+"require it. Hence you do not have to worry if a large amount is being used."
+msgstr ""
+"缓存内存是 Linux 用于磁盘缓存的内存空间，不计入“已用”内存，因为应用程序需要时"
+"会自动释放。因此即使使用量较大也无需担心。"
 
 msgid "Memory real usage"
-msgstr "实际内存使用"
+msgstr "真实内存占用"
+
+msgid ""
+"Linux comes with many commands to check memory usage. The \"free\" command "
+"usually displays the total amount of free and used physical and swap memory "
+"in the system, as well as the buffers used by the kernel. The \"top\" "
+"command provides a dynamic real-time view of a running system."
+msgstr ""
+"Linux 提供多种内存检测命令：“free”命令显示系统物理内存和交换空间的总用量及内"
+"核缓冲区；“top”命令提供运行中系统的实时动态视图。"
 
 msgid "Swap cached"
-msgstr "交换区缓存"
+msgstr "SWAP 缓存"
 
 msgid "Swap usage"
-msgstr "交换区使用"
+msgstr "SWAP 占用"
 
 msgid "{{minute}} minute average"
 msgstr "{{minute}} 分钟平均负载"
@@ -342,7 +365,7 @@ msgid "{{sensor}} temperature"
 msgstr "{{sensor}} 温度"
 
 msgid "Temperature"
-msgstr "温度"
+msgstr "温度传感器"
 
 msgid "LiangYe"
 msgstr "良夜"
@@ -354,10 +377,10 @@ msgid "Click to close"
 msgstr "点击关闭"
 
 msgid "Update success, refreshing..."
-msgstr "更新成功，刷新中..."
+msgstr "更新成功，正在刷新……"
 
 msgid "Update is disabled in dev mode."
-msgstr "开发模式下禁用更新。"
+msgstr "在开发模式中，更新被禁用。"
 
 msgid "Can not update file, please check the server permissions and space."
 msgstr "无法更新文件，请检查服务器权限和空间。"
@@ -366,16 +389,16 @@ msgid "Click to update"
 msgstr "点击更新"
 
 msgid "⏳ Updating, please wait a second..."
-msgstr "⏳ 更新中..."
+msgstr "⏳ 更新中，请稍等……"
 
 msgid "❌ Update error, click here to try again?"
-msgstr "❌ 更新错误 [点击重试]"
+msgstr "❌ 更新错误，点击此处再试一次？"
 
 msgid "✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}"
 msgstr "✨ 发现新版本: {{oldVersion}} → {{newVersion}}"
 
 msgid "Loading..."
-msgstr "加载中..."
+msgstr "加载中……"
 
 msgid "Not support"
 msgstr "不支持"
@@ -2784,30 +2807,6 @@ msgstr "无法获取 IP"
 #~ "X-Poedit-SourceCharset: UTF-8\n"
 #~ "X-Generator: Poedit 3.7\n"
 #~ "X-Poedit-Flags-xgettext: --add-comments\n"
-
-#~ msgid "Recived: {{total}}"
-#~ msgstr "接收: {{total}}"
-
-#~ msgid "Sent: {{total}}"
-#~ msgstr "发送: {{total}}"
-
-#~ msgid ""
-#~ "Cached memory is memory that Linux uses for disk caching. However, this "
-#~ "does not count as \"used\" memory, since it will be freed when "
-#~ "applications require it. Hence you do not have to worry if a large amount "
-#~ "is being used."
-#~ msgstr ""
-#~ "缓存内存是 Linux 用于磁盘缓存的内存空间，不计入“已用”内存，因为应用程序需"
-#~ "要时会自动释放。因此即使使用量较大也无需担心。"
-
-#~ msgid ""
-#~ "Linux comes with many commands to check memory usage. The \"free\" "
-#~ "command usually displays the total amount of free and used physical and "
-#~ "swap memory in the system, as well as the buffers used by the kernel. The "
-#~ "\"top\" command provides a dynamic real-time view of a running system."
-#~ msgstr ""
-#~ "Linux 提供多种内存检测命令：“free”命令显示系统物理内存和交换空间的总用量及"
-#~ "内核缓冲区；“top”命令提供运行中系统的实时动态视图。"
 
 #~ msgid "Dark"
 #~ msgstr "深色模式"
