@@ -1,4 +1,5 @@
-import styles from './loading.module.scss';
-export const BootstrapLoading = () => {
-  return <div className={styles.main}>Loading...</div>;
-};
+import styles from "./loading.module.scss";
+
+export const BootstrapLoading = () => (
+  <div className={styles.main}>Thinking...</div>
+);

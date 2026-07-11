@@ -19,7 +19,7 @@ final class Render
         $globalConfig = WindowConfigApi::getGlobalConfig();
         echo <<<HTML
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,18 +30,19 @@ final class Render
 {$loadScript}
 <style>
 :root {
-    --x-init-fg: hsl(0 0% 10%);
-    --x-init-body-fg: hsl(0 0% 10%);
-    --x-init-body-bg: hsl(0 0% 90%);
-    --x-init-loading-bg: hsl(0 0% 90%);
-    --x-init-loading-fg: hsl(0 0% 10%);
+    --x-init-fg: oklch(10% 0 0);
+    --x-init-body-fg: oklch(10% 0 0);
+    --x-init-body-bg: oklch(90% 0 0);
+    --x-init-loading-bg: oklch(0% 0 0 / 0.3);
+    --x-init-loading-fg: oklch(10% 0 0);
 }
+
 [data-theme="dark"] {
-    --x-init-fg: hsl(0 0% 90%);
-    --x-init-body-fg: hsl(0 0% 90%);
-    --x-init-body-bg: hsl(0 0% 0%);
-    --x-init-loading-bg: hsl(0 0% 0%);
-    --x-init-loading-fg: hsl(0 0% 90%);
+    --x-init-fg: oklch(90% 0 0);
+    --x-init-body-fg: oklch(90% 0 0);
+    --x-init-body-bg: oklch(10% 0 0);
+    --x-init-loading-bg: oklch(100% 0 0 / 0.3);
+    --x-init-loading-fg: oklch(90% 0 0);
 }
 @keyframes spin {
     to {
@@ -62,24 +63,26 @@ body {
     align-items: center;
     gap: 0.5em;
     height: 100svh;
-    font-family: monospace;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        "PingFang SC", "PingFang TC", "Microsoft YaHei", "Source Han Sans SC",
+        "Noto Sans CJK SC", sans-serif;
 }
 #loading::before {
-    animation: spin 1s linear infinite;
     box-sizing: border-box;
-    border: 1px solid var(--x-init-loading-bg);
-    border-top-color: var(--x-init-loading-fg);
-    border-radius: 50%;
     width: 16px;
     height: 16px;
     content: "";
+    border: 1px solid var(--x-init-loading-bg);
+    border-top-color: var(--x-init-loading-fg);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 </style>
 {$loadStyle}
 </head>
 <body>
-<div id=loading>Loading...</div>
-</div>
+<div id=loading>Thinking...</div>
 </body>
 </html>
 HTML;
