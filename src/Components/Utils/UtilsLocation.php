@@ -7,7 +7,7 @@ final class UtilsLocation
     /**
      * Get IP location.
      *
-     * @param [string] $ip
+     * @param string $ip
      *
      * @return array|null $args
      *                    $args['country'] string Country, e.g, China
@@ -37,7 +37,7 @@ final class UtilsLocation
         // get langcode from en-US,en;q=0.9,zh-CN;q=0.8,zh-TW;q=0.7,zh;q=0.6
         $langcode = '';
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            if (str_contains($_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) {
+            if (false!==strpos($_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) {
                 $langcode = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, strpos($_SERVER['HTTP_ACCEPT_LANGUAGE'], ','));
             }
         }
