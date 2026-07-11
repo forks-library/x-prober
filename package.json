@@ -11,7 +11,7 @@
     "build": "vite build --config ./prod.vite.config.mjs",
     "build:php": "bash ./php-build.sh",
     "build:php-debug": "php ./Make.php build debug && echo '\nPlease access via http://localhost:8001/prober.php' && PHP_CLI_SERVER_WORKERS=4 php -S localhost:8001 -t dist",
-    "php-cs-fixer-54": "php-cs-fixer fix ./src --config=.php-cs-fixer54"
+    "php-cs-fixer-54": "php-cs-fixer fix ./src --config=.php-cs-fixer54.php"
   },
   "browserslist": [
     "defaults"

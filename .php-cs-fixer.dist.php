@@ -11,7 +11,7 @@ $finder = (new PhpCsFixer\Finder())
 
 return (new PhpCsFixer\Config())
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
-    ->setIndent("    ")
+    ->setIndent('    ')
     ->setRiskyAllowed(true)
     ->setLineEnding("\n")
     ->setUsingCache(false)
@@ -87,7 +87,7 @@ return (new PhpCsFixer\Config())
         'ordered_imports' => true,
         'single_quote' => true,
         'yoda_style' => true,
-        'constant_case' => ['case' => 'lowercase'],
+        'constant_case' => ['case' => 'lower'],
 
         // 显式禁用会破坏 PHP 5.4 语法的现代规则
         'declare_strict_types' => false,     // PHP 7.0+
