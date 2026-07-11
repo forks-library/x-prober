@@ -53,6 +53,7 @@ return (new PhpCsFixer\Config())
         'switch_case_semicolon_to_colon' => true,
         'switch_case_space' => true,
         'visibility_required' => ['elements' => ['property', 'method']], // PHP 5.4 支持类成员可见性，但不支持 const 可见性
+        'modifier_keywords' => false,
 
         // 字符串与操作符
         'concat_space' => ['spacing' => 'one'],
