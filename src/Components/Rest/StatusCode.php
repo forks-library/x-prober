@@ -4,7 +4,7 @@ namespace InnStudio\Prober\Components\Rest;
 
 final class StatusCode
 {
-    const CONTINUE = 100;
+    const HTTP_CONTINUE = 100;
 
     const SWITCHING_PROTOCOLS = 101;
 
