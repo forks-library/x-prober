@@ -61,7 +61,7 @@ final class Compiler
 
         // 2. 生产模式下，合并所有的 PHP 组件文件
         // 2. In production mode, merge all PHP component files
-        if ( ! $this->isDev()) {
+        if ( !$this->isDev()) {
             foreach ($this->yieldPhpFiles($this->componentsDir) as $filePath) {
                 $code .= $this->getCodeViaFilePath($filePath);
             }
@@ -83,13 +83,13 @@ final class Compiler
         $code = preg_replace("/(\r\n|\r|\n)+/", "\n", $code);
 
         // 4. 写入初步打包的代码 / 4. Write compiled code into target file
-        if ( ! $this->writeFile($code)) {
+        if ( !$this->writeFile($code)) {
             throw new Exception('[Compiler Error] Failed to write compiled source code.');
         }
 
         // 5. 生产模式下，注入前端 JS/CSS 到单文件中
         // 5. In production mode, inject frontend JS/CSS assets into the single file
-        if ( ! $this->isDev()) {
+        if ( !$this->isDev()) {
             try {
                 $scriptGen = new ScriptGeneration(
                     scriptFilePath: "{$this->root}/.tmp/app.js",
@@ -152,13 +152,6 @@ final class Compiler
         return isset($argv) && \in_array('dev', $argv, true);
     }
 
-    private function isDebug(): bool
-    {
-        global $argv;
-
-        return isset($argv) && \in_array('debug', $argv, true);
-    }
-
     private function preDefine(array $code): string
     {
         $codeStr = implode("\n", $code);
@@ -197,7 +190,7 @@ PHP;
 
     private function genVendorCode(): string
     {
-        if ( ! $this->isDev()) {
+        if ( !$this->isDev()) {
             return '';
         }
 
@@ -212,7 +205,7 @@ PHP;
      */
     private function yieldPhpFiles(string $dir): Generator
     {
-        if ( ! is_dir($dir)) {
+        if ( !is_dir($dir)) {
             return;
         }
 
@@ -230,7 +223,7 @@ PHP;
     {
         $dir = \dirname($this->compileFilePath);
 
-        if ( ! is_dir($dir) && ! mkdir($dir, 0755, true) && ! is_dir($dir)) {
+        if ( !is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
             return false;
         }
 
