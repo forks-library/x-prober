@@ -81,7 +81,4 @@
     border-radius: 10rem;
     background: var(--x-meter-value-even-less-good-bg);
   }
-  &::-moz-meter-optimum::slider-fill {
-    display: none;
-  }
 }

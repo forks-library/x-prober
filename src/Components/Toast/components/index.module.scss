@@ -1,12 +1,13 @@
 :root {
-  --x-toast-fg: oklch(0% 0 0 / 0.9);
-  --x-toast-bg: oklch(0% 0 0 / 0.1);
+  --x-toast-fg: oklch(100% 0 0 / 0.9);
+  --x-toast-bg: oklch(0% 0 0 / 0.8);
   &:global([data-theme="dark"]) {
-    --x-toast-fg: oklch(100% 0 0 / 0.9);
-    --x-toast-bg: oklch(100% 0 0 / 0.1);
+    --x-toast-fg: oklch(0% 0 0 / 0.9);
+    --x-toast-bg: oklch(100% 0 0 / 0.8);
   }
 }
 .main {
+  all: unset;
   position: fixed;
   bottom: 4rem;
   left: 50%;
