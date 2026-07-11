@@ -1,33 +1,27 @@
-import { existsSync, mkdirSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { existsSync, mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const tmpDir = resolve(__dirname, '.tmp');
+const tmpDir = resolve(__dirname, ".tmp");
 if (!existsSync(tmpDir)) {
   mkdirSync(tmpDir);
 }
 export default defineConfig({
-  mode: 'production',
-  root: __dirname,
-  esbuild: {
-    legalComments: 'none',
-  },
   build: {
+    emptyOutDir: true,
     lib: {
-      entry: resolve(__dirname, 'src/main.tsx'),
-      name: 'app',
-      fileName: () => 'app.js',
-      formats: ['umd'],
-      cssFileName: 'app',
+      cssFileName: "app",
+      entry: resolve(__dirname, "src/main.tsx"),
+      fileName: () => "app.js",
+      formats: ["umd"],
+      name: "app",
     },
     outDir: tmpDir,
-    sourcemap: 'hidden',
-    emptyOutDir: true,
-    target: 'es2024',
+    sourcemap: "hidden",
+    target: "es2024",
     // rollupOptions:{
     //   output: {
     //     assetFileNames: (assetInfo) => {
@@ -40,19 +34,24 @@ export default defineConfig({
     //   }
     // }
   },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src/'),
-    },
-    extensions: ['.ts', '.tsx', '.js', '.mjs'],
-  },
   define: {
     __DEV__: false,
     DEBUG: false,
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-      WEBPACK_ENV: JSON.stringify('production'),
+    "process.env": {
+      NODE_ENV: JSON.stringify("production"),
+      WEBPACK_ENV: JSON.stringify("production"),
     },
   },
-  plugins: [react(), tsconfigPaths()],
+  esbuild: {
+    legalComments: "none",
+  },
+  mode: "production",
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src/"),
+    },
+    extensions: [".ts", ".tsx", ".js", ".mjs"],
+  },
+  root: __dirname,
 });
