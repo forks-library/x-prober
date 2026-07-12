@@ -9,7 +9,7 @@
     "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
   --x-code-font-family:
     "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", "PingFang SC", "Microsoft YaHei", monospace;
-  &:global([data-theme="dark"]) {
+  &[data-theme="dark"] {
     --x-fg: oklch(0.95 0 0);
     --x-bg: oklch(0 0 0);
   }
