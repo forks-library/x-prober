@@ -1,15 +1,10 @@
 import {
-  type CSSProperties,
   type FC,
   type MouseEvent,
   useCallback,
   useEffect,
   useState,
 } from "react";
-import {
-  isBrightOklch,
-  toOklchString,
-} from "@/Components/Utils/components/oklch/index.ts";
 import { WindowConfig } from "@/Components/WindowConfig/components/index.ts";
 import { themes } from "./constants.ts";
 import styles from "./index.module.scss";
@@ -61,7 +56,7 @@ export const Theme: FC = () => {
 
   return (
     <div className={styles.main}>
-      {themes.map(({ id, name, color }) => {
+      {themes.map(({ id, name }) => {
         // 如果你的 themes 列表中包含一个 id 为 "system" 的按钮，
         // 那么 isActive 直接对比 id === theme 即可。
         // 如果这里只展示具体颜色按钮，则对比当前真正生效的 active 属性：
@@ -73,12 +68,8 @@ export const Theme: FC = () => {
             className={styles.button}
             data-active={isActive || undefined}
             data-id={id}
-            data-is-dark={!isBrightOklch(color) || undefined}
             key={id}
             onClick={handleActiveTheme}
-            style={{
-              "--x-theme-button-bg": toOklchString(color),
-            } as CSSProperties}
             title={name}
             type="button"
           >
