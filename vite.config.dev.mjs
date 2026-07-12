@@ -43,6 +43,7 @@ export default defineConfig(({ mode }) => {
     },
     root: "./dev",
     server: {
+      host: "0.0.0.0",
       proxy: {
         "/api": {
           changeOrigin: true,
