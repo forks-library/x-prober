@@ -11,8 +11,6 @@ import { PHP_EXTENSIONS_ID } from "./constants.ts";
 import { usePhpExtensionsStore } from "./store.ts";
 import type { PhpExtensionsPollDataProps } from "./types.ts";
 
-// 1. 将扩展配置元数据抽离到组件外，避免每次渲染重新声明，并按原始英文字母序直接排好序
-// 这样可以省去运行时去跑 .sort() 的计算开销，也解决了 i18n 排序错乱问题
 const SHORT_EXTENSION_MAPPING = [
   { key: "curl", name: "cURL" },
   { key: "exif", name: "Exif" },
@@ -43,44 +41,45 @@ const SHORT_EXTENSION_MAPPING = [
   const nameB = typeof b.name === "function" ? b.key : b.name;
   return nameA.localeCompare(nameB);
 });
-
 export const PhpExtensions: FC = memo(() => {
-  // 2. 极大简化 Selector 的订阅粒度，只在 pollData 整体改变或不存在时做浅比对
-  const pollData = usePhpExtensionsStore((s) => s.pollData);
-
-  const loadedExtensions = usePhpExtensionsStore(
-    useShallow((s) => s.pollData?.loadedExtensions),
+  const extensionStatuses = usePhpExtensionsStore(
+    useShallow((s) => {
+      if (!s.pollData) {
+        return null;
+      }
+      const statusMap: Record<string, boolean> = {};
+      for (const { key } of SHORT_EXTENSION_MAPPING) {
+        statusMap[key] = Boolean(
+          s.pollData?.[key as keyof PhpExtensionsPollDataProps],
+        );
+      }
+      return statusMap;
+    }),
   );
-
-  // 3. 构造渲染所需的快捷扩展列表数据
+  const loadedExtensionsStr = usePhpExtensionsStore(
+    (s) => s.pollData?.loadedExtensions?.join(",") ?? "",
+  );
   const sortedShortItems = useMemo(() => {
-    if (!pollData) {
+    if (!extensionStatuses) {
       return [];
     }
-
     return SHORT_EXTENSION_MAPPING.map(({ key, name }) => {
       const displayName = typeof name === "function" ? name() : name;
-      // 从 store 的数据中安全地提取布尔值
-      const isEnabled = Boolean(
-        pollData[key as keyof PhpExtensionsPollDataProps],
-      );
-      return { enabled: isEnabled, name: displayName };
+      return {
+        enabled: extensionStatuses[key] ?? false,
+        name: displayName,
+      };
     });
-  }, [pollData]);
-
-  // 4. 排序已加载的扩展名
+  }, [extensionStatuses]);
   const sortedLongItems = useMemo(() => {
-    if (!loadedExtensions) {
+    if (!loadedExtensionsStr) {
       return [];
     }
-    return [...loadedExtensions].sort((a, b) => a.localeCompare(b));
-  }, [loadedExtensions]);
-
-  // 5. 健壮性防线：安全的防御性返回，放在所有 Hook 执行完毕之后
-  if (!pollData) {
+    return loadedExtensionsStr.split(",").sort((a, b) => a.localeCompare(b));
+  }, [loadedExtensionsStr]);
+  if (!extensionStatuses) {
     return null;
   }
-
   return (
     <ModuleItem id={PHP_EXTENSIONS_ID} title={gettext("PHP Extensions")}>
       <UiMultiColContainer minWidth={14}>
@@ -90,7 +89,6 @@ export const PhpExtensions: FC = memo(() => {
           </ModuleGroup>
         ))}
       </UiMultiColContainer>
-
       <UiSingleColContainer>
         {sortedLongItems.length > 0 && (
           <ModuleGroup

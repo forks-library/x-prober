@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC, memo } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { gettext } from "@/Components/Language/index.ts";
 import { ModuleItem } from "@/Components/Module/components/item.tsx";
@@ -7,7 +7,7 @@ import styles from "./index.module.scss";
 import { Node } from "./node.tsx";
 import { useNodesStore } from "./store.ts";
 
-export const Nodes: FC = () => {
+export const Nodes: FC = memo(() => {
   const nodesIds = useNodesStore(useShallow((s) => s.pollData?.nodesIds ?? []));
   if (!nodesIds.length) {
     return null;
@@ -19,4 +19,4 @@ export const Nodes: FC = () => {
       </div>
     </ModuleItem>
   );
-};
+});

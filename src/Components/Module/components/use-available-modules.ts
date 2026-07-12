@@ -7,24 +7,34 @@ import { useModuleStore } from "./store.ts";
 import type { ModuleProps } from "./types.ts";
 
 export const useAvailableModules = (): ModuleProps[] => {
-  // 1. 获取完整的优先级顺序
-  const priorities = useModuleStore((s) => s.priorities);
-  // 2. 获取服务端的有效性凭证
-  const pollData = usePollStore(useShallow((s) => s.pollData));
+  const priorities = useModuleStore(useShallow((s) => s.priorities));
 
-  // 3. 使用 useMemo 缓存计算结果，只有当底层数据改变时才重新计算
+  // 1. 在选择器中直接计算出当前有哪些有效的 key
+  const validPollKeys = usePollStore(
+    useShallow((s) => {
+      if (!s.pollData) {
+        return [];
+      }
+      // 过滤出不为 null 且存在的 key
+      return Object.keys(s.pollData).filter(
+        (key) => s.pollData?.[key as keyof PollData] !== null
+      );
+    })
+  );
+
+  // 2. 此时的缓存只依赖 priorities 和 validPollKeys
   const available = useMemo(() => {
-    if (!pollData) {
+    if (validPollKeys.length === 0) {
       return [];
     }
+
     const maps = new Map(presetModules.map((item) => [item.id, item]));
+    const validKeysSet = new Set(validPollKeys);
+
     return priorities
       .map((id) => maps.get(id))
-      .filter(
-        (n): n is ModuleProps =>
-          !!n && Object.hasOwn(pollData as PollData, n.id)
-      );
-  }, [priorities, pollData]);
+      .filter((n): n is ModuleProps => !!n && validKeysSet.has(n.id));
+  }, [priorities, validPollKeys]);
 
   return available;
 };

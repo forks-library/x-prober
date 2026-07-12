@@ -40,8 +40,7 @@ export const BrowserBenchmarkBrowsers: FC = () => {
           : 0,
       }));
       const sortedBrowsers = processedBrowsers
-        .slice()
-        .sort((a, b) => b.total - a.total);
+        .toSorted((a, b) => b.total - a.total);
       const highestMark = sortedBrowsers[0]?.total ?? 0;
       setBrowsers(sortedBrowsers);
       setMaxMarks(highestMark);

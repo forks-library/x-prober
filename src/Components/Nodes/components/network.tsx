@@ -1,11 +1,12 @@
 import type { FC } from "react";
 import { NetworksStatsItem } from "@/Components/NetworkStats/components/item.tsx";
-import type { NetworkStatsPollDataProps } from "@/Components/NetworkStats/components/types";
+import type { NetworkStatsPollDataProps } from "@/Components/NetworkStats/components/types.ts";
 import { usePrevious } from "@/Components/Utils/components/use-previous.ts";
 import styles from "./network.module.scss";
-export const NodesNetworkStats: FC<{ data: NetworkStatsPollDataProps }> = ({
-  data,
-}) => {
+
+export const NodesNetworkStats: FC<{ data: NetworkStatsPollDataProps }> = (
+  { data },
+) => {
   const { networks, timestamp } = data;
   const prevData = usePrevious({
     items: networks,
@@ -19,7 +20,7 @@ export const NodesNetworkStats: FC<{ data: NetworkStatsPollDataProps }> = ({
           return null;
         }
         const prevItem = (prevData?.items || networks).find(
-          (item) => item.id === id
+          (item) => item.id === id,
         );
         const prevRx = prevItem?.rx || 0;
         const prevTx = prevItem?.tx || 0;

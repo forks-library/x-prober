@@ -1,8 +1,8 @@
-import type { FC } from "react";
-import { useAvailableModules } from "@/Components/Module/components/use-available-modules";
+import { type FC, memo } from "react";
+import { useAvailableModules } from "@/Components/Module/components/use-available-modules.ts";
 import styles from "./index.module.scss";
 
-export const Nav: FC = () => {
+export const Nav: FC = memo(() => {
   const availableModules = useAvailableModules();
   // const { activeIndex } = NavStore;
   const items = availableModules.map(({ id, nav: Component }) => (
@@ -17,4 +17,4 @@ export const Nav: FC = () => {
       </div>
     </div>
   );
-};
+});

@@ -10,11 +10,32 @@ import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
 import { EnableStatus } from "@/Components/ui/enable-status/index.tsx";
 import { SearchLink } from "@/Components/ui/search-link/index.tsx";
 import { PHP_INFO_ID } from "./constants.ts";
-import { PhpInfoPhpVersion } from "./php-version";
+import { PhpInfoPhpVersion } from "./php-version.tsx";
 import { usePhpInfoStore } from "./store.ts";
 
 export const PhpInfo: FC = memo(() => {
-  const pollData = usePhpInfoStore(useShallow((s) => s.pollData));
+  const pollData = usePhpInfoStore(
+    useShallow((s) => {
+      if (!s.pollData) {
+        return null;
+      }
+      return {
+        allowUrlFopen: s.pollData.allowUrlFopen,
+        defaultSocketTimeout: s.pollData.defaultSocketTimeout,
+        disableClasses: s.pollData.disableClasses.join(","),
+        disableFunctions: s.pollData.disableFunctions.join(","),
+        displayErrors: s.pollData.displayErrors,
+        errorReporting: s.pollData.errorReporting,
+        maxExecutionTime: s.pollData.maxExecutionTime,
+        maxInputVars: s.pollData.maxInputVars,
+        memoryLimit: s.pollData.memoryLimit,
+        postMaxSize: s.pollData.postMaxSize,
+        sapi: s.pollData.sapi,
+        smtp: s.pollData.smtp,
+        uploadMaxFilesize: s.pollData.uploadMaxFilesize,
+      };
+    }),
+  );
   if (!pollData) {
     return null;
   }
@@ -32,10 +53,10 @@ export const PhpInfo: FC = memo(() => {
     [gettext("Version"), <PhpInfoPhpVersion key="phpVersion" />],
   ];
   const shortItems: [string, ReactNode][] = [
-    [gettext("SAPI interface"), pollData?.sapi],
+    [gettext("SAPI interface"), pollData.sapi],
     [
       gettext("Display errors"),
-      <EnableStatus isEnable={pollData?.displayErrors} key="displayErrors" />,
+      <EnableStatus isEnable={pollData.displayErrors} key="displayErrors" />,
     ],
     [gettext("Error reporting"), pollData.errorReporting],
     [gettext("Max memory limit"), pollData.memoryLimit],
@@ -53,22 +74,21 @@ export const PhpInfo: FC = memo(() => {
       <EnableStatus isEnable={pollData.smtp} key="smtp" />,
     ],
   ];
-  const { disableFunctions, disableClasses } = pollData;
-  disableFunctions.sort();
-  disableClasses.sort();
+  const sortedFunctions = pollData.disableFunctions.split(",").toSorted();
+  const sortedClasses = pollData.disableClasses.split(",").toSorted();
   const longItems: [string, ReactNode][] = [
     [
       gettext("Disabled functions"),
-      disableFunctions.length
-        ? disableFunctions.map((fn: string) => (
+      sortedFunctions.length
+        ? sortedFunctions.map((fn: string) => (
           <SearchLink key={fn} keyword={fn} />
         ))
         : "-",
     ],
     [
       gettext("Disabled classes"),
-      disableClasses.length
-        ? disableClasses.map((fn: string) => (
+      sortedClasses.length
+        ? sortedClasses.map((fn: string) => (
           <SearchLink key={fn} keyword={fn} />
         ))
         : "-",

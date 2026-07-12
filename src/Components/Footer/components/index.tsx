@@ -6,11 +6,19 @@ import { template } from "@/Components/Utils/components/template.ts";
 import styles from "./index.module.scss";
 
 export const Footer: FC = () => {
-  const config = usePollStore(useShallow((s) => s.pollData?.config));
-  if (!config) {
+  const { hasConfig, APP_NAME, APP_URL, AUTHOR_NAME, AUTHOR_URL } =
+    usePollStore(
+      useShallow((s) => ({
+        APP_NAME: s.pollData?.config?.APP_NAME,
+        APP_URL: s.pollData?.config?.APP_URL,
+        AUTHOR_NAME: s.pollData?.config?.AUTHOR_NAME,
+        AUTHOR_URL: s.pollData?.config?.AUTHOR_URL,
+        hasConfig: Boolean(s.pollData?.config),
+      })),
+    );
+  if (!hasConfig) {
     return null;
   }
-  const { APP_NAME, APP_URL, AUTHOR_NAME, AUTHOR_URL } = config;
   return (
     <div
       className={styles.main}

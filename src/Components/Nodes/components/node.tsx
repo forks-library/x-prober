@@ -5,6 +5,7 @@ import { Placeholder } from "@/Components/Placeholder/index.tsx";
 import type { PollData } from "@/Components/Poll/components/types.ts";
 import { OK } from "@/Components/Rest/http-status.ts";
 import { useUpdaterStore } from "@/Components/Updater/components/store.ts";
+import type { FetchStatus } from "@/Components/Utils/components/fetch-status.ts";
 import { template } from "@/Components/Utils/components/template.ts";
 import { useInterval } from "@/Components/Utils/components/use-interval.ts";
 import { UiError } from "@/Components/ui/error/index.tsx";
@@ -18,8 +19,8 @@ import { NodesSwap } from "./swap.tsx";
 const TIMER = 2000;
 
 export const Node: FC<{ id: string }> = ({ id }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(0);
+  const [fetchStatus, setFetchStatus] = useState<FetchStatus>("loading");
+  const [errorNo, setErrorNo] = useState(0);
   const [pollData, setPollData] = useState<PollData | null>(null);
   const isUpdating = useUpdaterStore((s) => s.isUpdating);
   const pollDelay = isUpdating ? null : TIMER;
@@ -36,23 +37,21 @@ export const Node: FC<{ id: string }> = ({ id }) => {
       );
 
       if (!data || status !== OK) {
-        setError(status);
+        setFetchStatus("error");
+        setErrorNo(status);
       } else {
         setPollData(data);
-        setError(0); // 如果后续成功了，重置错误状态
+        setFetchStatus("idel");
+        setErrorNo(-1);
       }
     } catch (err) {
       console.error("Error fetching node data:", err);
-      setError(-1);
-    } finally {
-      // 无论成功或失败，只要请求过一次就关闭 loading
-      setLoading(false);
+      setFetchStatus("error");
     }
   }, [id, isUpdating]);
 
   // 1. 组件挂载或 id 变化时，立即执行一次获取，避免延迟闪烁
   useEffect(() => {
-    setLoading(true);
     fetchData();
   }, [fetchData]);
 
@@ -76,11 +75,13 @@ export const Node: FC<{ id: string }> = ({ id }) => {
     <div className={styles.main}>
       <header className={styles.name}>{id}</header>
 
-      {error !== 0 && (
-        <UiError>{template(gettext("Error: {{error}}"), { error })}</UiError>
+      {fetchStatus === "error" && (
+        <UiError>
+          {template(gettext("Error status: {{error}}"), { error: errorNo })}
+        </UiError>
       )}
 
-      {loading ? <Placeholder height={10} /> : (
+      {fetchStatus === "loading" ? <Placeholder height={10} /> : (
         !serverStatus || (
           <>
             {!cpuUsage || <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} />}
