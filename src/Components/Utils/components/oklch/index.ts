@@ -12,7 +12,7 @@ export function toNormalizedOklch(oklch: OklchObject): OklchObject {
 }
 export function toOklchString(oklch: OklchObject): string {
   const { l, c, h, a } = toNormalizedOklch(oklch);
-  return `oklch(${l}% ${c} ${h} / ${a})`;
+  return `oklch(${l} ${c} ${h} / ${a})`;
 }
 export function isBrightOklch(oklch: OklchObject, threshold = 65): boolean {
   const { l, a } = toNormalizedOklch(oklch);
