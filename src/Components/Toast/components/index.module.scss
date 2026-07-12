@@ -1,9 +1,9 @@
 :root {
-  --x-toast-fg: oklch(100% 0 0 / 0.9);
-  --x-toast-bg: oklch(0% 0 0 / 0.8);
+  --x-toast-fg: oklch(1 0 0 / 0.9);
+  --x-toast-bg: oklch(0 0 0 / 0.8);
   &:global([data-theme="dark"]) {
-    --x-toast-fg: oklch(0% 0 0 / 0.9);
-    --x-toast-bg: oklch(100% 0 0 / 0.8);
+    --x-toast-fg: oklch(0 0 0 / 0.9);
+    --x-toast-bg: oklch(1 0 0 / 0.8);
   }
 }
 .main {

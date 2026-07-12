@@ -1,15 +1,15 @@
 :root {
-  --x-module-header-bg: oklch(100% 0 0 / 0.75);
-  --x-module-header-fg: oklch(0% 0 0);
-  --x-module-header-title-fg: oklch(0% 0 0 / 0.7);
-  --x-module-header-title-bg: oklch(0% 0 0 / 0.1);
+  --x-module-header-bg: oklch(1 0 0 / 0.75);
+  --x-module-header-fg: oklch(0 0 0);
+  --x-module-header-title-fg: oklch(0 0 0 / 0.7);
+  --x-module-header-title-bg: oklch(0 0 0 / 0.1);
   --x-module-body-bg: var(--x-module-header-bg);
 }
 :global([data-theme="dark"]) {
-  --x-module-header-bg: oklch(100% 0 0 / 0.1);
-  --x-module-header-fg: oklch(100% 0 0 / 0.7);
-  --x-module-header-title-fg: oklch(100% 0 0 / 0.7);
-  --x-module-header-title-bg: oklch(100% 0 0 / 0.1);
+  --x-module-header-bg: oklch(1 0 0 / 0.1);
+  --x-module-header-fg: oklch(1 0 0 / 0.7);
+  --x-module-header-title-fg: oklch(1 0 0 / 0.7);
+  --x-module-header-title-bg: oklch(1 0 0 / 0.1);
   --x-module-body-bg: var(--x-module-header-bg);
 }
 .main {

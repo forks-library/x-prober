@@ -2,7 +2,7 @@
   --x-button-fg: var(--x-fg);
   --x-button-fg-hover: var(--x-fg);
   --x-button-fg-active: var(--x-fg);
-  --x-button-bg: oklch(0% 0 0 / 0.1);
+  --x-button-bg: oklch(0 0 0 / 0.1);
   --x-button-bg-hover: oklch(0 0 0 / 0.15);
   --x-button-bg-active: oklch(0 0 0 / 0.2);
 }
@@ -10,9 +10,9 @@
   --x-button-fg: var(--x-fg);
   --x-button-fg-hover: var(--x-fg-hover);
   --x-button-fg-active: var(--x-fg-active);
-  --x-button-bg: oklch(100% 0 0 / 0.15);
-  --x-button-bg-hover: oklch(100% 0 0 / 0.2);
-  --x-button-bg-active: oklch(100% 0 0 / 0.1);
+  --x-button-bg: oklch(1 0 0 / 0.15);
+  --x-button-bg-hover: oklch(1 0 0 / 0.2);
+  --x-button-bg-active: oklch(1 0 0 / 0.1);
 }
 @keyframes spin {
   to {

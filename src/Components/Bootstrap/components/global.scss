@@ -1,16 +1,16 @@
 :root {
-  --x-fg: oklch(10% 0 0);
-  --x-fg-hover: oklch(10% 0 0);
-  --x-fg-active: oklch(10% 0 0);
-  --x-body-fg: oklch(10% 0 0);
-  --x-body-bg: oklch(90% 0 0);
+  --x-fg: oklch(0.1 0 0);
+  --x-fg-hover: oklch(0.1 0 0);
+  --x-fg-active: oklch(0.1 0 0);
+  --x-body-fg: oklch(0.1 0 0);
+  --x-body-bg: oklch(0.9 0 0);
   --x-line-height: 1.5;
   &[data-theme="dark"] {
-    --x-fg: oklch(90% 0 0);
-    --x-fg-hover: oklch(95% 0 0);
-    --x-fg-active: oklch(85% 0 0);
-    --x-body-fg: oklch(90% 0 0);
-    --x-body-bg: oklch(15% 0 0);
+    --x-fg: oklch(0.9 0 0);
+    --x-fg-hover: oklch(0.95 0 0);
+    --x-fg-active: oklch(0.85 0 0);
+    --x-body-fg: oklch(0.9 0 0);
+    --x-body-bg: oklch(0.15 0 0);
   }
 }
 * {

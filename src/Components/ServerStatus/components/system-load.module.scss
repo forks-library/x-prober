@@ -1,11 +1,11 @@
 :root {
   --x-sys-load-fg: var(--x-fg);
   --x-sys-load-bg: transparent;
-  --x-sys-load-interval-bg: oklch(0% 0 0 / 0.1);
+  --x-sys-load-interval-bg: oklch(0 0 0 / 0.1);
 }
 :global([data-theme="dark"]) {
   --x-sys-load-fg: var(--x-fg);
-  --x-sys-load-interval-bg: oklch(100% 0 0 / 0.1);
+  --x-sys-load-interval-bg: oklch(1 0 0 / 0.1);
 }
 .main {
   display: grid;

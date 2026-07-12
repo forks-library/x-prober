@@ -1,10 +1,10 @@
 :root {
-  --x-ping-result-scrollbar-bg: oklch(0% 0 0 / 0.5);
-  --x-ping-item-bg: oklch(0% 0 0 / 0.1);
+  --x-ping-result-scrollbar-bg: oklch(0 0 0 / 0.5);
+  --x-ping-item-bg: oklch(0 0 0 / 0.1);
 }
 :global([data-theme="dark"]) {
-  --x-ping-result-scrollbar-bg: oklch(100% 0 0 / 0.5);
-  --x-ping-item-bg: oklch(100% 0 0 / 0.1);
+  --x-ping-result-scrollbar-bg: oklch(1 0 0 / 0.5);
+  --x-ping-item-bg: oklch(1 0 0 / 0.1);
 }
 .itemContainer {
   display: grid;

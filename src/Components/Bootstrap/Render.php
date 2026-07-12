@@ -30,19 +30,19 @@ final class Render
 {$loadScript}
 <style>
 :root {
-    --x-init-fg: oklch(10% 0 0);
-    --x-init-body-fg: oklch(10% 0 0);
-    --x-init-body-bg: oklch(90% 0 0);
-    --x-init-loading-bg: oklch(0% 0 0 / 0.3);
-    --x-init-loading-fg: oklch(10% 0 0);
+    --x-init-fg: oklch(0.1 0 0);
+    --x-init-body-fg: oklch(0.1 0 0);
+    --x-init-body-bg: oklch(0.9 0 0);
+    --x-init-loading-bg: oklch(0 0 0 / 0.3);
+    --x-init-loading-fg: oklch(0.1 0 0);
 }
 
 [data-theme="dark"] {
-    --x-init-fg: oklch(90% 0 0);
-    --x-init-body-fg: oklch(90% 0 0);
-    --x-init-body-bg: oklch(10% 0 0);
-    --x-init-loading-bg: oklch(100% 0 0 / 0.3);
-    --x-init-loading-fg: oklch(90% 0 0);
+    --x-init-fg: oklch(0.9 0 0);
+    --x-init-body-fg: oklch(0.9 0 0);
+    --x-init-body-bg: oklch(0.1 0 0);
+    --x-init-loading-bg: oklch(1 0 0 / 0.3);
+    --x-init-loading-fg: oklch(0.9 0 0);
 }
 @keyframes spin {
     to {

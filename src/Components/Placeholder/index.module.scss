@@ -1,19 +1,9 @@
 :root {
-  --x-placeholder-bg: linear-gradient(
-      to right,
-      oklch(0% 0 0 / 0.1) 46%,
-      oklch(0% 0 0 / 0.15) 50%,
-      oklch(0% 0 0 / 0.1) 54%
-    )
+  --x-placeholder-bg: linear-gradient(to right, oklch(0 0 0 / 0.1) 46%, oklch(0 0 0 / 0.15) 50%, oklch(0 0 0 / 0.1) 54%)
     50% 50%;
 }
 :global([data-theme="dark"]) {
-  --x-placeholder-bg: linear-gradient(
-      to right,
-      oklch(100% 0 0 / 0.1) 46%,
-      oklch(100% 0 0 / 0.15) 50%,
-      oklch(100% 0 0 / 0.1) 54%
-    )
+  --x-placeholder-bg: linear-gradient(to right, oklch(1 0 0 / 0.1) 46%, oklch(1 0 0 / 0.15) 50%, oklch(1 0 0 / 0.1) 54%)
     50% 50%;
 }
 @keyframes animation {

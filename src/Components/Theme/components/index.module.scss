@@ -11,7 +11,7 @@
   cursor: pointer;
   background: var(--x-theme-button-bg);
   padding: calc(var(--x-gutter-sm) * 0.5) var(--x-gutter);
-  color: oklch(0% 0 0 / 0.8);
+  color: oklch(0 0 0 / 0.8);
   // light
   &:hover {
     filter: brightness(1.1);
@@ -48,7 +48,7 @@
   }
   // dark
   &[data-is-dark] {
-    color: oklch(100% 0 0 / 0.8);
+    color: oklch(1 0 0 / 0.8);
     &:hover {
       filter: brightness(1.5);
     }

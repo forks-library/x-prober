@@ -1,10 +1,10 @@
 :root {
   --x-des-fg: var(--x-fg);
-  --x-des-accent: oklch(70.344% 0.16156 249.935);
+  --x-des-accent: oklch(0.70344 0.16156 249.935);
 }
 :global([data-theme="dark"]) {
   --x-des-fg: var(--x-fg);
-  --x-des-accent: oklch(70.344% 0.16156 249.935);
+  --x-des-accent: oklch(0.70344 0.16156 249.935);
 }
 .main {
   display: grid;

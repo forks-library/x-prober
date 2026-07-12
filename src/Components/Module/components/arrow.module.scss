@@ -1,12 +1,12 @@
 :root {
   --x-card-legend-arrow-fg: var(--x-card-legend-fg);
-  --x-card-legend-arrow-bg-hover: oklch(0% 0 0 / 0.1);
-  --x-card-legend-arrow-bg-active: oklch(0% 0 0 / 0.15);
+  --x-card-legend-arrow-bg-hover: oklch(0 0 0 / 0.1);
+  --x-card-legend-arrow-bg-active: oklch(0 0 0 / 0.15);
 }
 :global([data-theme="dark"]) {
   --x-card-legend-arrow-fg: var(--x-card-legend-fg);
-  --x-card-legend-arrow-bg-hover: oklch(100% 0 0 / 0.1);
-  --x-card-legend-arrow-bg-active: oklch(100% 0 0 / 0.05);
+  --x-card-legend-arrow-bg-hover: oklch(0 0 0 / 0.1);
+  --x-card-legend-arrow-bg-active: oklch(0 0 0 / 0.05);
 }
 .arrow {
   display: flex;

@@ -1,20 +1,20 @@
 @use "@/Components/Style/components/device.scss" as m;
 :root {
-  --x-nav-fg: oklch(0% 0 0 / 0.9);
-  --x-nav-bg: oklch(100% 0 0 / 0.9);
-  --x-nav-bg-hover: oklch(0% 0 0 / 0.05);
-  --x-nav-bg-active: oklch(0% 0 0 / 0.1);
-  --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(0% 0 0 / 0.1), transparent);
-  --x-nav-text-shadow: 0 1px 2px oklch(100% 0 0 / 0.3);
-  --x-nav-box-shadow: 0 0 3px oklch(0% 0 0 / 0.1);
+  --x-nav-fg: oklch(0 0 0 / 0.9);
+  --x-nav-bg: oklch(1 0 0 / 0.9);
+  --x-nav-bg-hover: oklch(0 0 0 / 0.05);
+  --x-nav-bg-active: oklch(0 0 0 / 0.1);
+  --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(0 0 0 / 0.1), transparent);
+  --x-nav-text-shadow: 0 1px 2px oklch(1 0 0 / 0.3);
+  --x-nav-box-shadow: 0 0 3px oklch(0 0 0 / 0.1);
 }
 :global([data-theme="dark"]) {
-  --x-nav-fg: oklch(100% 0 0 / 0.9);
-  --x-nav-bg: oklch(100% 0 0 / 0.15);
-  --x-nav-bg-hover: oklch(100% 0 0 / 0.1);
-  --x-nav-bg-active: oklch(100% 0 0 / 0.15);
-  --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(100% 0 0 / 0.1), transparent);
-  --x-nav-text-shadow: 0 1px 2px oklch(0% 0 0 / 0.3);
+  --x-nav-fg: oklch(1 0 0 / 0.9);
+  --x-nav-bg: oklch(1 0 0 / 0.15);
+  --x-nav-bg-hover: oklch(1 0 0 / 0.1);
+  --x-nav-bg-active: oklch(1 0 0 / 0.15);
+  --x-nav-border-color: linear-gradient(to bottom, transparent, oklch(1 0 0 / 0.1), transparent);
+  --x-nav-text-shadow: 0 1px 2px oklch(0 0 0 / 0.3);
 }
 .wrap {
   display: flex;

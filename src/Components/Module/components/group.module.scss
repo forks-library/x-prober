@@ -1,12 +1,12 @@
 :root {
   --x-card-group-label-fg: var(--x-fg);
-  --x-card-group-split-color: oklch(0% 0 0 / 0.1);
-  --x-card-group-bg-hover: oklch(0% 0 0 / 0.05);
+  --x-card-group-split-color: oklch(0 0 0 / 0.1);
+  --x-card-group-bg-hover: oklch(0 0 0 / 0.05);
 }
 :global([data-theme="dark"]) {
   --x-card-group-label-fg: var(--x-fg);
-  --x-card-group-split-color: oklch(100% 0 0 / 0.1);
-  --x-card-group-bg-hover: oklch(100% 0 0 / 0.05);
+  --x-card-group-split-color: oklch(1 0 0 / 0.1);
+  --x-card-group-bg-hover: oklch(1 0 0 / 0.05);
 }
 .main {
   display: grid;
