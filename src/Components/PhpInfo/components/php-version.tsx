@@ -27,8 +27,7 @@ export const PhpInfoPhpVersion: FC = () => {
     };
     fetchData();
   }, [setLatestPhpVersion]);
-  const compare = versionCompare(phpVersion, latestPhpVersion);
-  const hasNewVersion = compare === -1;
+  const hasNewVersion = versionCompare(phpVersion, latestPhpVersion) < 0;
   return (
     <Link
       href="https://www.php.net/"
