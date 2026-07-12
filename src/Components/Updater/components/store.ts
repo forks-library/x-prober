@@ -10,12 +10,11 @@ type State = {
   setHasUpdateError: (hasUpdateError: boolean) => void;
 };
 const createStore: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
-  isUpdating: false,
   hasUpdateError: false,
-  targetVersion: "",
-  setTargetVersion: (targetVersion: string) => {
+  isUpdating: false,
+  setHasUpdateError: (hasUpdateError: boolean) => {
     set((state) => {
-      state.targetVersion = targetVersion;
+      state.hasUpdateError = hasUpdateError;
     });
   },
   setIsUpdating: (isUpdating: boolean) => {
@@ -23,10 +22,11 @@ const createStore: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
       state.isUpdating = isUpdating;
     });
   },
-  setHasUpdateError: (hasUpdateError: boolean) => {
+  setTargetVersion: (targetVersion: string) => {
     set((state) => {
-      state.hasUpdateError = hasUpdateError;
+      state.targetVersion = targetVersion;
     });
   },
+  targetVersion: "",
 });
 export const useUpdaterStore = create<State>()(immer(createStore));
