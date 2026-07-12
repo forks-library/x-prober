@@ -1,5 +1,5 @@
 {
-  "APP_VERSION": "9.1.0",
+  "APP_VERSION": "10.0.0.beta.1",
   "APP_NAME": "X Prober",
   "APP_URL": "https://github.com/kmvan/x-prober",
   "AUTHOR_URL": "https://inn-studio.com/prober",
@@ -24,18 +24,6 @@
   "LATEST_PHP_STABLE_VERSION": "8",
   "LATEST_NGINX_STABLE_VERSION": "1.22.0",
   "BENCHMARKS": [
-    {
-      "name": "Olink / E5-2680 v4 / PHP83 JIT",
-      "url": "https://www.olink.cloud/clients/aff.php?aff=120",
-      "date": "2024-05-29",
-      "proberUrl": "https://x-prober-server-benchmark-olink-sj.inn-studio.com",
-      "binUrl": "",
-      "detail": {
-        "cpu": 268212,
-        "read": 18495,
-        "write": 6164
-      }
-    },
     {
       "name": "RamNode / PHP82 JIT",
       "url": "https://clientarea.ramnode.com/aff.php?aff=4143",
