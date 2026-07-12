@@ -2,7 +2,7 @@ import type { OklchObject } from "./types.ts";
 
 export function toNormalizedOklch(oklch: OklchObject): OklchObject {
   const { l, c, h, a } = oklch;
-  const normalizedL = l > 1 ? l : l * 100;
+  const normalizedL = l > 1 ? l * 0.01 : l;
   return {
     a,
     c,
