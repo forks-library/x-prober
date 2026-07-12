@@ -55,10 +55,10 @@ sys: ${((sys / cpuTotal) * 100).toFixed(2)}%
   return (
     <div className={styles.main}>
       <div className={styles.label}>{gettext("System load")}</div>
-      <SysLoadGroup sysLoad={sysLoadProps} />
       <div className={styles.usage} title={cpuTitle}>
         {template(gettext("{{usage}}% CPU usage"), { usage })}
       </div>
+      <SysLoadGroup sysLoad={sysLoadProps} />
       <div className={styles.meter}>
         <MeterCore value={usage > 100 ? 100 : usage} />
       </div>

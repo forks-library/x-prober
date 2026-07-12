@@ -7,8 +7,8 @@ import { useServerStatusStore } from "./store.ts";
 export const MemBuffers: FC = () => {
   const { max, value } = useServerStatusStore(
     useShallow((s) => ({
-      max: s.pollData.memBuffers.max,
-      value: s.pollData.memBuffers.value,
+      max: s.pollData?.memBuffers.max ?? 0,
+      value: s.pollData?.memBuffers.value ?? 0,
     })),
   );
   return (
