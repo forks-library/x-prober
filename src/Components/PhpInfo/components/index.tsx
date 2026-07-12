@@ -1,4 +1,4 @@
-import { type FC, memo, type ReactNode } from "react";
+import { type FC, memo, type ReactElement, type ReactNode } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Link } from "@/Components/Button/components/index.tsx";
 import { serverFetchRoute } from "@/Components/Fetch/server-fetch.ts";
@@ -8,7 +8,7 @@ import { ModuleItem } from "@/Components/Module/components/item.tsx";
 import { UiMultiColContainer } from "@/Components/ui/col/multi-container.tsx";
 import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
 import { EnableStatus } from "@/Components/ui/enable-status/index.tsx";
-import { SearchLink } from "@/Components/ui/search-link/index.tsx";
+import { SearchLinks } from "@/Components/ui/search-link/index.tsx";
 import { PHP_INFO_ID } from "./constants.ts";
 import { PhpInfoPhpVersion } from "./php-version.tsx";
 import { usePhpInfoStore } from "./store.ts";
@@ -74,24 +74,16 @@ export const PhpInfo: FC = memo(() => {
       <EnableStatus isEnable={pollData.smtp} key="smtp" />,
     ],
   ];
-  const sortedFunctions = pollData.disableFunctions.split(",").toSorted();
-  const sortedClasses = pollData.disableClasses.split(",").toSorted();
-  const longItems: [string, ReactNode][] = [
+  const sortedFunctions = pollData.disableFunctions.split(",").filter(Boolean).toSorted();
+  const sortedClasses = pollData.disableClasses.split(",").filter(Boolean).toSorted();
+  const longItems: [string, ReactElement][] = [
     [
       gettext("Disabled functions"),
-      sortedFunctions.length
-        ? sortedFunctions.map((fn: string) => (
-          <SearchLink key={fn} keyword={fn} />
-        ))
-        : "-",
+      <SearchLinks key="sortedFunctions" keywords={sortedFunctions} />,
     ],
     [
       gettext("Disabled classes"),
-      sortedClasses.length
-        ? sortedClasses.map((fn: string) => (
-          <SearchLink key={fn} keyword={fn} />
-        ))
-        : "-",
+      <SearchLinks key="sortedClasses" keywords={sortedClasses} />,
     ],
   ];
   return (

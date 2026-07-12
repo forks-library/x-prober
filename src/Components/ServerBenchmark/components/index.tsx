@@ -12,7 +12,7 @@ export const ServerBenchmark: FC = memo(() => (
         {
           id: "serverBenchmarkTos",
           text: gettext(
-            "Different versions cannot be compared, and different time servers have different loads, just for reference."
+            "Different versions cannot be compared, and different time servers have different loads, just for reference.",
           ),
         },
       ]}

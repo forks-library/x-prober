@@ -1,12 +1,10 @@
 :root {
   --x-server-benchmark-bg: transparent;
-  --x-server-benchmark-link-bg: hsl(0 0% 0% / 0.05);
-  --x-server-benchmark-link-fg: hsl(0 0% 0% / 0.95);
+  --x-server-benchmark-link-fg: oklch(0 0 0 / 0.9) --x-server-benchmark-link-bg: oklch(0% 0 0 / 0.1);
 }
 :global([data-theme="dark"]) {
-  // --x-server-benchmark-bg: hsl(0 0% 100% / 0.05);
-  --x-server-benchmark-link-fg: hsl(0 0% 100% / 0.95);
-  --x-server-benchmark-link-bg: hsl(0 0% 100% / 0.05);
+  --x-server-benchmark-link-fg: var(--x-fg);
+  --x-server-benchmark-link-bg: oklch(100% 0 0 / 0.05);
 }
 .main {
   display: grid;

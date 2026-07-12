@@ -1,13 +1,18 @@
 :root {
-  --x-placeholder-bg: linear-gradient(to right, hsl(0 0% 0% / 0.1) 46%, hsl(0 0% 0% / 0.15) 50%, hsl(0 0% 0% / 0.1) 54%)
+  --x-placeholder-bg: linear-gradient(
+      to right,
+      oklch(0% 0 0 / 0.1) 46%,
+      oklch(0% 0 0 / 0.15) 50%,
+      oklch(0% 0 0 / 0.1) 54%
+    )
     50% 50%;
 }
 :global([data-theme="dark"]) {
   --x-placeholder-bg: linear-gradient(
       to right,
-      hsl(0 0% 100% / 0.1) 46%,
-      hsl(0 0% 100% / 0.15) 50%,
-      hsl(0 0% 100% / 0.1) 54%
+      oklch(100% 0 0 / 0.1) 46%,
+      oklch(100% 0 0 / 0.15) 50%,
+      oklch(100% 0 0 / 0.1) 54%
     )
     50% 50%;
 }

@@ -1,14 +1,12 @@
 :root {
-  --x-error-fg: hsl(0 100% 50%);
-  --x-error-bg: hsl(0 100% 30%);
-  --x-error-icon-fg: hsl(0 100% 50%);
-  --x-error-icon-bg: hsl(0 100% 97%);
+  --x-error-fg: oklch(0.53 0.2 25);
+  --x-error-bg: oklch(0.53 0.2 25 / 0.1);
+  --x-error-icon-fg: oklch(0.53 0.2 25);
 }
 :global([data-theme="dark"]) {
-  --x-error-fg: hsl(0 0% 100% / 0.9);
-  --x-error-bg: hsl(0, 100%, 50%);
-  --x-error-icon-fg: var(--x-error-bg);
-  --x-error-icon-bg: hsl(0 0% 100% / 0.5);
+  --x-error-fg: oklch(0.7 0.13 20);
+  --x-error-bg: oklch(0.7 0.13 20 / 0.1);
+  --x-error-icon-fg: oklch(0.7 0.13 20);
 }
 .main {
   display: flex;
@@ -16,31 +14,13 @@
   align-items: center;
   gap: var(--x-gutter-sm);
   border-radius: var(--x-radius);
-  // background: var(--x-error-bg);
+  background: var(--x-error-bg);
+  padding: var(--x-gutter-sm) var(--x-gutter);
   color: var(--x-error-fg);
-  font-family: var(--x-text-font-family);
-  &::before {
-    border-radius: var(--x-radius);
-    // position: absolute;
-    // top: 50%;
-    // left: 0;
-    // transform: translateY(-50%);
-    background: var(--x-error-bg);
-    width: 2px;
-    height: 50%;
-    content: "";
+  // font-family: var(--x-text-font-family);
+  svg {
+    width: 1em;
+    height: 1em;
+    color: var(--x-error-icon-fg);
   }
-  // &::before {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   border-radius: 50%;
-  //   background: var(--x-error-icon-bg);
-  //   width: 1rem;
-  //   height: 1rem;
-  //   content: "×";
-  //   color: var(--x-error-icon-fg);
-  //   font-weight: bold;
-  //   font-size: 1rem;
-  // }
 }

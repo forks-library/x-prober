@@ -6,7 +6,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-snap-type: y mandatory;
-  scrollbar-color: hsl(0 0% 50% / 0.5) transparent;
+  scrollbar-color: oklch(50% 0 0 / 0.5) transparent;
 }
 .item {
   scroll-snap-align: start;

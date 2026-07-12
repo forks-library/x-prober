@@ -1,16 +1,16 @@
 :root {
-  --x-pip-chat-bg: hsl(0 0% 0% / 0.1);
-  --x-pip-chat-fg-low: hsl(106, 87%, 41%);
-  --x-pip-chat-fg-medium: hsl(49, 87%, 41%);
-  --x-pip-chat-fg-high: hsl(0, 74%, 49%);
-  --x-pip-chat-text-fg: hsl(0 0% 0%);
+  --x-pip-chat-bg: oklch(0 0 0 / 0.1);
+  --x-pip-chat-fg-low: oklch(0.64 0.2 142);
+  --x-pip-chat-fg-medium: oklch(0.68 0.16 82);
+  --x-pip-chat-fg-high: oklch(0.55 0.22 29);
+  --x-pip-chat-text-fg: oklch(0 0 0);
 }
 :global([data-theme="dark"]) {
-  --x-pip-chat-bg: hsl(0 0% 100% / 0.1);
-  --x-pip-chat-fg-low: hsl(106, 87%, 41%);
-  --x-pip-chat-fg-medium: hsl(49, 87%, 41%);
-  --x-pip-chat-fg-high: hsl(0, 74%, 49%);
-  --x-pip-chat-text-fg: hsl(0 0% 100%);
+  --x-pip-chat-bg: oklch(1 0 0 / 0.1);
+  --x-pip-chat-fg-low: oklch(0.78 0.18 142);
+  --x-pip-chat-fg-medium: oklch(0.82 0.15 82);
+  --x-pip-chat-fg-high: oklch(0.68 0.21 29);
+  --x-pip-chat-text-fg: oklch(1 0 0);
 }
 .pieBg {
   stroke: var(--x-pip-chat-bg);

@@ -1,31 +1,25 @@
 :root {
-  --x-card-des-fg: var(--x-fg);
-  --x-card-des-bg: hsl(0 0% 100% / 0.1);
-  --x-card-des-accent: hsl(0 0% 0% / 0.5);
+  --x-des-fg: var(--x-fg);
+  --x-des-accent: oklch(70.344% 0.16156 249.935);
 }
 :global([data-theme="dark"]) {
-  --x-card-des-fg: var(--x-fg);
-  --x-card-des-bg: hsl(0 0% 100% / 0.1);
-  --x-card-des-accent: hsl(209, 100%, 63%);
+  --x-des-fg: var(--x-fg);
+  --x-des-accent: oklch(70.344% 0.16156 249.935);
 }
 .main {
   display: grid;
   border-radius: var(--x-radius);
-  color: var(--x-card-des-fg);
+  color: var(--x-des-fg);
   font-family: var(--x-text-font-family);
-  // background: var(--x-card-des-bg);
-  // padding: var(--x-gutter-sm) var(--x-gutter) var(--x-gutter-sm) 2em;
   list-style-type: none;
 }
 .item {
   display: flex;
   align-items: center;
   gap: var(--x-gutter-sm);
-  &::before {
-    border-radius: var(--x-radius);
-    background: var(--x-card-des-accent);
-    width: 2px;
-    height: 50%;
-    content: "";
+  opacity: 0.65;
+  svg {
+    width: 1em;
+    height: 1em;
   }
 }

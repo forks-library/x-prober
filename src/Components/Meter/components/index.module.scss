@@ -1,18 +1,21 @@
 :root {
   --x-meter-height: 5px;
   --x-meter-bg: linear-gradient(to bottom, oklch(0% 0 0 / 0.1), oklch(0% 0 0 / 0.05));
-  --x-meter-bar-bg: hsl(0 0% 0% / 0.1);
-  --x-meter-value-bg: hsl(120 100% 40%);
-  --x-meter-value-optimum-bg: hsl(120 100% 30%);
-  --x-meter-value-suboptimum-bg: hsl(36 77% 64%);
-  --x-meter-value-even-less-good-bg: hsl(12 100% 39%);
+  --x-meter-bar-bg: oklch(0% 0 0 / 0.1);
+  --x-meter-value-bg: oklch(0.79 0.25 142);
+  --x-meter-value-optimum-bg: oklch(0.63 0.22 142);
+  --x-meter-value-suboptimum-bg: oklch(0.76 0.14 72);
+  --x-meter-value-even-less-good-bg: oklch(0.49 0.19 28);
+  --x-meter-filter: none;
 }
+
 :global([data-theme="dark"]) {
   --x-meter-bg: linear-gradient(to bottom, oklch(100% 0 0 / 0.15), oklch(100% 0 0 / 0.1));
-  --x-meter-bar-bg: hsl(0 0% 100% / 0.1);
-  --x-meter-value-optimum-bg: hsl(120 100% 30%);
-  --x-meter-value-suboptimum-bg: hsl(36 77% 54%);
-  --x-meter-value-even-less-good-bg: hsl(12 100% 39%);
+  --x-meter-bar-bg: oklch(100% 0 0 / 0.1);
+  --x-meter-value-optimum-bg: oklch(0.63 0.22 142);
+  --x-meter-value-suboptimum-bg: oklch(0.68 0.14 70);
+  --x-meter-value-even-less-good-bg: oklch(0.49 0.19 28);
+  --x-meter-filter: brightness(0.5);
 }
 .main {
   display: grid;
@@ -41,8 +44,6 @@
   border: none;
   background: none;
   color: var(--x-bg-fg);
-  // font-weight: bold;
-  // text-align: center;
 }
 .nameText {
   display: -webkit-box;
@@ -57,28 +58,24 @@
 }
 .core {
   grid-area: x-meter-core;
-  border-radius: 10rem;
+  appearance: none;
+  border: none;
+  border-radius: var(--x-meter-height);
   background: var(--x-meter-bg);
   width: 100%;
   height: var(--x-meter-height);
   &::-webkit-meter-bar {
-    border-radius: 10rem;
-    background: var(--x-meter-bar-bg);
-    height: var(--x-meter-height);
+    // filter: var(--x-meter-filter);
+    border-radius: var(--x-meter-height);
+    background: red;
   }
   &::-webkit-meter-optimum-value {
-    // transition: width 1s;
-    border-radius: 10rem;
     background: var(--x-meter-value-optimum-bg);
   }
   &::-webkit-meter-suboptimum-value {
-    // transition: width 1s;
-    border-radius: 10rem;
     background: var(--x-meter-value-suboptimum-bg);
   }
   &::-webkit-meter-even-less-good-value {
-    // transition: width 1s;
-    border-radius: 10rem;
     background: var(--x-meter-value-even-less-good-bg);
   }
 }

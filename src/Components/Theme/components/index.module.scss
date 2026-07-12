@@ -1,3 +1,7 @@
+:root {
+  --x-theme-light-active-color: oklch(0 0 0 / 0.6);
+  --x-theme-dark-active-color: oklch(1 0 0 / 0.6);
+}
 .main {
   display: flex;
   justify-content: center;
@@ -6,7 +10,7 @@
   all: unset;
   cursor: pointer;
   background: var(--x-theme-button-bg);
-  padding: 0 var(--x-gutter);
+  padding: calc(var(--x-gutter-sm) * 0.5) var(--x-gutter);
   color: oklch(0% 0 0 / 0.8);
   // light
   &:hover {
@@ -17,9 +21,22 @@
   }
 
   &[data-active] {
-    transform: scale(1.25);
-    z-index: 1;
+    // transform: scale(1.25);
+    // z-index: 1;
+    // font-weight: bold;
+    position: relative;
     pointer-events: none;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      background-color: var(--x-theme-light-active-color);
+      width: 30%;
+      height: 3px;
+      content: "";
+    }
   }
   &:first-child {
     border-top-left-radius: 10rem;
@@ -37,6 +54,11 @@
     }
     &:active {
       filter: brightness(0.9);
+    }
+    &[data-active] {
+      &::after {
+        background-color: var(--x-theme-dark-active-color);
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ import { ModuleItem } from "@/Components/Module/components/item.tsx";
 import { UiMultiColContainer } from "@/Components/ui/col/multi-container.tsx";
 import { UiSingleColContainer } from "@/Components/ui/col/single-container.tsx";
 import { EnableStatus } from "@/Components/ui/enable-status/index.tsx";
-import { SearchLink } from "@/Components/ui/search-link/index.tsx";
+import { SearchLinks } from "@/Components/ui/search-link/index.tsx";
 import { PHP_EXTENSIONS_ID } from "./constants.ts";
 import { usePhpExtensionsStore } from "./store.ts";
 import type { PhpExtensionsPollDataProps } from "./types.ts";
@@ -90,15 +90,13 @@ export const PhpExtensions: FC = memo(() => {
         ))}
       </UiMultiColContainer>
       <UiSingleColContainer>
-        {sortedLongItems.length > 0 && (
-          <ModuleGroup
-            label={gettext("Loaded extensions")}
-            maxWidth={6}
-            minWidth={4}
-          >
-            {sortedLongItems.map((id) => <SearchLink key={id} keyword={id} />)}
-          </ModuleGroup>
-        )}
+        <ModuleGroup
+          label={gettext("Loaded extensions")}
+          maxWidth={6}
+          minWidth={4}
+        >
+          <SearchLinks keywords={sortedLongItems} />
+        </ModuleGroup>
       </UiSingleColContainer>
     </ModuleItem>
   );

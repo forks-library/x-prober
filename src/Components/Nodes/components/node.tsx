@@ -17,25 +17,20 @@ import { NodesRam } from "./ram.tsx";
 import { NodesSwap } from "./swap.tsx";
 
 const TIMER = 2000;
-
 export const Node: FC<{ id: string }> = ({ id }) => {
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>("loading");
   const [errorNo, setErrorNo] = useState(0);
   const [pollData, setPollData] = useState<PollData | null>(null);
   const isUpdating = useUpdaterStore((s) => s.isUpdating);
   const pollDelay = isUpdating ? null : TIMER;
-
-  // 使用 useCallback 包裹，避免每次渲染生成新的函数实例
   const fetchData = useCallback(async () => {
     if (isUpdating) {
       return;
     }
-
     try {
       const { data, status } = await serverFetch<PollData>(
         `nodes&nodeId=${id}`,
       );
-
       if (!data || status !== OK) {
         setFetchStatus("error");
         setErrorNo(status);
@@ -49,15 +44,12 @@ export const Node: FC<{ id: string }> = ({ id }) => {
       setFetchStatus("error");
     }
   }, [id, isUpdating]);
-
   // 1. 组件挂载或 id 变化时，立即执行一次获取，避免延迟闪烁
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
   // 2. 后续的轮询逻辑
   useInterval(fetchData, pollDelay);
-
   // 解构数据，提供默认值
   const {
     serverStatus = null,
@@ -70,27 +62,23 @@ export const Node: FC<{ id: string }> = ({ id }) => {
     sysLoad = [],
     cpuUsage = null,
   } = serverStatus || {};
-
   return (
     <div className={styles.main}>
       <header className={styles.name}>{id}</header>
-
       {fetchStatus === "error" && (
         <UiError>
-          {template(gettext("Error status: {{error}}"), { error: errorNo })}
+          {template(gettext("Error: status {{error}}"), { error: errorNo })}
         </UiError>
       )}
-
-      {fetchStatus === "loading" ? <Placeholder height={10} /> : (
-        !serverStatus || (
-          <>
-            {!cpuUsage || <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} />}
-            {!memRealUsage || <NodesRam data={memRealUsage} />}
-            {!swapUsage || <NodesSwap data={swapUsage} />}
-            {!diskUsage || <NodesDisk data={diskUsage} />}
-            {!networkStats || <NodesNetworkStats data={networkStats} />}
-          </>
-        )
+      {fetchStatus === "loading" && <Placeholder height={10} />}
+      {fetchStatus === "idel" && (
+        <>
+          {!cpuUsage || <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} />}
+          {!memRealUsage || <NodesRam data={memRealUsage} />}
+          {!swapUsage || <NodesSwap data={swapUsage} />}
+          {!diskUsage || <NodesDisk data={diskUsage} />}
+          {!networkStats || <NodesNetworkStats data={networkStats} />}
+        </>
       )}
     </div>
   );
