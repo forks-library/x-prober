@@ -1,9 +1,9 @@
 :root {
-  --x-des-fg: var(--x-fg);
+  --x-des-fg: var(--x-text-fg);
   --x-des-accent: oklch(0.70344 0.16156 249.935);
 }
 :global([data-theme="dark"]) {
-  --x-des-fg: var(--x-fg);
+  --x-des-fg: var(--x-text-fg);
   --x-des-accent: oklch(0.70344 0.16156 249.935);
 }
 .main {

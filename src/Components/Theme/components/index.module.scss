@@ -9,9 +9,9 @@
   --x-theme-switch-dark-fg: oklch(0.95 0 0 / 0.9);
   --x-theme-switch-dark-fg-hover: oklch(1 0 0 / 0.9);
   --x-theme-switch-dark-fg-active: oklch(0.9 0 0 / 0.9);
-  --x-theme-switch-dark-bg: oklch(0.4 0 0 / 0.9);
-  --x-theme-switch-dark-bg-hover: oklch(0.45 0 0 / 0.9);
-  --x-theme-switch-dark-bg-active: oklch(0.35 0 0 / 0.9);
+  --x-theme-switch-dark-bg: oklch(0.3 0 0 / 0.9);
+  --x-theme-switch-dark-bg-hover: oklch(0.35 0 0 / 0.9);
+  --x-theme-switch-dark-bg-active: oklch(0.25 0 0 / 0.9);
 }
 :global([data-theme="dark"]) {
   --x-theme-switch-light-fg: oklch(0.9 0 0 / 0.9);

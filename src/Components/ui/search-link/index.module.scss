@@ -1,17 +1,17 @@
 :root {
-  --x-search-fg: var(--x-fg);
-  --x-search-fg-hover: var(--x-fg-hover);
-  --x-search-fg-active: var(--x-fg-active);
-  --x-search-bg: oklch(0 0 0 / 0.1);
-  --x-search-bg-hover: oklch(0 0 0 / 0.15);
-  --x-search-bg-active: oklch(0 0 0 / 0.05);
+  --x-search-fg: var(--x-link-fg);
+  --x-search-fg-hover: var(--x-link-fg-hover);
+  --x-search-fg-active: var(--x-link-fg-active);
+  --x-search-bg: var(--x-link-bg);
+  --x-search-bg-hover: var(--x-link-bg-hover);
+  --x-search-bg-active: var(--x-link-bg-active);
 }
-:global([data-theme="dark"]) {
-  --x-search-fg: var(--x-fg);
-  --x-search-bg: oklch(1 0 0 / 0.1);
-  --x-search-bg-hover: oklch(1 0 0 / 0.15);
-  --x-search-bg-active: oklch(1 0 0 / 0.05);
-}
+// :global([data-theme="dark"]) {
+//   --x-search-fg: var(--x-text-fg);
+//   --x-search-bg: oklch(1 0 0 / 0.1);
+//   --x-search-bg-hover: oklch(1 0 0 / 0.15);
+//   --x-search-bg-active: oklch(1 0 0 / 0.05);
+// }
 .container {
   display: flex;
   flex-wrap: wrap;

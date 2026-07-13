@@ -77,7 +77,9 @@ const MemoMeter: FC<{
         <div className={styles.nameText}>{name}</div>
       </button>
       <div className={styles.percent}>
-        {percentRender ?? `${(percent ?? percentFallback).toFixed(1)}%`}
+        <span className={styles.percentText}>
+          {percentRender ?? `${(percent ?? percentFallback).toFixed(1)}%`}
+        </span>
       </div>
       <div className={styles.overview}>{overview}</div>
       <MeterCore value={progressPercent ?? percentFallback} />

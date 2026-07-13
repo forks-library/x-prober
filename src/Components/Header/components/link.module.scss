@@ -1,14 +1,18 @@
 :root {
-  --x-link-fg: oklch(1 0 0 / 0.9);
-  --x-link-bg: oklch(0.3 0 0 / 0.9);
-  --x-link-bg-hover: oklch(0.35 0 0 / 0.9);
-  --x-link-bg-active: oklch(0.25 0 0 / 0.9);
+  --x-header-link-fg: oklch(0.9 0 0);
+  --x-header-link-fg-hover: oklch(1 0 0);
+  --x-header-link-fg-active: oklch(0.85 0 0);
+  --x-header-link-bg: oklch(0.3 0 0 / 0.9);
+  --x-header-link-bg-hover: oklch(0.35 0 0 / 0.9);
+  --x-header-link-bg-active: oklch(0.25 0 0 / 0.9);
 }
 :global([data-theme="dark"]) {
-  --x-link-fg: oklch(0.9 0 0);
-  --x-link-bg: oklch(0.3 0 0 / 0.9);
-  --x-link-bg-hover: oklch(0.35 0 0 / 0.9);
-  --x-link-bg-active: oklch(0.25 0 0 / 0.9);
+  --x-header-link-fg: oklch(0.9 0 0);
+  --x-header-link-fg-hover: oklch(1 0 0);
+  --x-header-link-fg-active: oklch(0.85 0 0);
+  --x-header-link-bg: oklch(0.3 0 0 / 0.9);
+  --x-header-link-bg-hover: oklch(0.35 0 0 / 0.9);
+  --x-header-link-bg-active: oklch(0.25 0 0 / 0.9);
 }
 .main {
   display: flex;
@@ -17,18 +21,18 @@
   cursor: pointer;
   border: none;
   border-radius: 10rem;
-  background: var(--x-link-bg);
+  background: var(--x-header-link-bg);
   padding: var(--x-gutter-sm) var(--x-gutter);
-  color: var(--x-link-fg);
+  color: var(--x-header-link-fg);
   text-decoration: none;
   &:hover {
-    background: var(--x-link-bg-hover);
-    color: var(--x-link-fg);
+    background: var(--x-header-link-bg-hover);
+    color: var(--x-header-link-fg-hover);
     text-decoration: none;
   }
   &:active {
-    background: var(--x-link-bg-active);
-    color: var(--x-link-fg);
+    background: var(--x-header-link-bg-active);
+    color: var(--x-header-link-fg-active);
     text-decoration: none;
   }
 }

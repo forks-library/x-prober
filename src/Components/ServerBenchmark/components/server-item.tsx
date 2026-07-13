@@ -40,13 +40,13 @@ const ServerBenchmarkResult: FC<{
       title={gettext("Touch to copy marks")}
       type="button"
     >
-      <UiRuby rt="CPU" ruby={cpuString} />
+      <UiRuby data-is-detail rt="CPU" ruby={cpuString} />
       {sign}
-      <UiRuby rt={gettext("Read")} ruby={readString} />
+      <UiRuby data-is-detail rt={gettext("Read")} ruby={readString} />
       {sign}
-      <UiRuby rt={gettext("Write")} ruby={writeString} />
+      <UiRuby data-is-detail rt={gettext("Write")} ruby={writeString} />
       <span className={styles.sign}>=</span>
-      <UiRuby isResult rt={date || ""} ruby={totalString} />
+      <UiRuby data-is-total isResult rt={date || ""} ruby={totalString} />
     </button>
   );
 };

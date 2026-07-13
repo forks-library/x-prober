@@ -40,14 +40,13 @@ const BrowserBenchmarkResult: FC<{
       title={gettext("Touch to copy marks")}
       type="button"
     >
-      <UiRuby rt="JS" ruby={jsString} />
+      <UiRuby data-is-detail rt="JS" ruby={jsString} />
       {sign}
-      <UiRuby rt="DOM" ruby={domString} />
+      <UiRuby data-is-detail rt="DOM" ruby={domString} />
       {sign}
-      <UiRuby rt="Canvas" ruby={canvasString} />
-      {sign}
+      <UiRuby data-is-detail rt="Canvas" ruby={canvasString} />
       <span className={styles.sign}>=</span>
-      <UiRuby isResult rt={date || ""} ruby={totalString} />
+      <UiRuby data-total isResult rt={date || ""} ruby={totalString} />
     </button>
   );
 };

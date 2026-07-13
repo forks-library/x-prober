@@ -21,40 +21,32 @@
   grid-area: network-stats-item-id;
   text-align: center;
 }
-.type {
-  &::before {
-    opacity: 0.5;
-    content: "▼";
-    font-size: 1rem;
-  }
+.label {
+  opacity: 0.65;
+}
+.total {
+  opacity: 0.65;
+  font-weight: bold;
 }
 .rx,
 .tx {
   display: grid;
   position: relative;
+  padding: var(--x-gutter-sm);
+  font-family: "Tahoma", var(--x-code-font-family);
+  text-align: center;
+}
+.rx {
   grid-area: network-stats-item-rx;
   border-radius: var(--x-radius) 0 0 var(--x-radius);
   background: var(--x-network-stats-rx-bg);
-  padding: var(--x-gutter-sm);
   color: var(--x-network-stats-rx-fg);
-  font-family: "Arial Black", var(--x-code-font-family);
-  text-align: center;
 }
 .tx {
   grid-area: network-stats-item-tx;
   border-radius: 0 var(--x-radius) var(--x-radius) 0;
   background: var(--x-network-stats-tx-bg);
   color: var(--x-network-stats-tx-fg);
-  .type {
-    &::before {
-      content: "▲";
-    }
-  }
-}
-.totalRx,
-.rateRx,
-.totalTx,
-.rateTx {
 }
 .rateRx,
 .rateTx {

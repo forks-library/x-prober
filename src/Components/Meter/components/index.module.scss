@@ -7,6 +7,7 @@
   --x-meter-value-suboptimum-bg: oklch(0.76 0.14 72);
   --x-meter-value-even-less-good-bg: oklch(0.49 0.19 28);
   --x-meter-filter: none;
+  --x-meter-percent-bg: oklch(0 0 0 / 0.1);
 }
 
 :global([data-theme="dark"]) {
@@ -16,6 +17,7 @@
   --x-meter-value-suboptimum-bg: oklch(0.68 0.14 70);
   --x-meter-value-even-less-good-bg: oklch(0.49 0.19 28);
   --x-meter-filter: brightness(0.5);
+  --x-meter-percent-bg: oklch(1 0 0 / 0.1);
 }
 .main {
   display: grid;
@@ -35,6 +37,12 @@
 .percent {
   grid-area: x-meter-percent;
   text-align: right;
+}
+.percentText {
+  border-radius: var(--x-radius);
+  background-color: var(--x-meter-percent-bg);
+  padding: 0 var(--x-gutter);
+  // font-weight: bold;
 }
 .name {
   all: unset;

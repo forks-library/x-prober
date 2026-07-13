@@ -1,0 +1,24 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--x-column-min-width), 1fr));
+  column-gap: var(--x-gutter-sm);
+  row-gap: var(--x-gutter);
+}
+
+.link {
+  border-radius: var(--x-radius);
+  padding: 0 var(--x-gutter-sm);
+  color: var(--x-link-fg);
+  &:hover {
+    background: var(--x-link-bg-hover);
+    color: var(--x-link-fg-hover);
+  }
+  &:active {
+    background: var(--x-link-bg-active);
+    color: var(--x-link-fg-active);
+  }
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}

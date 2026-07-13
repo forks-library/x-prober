@@ -1,5 +1,7 @@
 .main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: var(--x-gutter-sm);
   padding-top: var(--x-gutter);
 }

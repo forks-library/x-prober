@@ -1,15 +1,15 @@
 :root {
-  --x-button-fg: var(--x-fg);
-  --x-button-fg-hover: var(--x-fg);
-  --x-button-fg-active: var(--x-fg);
+  --x-button-fg: var(--x-text-fg);
+  --x-button-fg-hover: var(--x-text-fg);
+  --x-button-fg-active: var(--x-text-fg);
   --x-button-bg: oklch(0 0 0 / 0.1);
   --x-button-bg-hover: oklch(0 0 0 / 0.15);
   --x-button-bg-active: oklch(0 0 0 / 0.2);
 }
 :global([data-theme="dark"]) {
-  --x-button-fg: var(--x-fg);
-  --x-button-fg-hover: var(--x-fg-hover);
-  --x-button-fg-active: var(--x-fg-active);
+  --x-button-fg: var(--x-text-fg);
+  --x-button-fg-hover: var(--x-text-fg-hover);
+  --x-button-fg-active: var(--x-text-fg-active);
   --x-button-bg: oklch(1 0 0 / 0.15);
   --x-button-bg-hover: oklch(1 0 0 / 0.2);
   --x-button-bg-active: oklch(1 0 0 / 0.1);

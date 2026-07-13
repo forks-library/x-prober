@@ -7,10 +7,9 @@ import { Placeholder } from "@/Components/Placeholder/index.tsx";
 import { OK } from "@/Components/Rest/http-status.ts";
 import type { FetchStatus } from "@/Components/Utils/components/fetch-status.ts";
 import { UiError } from "@/Components/ui/error/index.tsx";
-import styles from "./index.module.scss";
 import { ServerBenchmarkMyServer } from "./my-server.tsx";
-import stylesItem from "./server-item.module.scss";
 import { ServerBenchmarkItem } from "./server-item.tsx";
+import styles from "./servers.module.scss";
 import { useServerBenchmarkStore } from "./store.ts";
 import type { ServerBenchmarkProps } from "./types.ts";
 
@@ -60,7 +59,7 @@ export const ServerBenchmarkServers: FC = () => {
         const proberLink = probeUrl
           ? (
             <a
-              className={stylesItem.link}
+              className={styles.link}
               href={probeUrl}
               rel="noreferrer"
               target="_blank"
@@ -73,7 +72,7 @@ export const ServerBenchmarkServers: FC = () => {
         const binLink = binUrl
           ? (
             <a
-              className={stylesItem.link}
+              className={styles.link}
               href={binUrl}
               rel="noreferrer"
               target="_blank"
@@ -85,7 +84,7 @@ export const ServerBenchmarkServers: FC = () => {
           : null;
         const title = (
           <a
-            className={stylesItem.link}
+            className={styles.title}
             href={url}
             rel="noreferrer"
             target="_blank"
@@ -112,7 +111,7 @@ export const ServerBenchmarkServers: FC = () => {
       });
   }, [servers, maxMarks]);
   return (
-    <div className={styles.servers}>
+    <div className={styles.main}>
       <ServerBenchmarkMyServer />
       {fetchStatus === "loading" &&
         Array.from({ length: 5 }).map((_, i) => (

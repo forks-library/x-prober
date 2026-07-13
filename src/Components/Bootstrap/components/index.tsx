@@ -11,7 +11,6 @@ import { Modules } from "@/Components/Module/components/index.tsx";
 import { Nav } from "@/Components/Nav/components/index.tsx";
 import { usePollStore } from "@/Components/Poll/components/store.ts";
 import { OK } from "@/Components/Rest/http-status.ts";
-import { Theme } from "@/Components/Theme/components/index.tsx";
 import { useToastStore } from "@/Components/Toast/components/store.ts";
 import { useUpdaterStore } from "@/Components/Updater/components/store.ts";
 import type { FetchStatus } from "@/Components/Utils/components/fetch-status.ts";
@@ -91,7 +90,6 @@ export const Bootstrap: FC = () => {
   return (
     <>
       <Header />
-      <Theme />
       <Modules />
       <Footer />
       <Nav />

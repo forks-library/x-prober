@@ -1,18 +1,22 @@
 :root {
-  --x-server-benchmark-bg: transparent;
-  --x-server-benchmark-link-fg: oklch(0 0 0 / 0.9) --x-server-benchmark-link-bg: oklch(0 0 0 / 0.1);
+  --x-server-benchmark-marks-fg: oklch(0.15 0 0 / 0.9);
+  --x-server-benchmark-marks-fg-hover: oklch(0.1 0 0 / 0.9);
+  --x-server-benchmark-marks-fg-active: oklch(0.2 0 0 / 0.9);
+  --x-server-benchmark-marks-bg: oklch(0 0 0 / 0.05);
+  --x-server-benchmark-marks-bg-hover: oklch(0 0 0 / 0.1);
+  --x-server-benchmark-marks-bg-active: oklch(0 0 0 / 0.15);
 }
 :global([data-theme="dark"]) {
-  --x-server-benchmark-link-fg: var(--x-fg);
-  --x-server-benchmark-link-bg: oklch(1 0 0 / 0.05);
+  --x-server-benchmark-marks-fg: oklch(0.95 0 0 / 0.9);
+  --x-server-benchmark-marks-fg-hover: oklch(1 0 0 / 0.9);
+  --x-server-benchmark-marks-fg-active: oklch(0.9 0 0 / 0.9);
+  --x-server-benchmark-marks-bg: oklch(1 0 0 / 0.05);
+  --x-server-benchmark-marks-bg-hover: oklch(1 0 0 / 0.1);
+  --x-server-benchmark-marks-bg-active: oklch(1 0 0 / 0.01);
 }
 .main {
   display: grid;
-  // justify-content: center;
-  gap: var(--x-gutter-sm);
-  border-radius: var(--x-radius);
-  background: var(--x-server-benchmark-bg);
-  padding: var(--x-gutter-sm);
+  gap: calc(var(--x-gutter-sm) * 0.5);
   text-align: center;
 }
 .header {
@@ -20,37 +24,28 @@
   justify-content: center;
   align-items: center;
 }
-.link {
-  opacity: 0.75;
-  cursor: pointer;
-  border: none;
-  border-radius: var(--x-radius);
-  background: none;
-  padding: 0 var(--x-gutter-sm);
-  &:hover,
-  &:active {
-    opacity: 1;
-    background: var(--x-server-benchmark-link-bg);
-    text-decoration: none;
-  }
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-}
 .marks {
+  all: unset;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--x-gutter-sm);
+  gap: calc(var(--x-gutter-sm) * 0.5);
   cursor: pointer;
-  border: none;
   border-radius: var(--x-radius);
-  background-color: transparent;
-  color: var(--x-server-benchmark-link-fg);
-  font-size: 1.25rem;
+  background: var(--x-server-benchmark-marks-bg);
+  color: var(--x-server-benchmark-marks-fg);
+  font-size: 1.15rem;
   &:hover {
-    background: var(--x-server-benchmark-link-bg);
+    background: var(--x-server-benchmark-marks-bg-hover);
+    color: var(--x-server-benchmark-marks-fg-hover);
+  }
+  &:active {
+    background: var(--x-server-benchmark-marks-bg-active);
+    color: var(--x-server-benchmark-marks-fg-active);
+  }
+  [data-is-detail] {
+    opacity: 0.7;
   }
 }
 .sign {

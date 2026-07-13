@@ -6,8 +6,8 @@ import { Placeholder } from "@/Components/Placeholder/index.tsx";
 import { OK } from "@/Components/Rest/http-status.ts";
 import type { FetchStatus } from "@/Components/Utils/components/fetch-status.ts";
 import { UiError } from "@/Components/ui/error/index.tsx";
+import styles from "./browsers.module.scss";
 import { BrowserBenchmarkItem } from "./browsers-item.tsx";
-import styles from "./index.module.scss";
 import { BrowserBenchmarkMyBrowser } from "./my-browser.tsx";
 import { useBrowserBenchmarkStore } from "./store.ts";
 import type { BrowserBenchmarkProps } from "./types.ts";
@@ -39,8 +39,9 @@ export const BrowserBenchmarkBrowsers: FC = () => {
           ? Object.values(item.detail).reduce((a, b) => a + b, 0)
           : 0,
       }));
-      const sortedBrowsers = processedBrowsers
-        .toSorted((a, b) => b.total - a.total);
+      const sortedBrowsers = processedBrowsers.toSorted(
+        (a, b) => b.total - a.total,
+      );
       const highestMark = sortedBrowsers[0]?.total ?? 0;
       setBrowsers(sortedBrowsers);
       setMaxMarks(highestMark);
@@ -68,15 +69,16 @@ export const BrowserBenchmarkBrowsers: FC = () => {
     [browsers, maxMarks],
   );
   return (
-    <div className={styles.browsers}>
+    <div className={styles.main}>
       <BrowserBenchmarkMyBrowser />
       {status === "loading" &&
         Array.from({ length: 5 }).map((_, i) => (
           <Placeholder key={`browser-placeholder-${String(i)}`} />
         ))}
       {status === "idle" && results}
-      {status === "error" &&
-        <UiError>{gettext("Can not fetch marks data from GitHub.")}</UiError>}
+      {status === "error" && (
+        <UiError>{gettext("Can not fetch marks data from GitHub.")}</UiError>
+      )}
     </div>
   );
 };
