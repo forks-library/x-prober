@@ -1,4 +1,4 @@
-import { type FC, useCallback, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { serverFetch } from "@/Components/Fetch/server-fetch.ts";
 import { gettext } from "@/Components/Language/index.ts";
 import { Placeholder } from "@/Components/Placeholder/index.tsx";
@@ -7,7 +7,6 @@ import { OK } from "@/Components/Rest/http-status.ts";
 import { useUpdaterStore } from "@/Components/Updater/components/store.ts";
 import type { FetchStatus } from "@/Components/Utils/components/fetch-status.ts";
 import { template } from "@/Components/Utils/components/template.ts";
-import { useInterval } from "@/Components/Utils/components/use-interval.ts";
 import { UiError } from "@/Components/ui/error/index.tsx";
 import { NodesCpu } from "./cpu.tsx";
 import { NodesDisk } from "./disk.tsx";
@@ -22,35 +21,47 @@ export const Node: FC<{ id: string }> = ({ id }) => {
   const [errorNo, setErrorNo] = useState(0);
   const [pollData, setPollData] = useState<PollData | null>(null);
   const isUpdating = useUpdaterStore((s) => s.isUpdating);
-  const pollDelay = isUpdating ? null : TIMER;
-  const fetchData = useCallback(async () => {
+  useEffect(() => {
     if (isUpdating) {
       return;
     }
-    try {
-      const { data, status } = await serverFetch<PollData>(
-        `nodes&nodeId=${id}`,
-      );
-      if (!data || status !== OK) {
-        setFetchStatus("error");
-        setErrorNo(status);
-      } else {
-        setPollData(data);
-        setFetchStatus("idel");
-        setErrorNo(-1);
+    let timerId: ReturnType<typeof setTimeout> | null = null;
+    const controller = new AbortController();
+    let isRequesting = false;
+
+    const fetchData = async () => {
+      if (isRequesting) {
+        return;
       }
-    } catch (err) {
-      console.error("Error fetching node data:", err);
-      setFetchStatus("error");
-    }
-  }, [id, isUpdating]);
-  // 1. 组件挂载或 id 变化时，立即执行一次获取，避免延迟闪烁
-  useEffect(() => {
+      try {
+        const { data, status } = await serverFetch<PollData>(
+          `nodes&nodeId=${id}`,
+          { signal: controller.signal },
+        );
+        if (!data || status !== OK) {
+          setFetchStatus("error");
+          setErrorNo(status);
+        } else {
+          setPollData(data);
+          setFetchStatus("idle");
+          setErrorNo(-1);
+        }
+      } catch (err) {
+        console.error("Error fetching node data:", err);
+        setFetchStatus("error");
+      } finally {
+        isRequesting = false;
+        timerId = setTimeout(fetchData, TIMER);
+      }
+    };
     fetchData();
-  }, [fetchData]);
-  // 2. 后续的轮询逻辑
-  useInterval(fetchData, pollDelay);
-  // 解构数据，提供默认值
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+      controller.abort();
+    };
+  }, [id, isUpdating]);
   const {
     serverStatus = null,
     diskUsage = null,
@@ -71,7 +82,7 @@ export const Node: FC<{ id: string }> = ({ id }) => {
         </UiError>
       )}
       {fetchStatus === "loading" && <Placeholder height={10} />}
-      {fetchStatus === "idel" && (
+      {fetchStatus === "idle" && (
         <>
           {!cpuUsage || <NodesCpu cpuUsage={cpuUsage} sysLoad={sysLoad} />}
           {!memRealUsage || <NodesRam data={memRealUsage} />}
