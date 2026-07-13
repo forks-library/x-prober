@@ -45,7 +45,7 @@ export const ServerBenchmarkServers: FC = () => {
       const highestMark = processedServers[0]?.total ?? 0;
       setServers(processedServers);
       setMaxMarks(highestMark);
-      setFetchStatus("idel");
+      setFetchStatus("idle");
     };
 
     fetchData();
@@ -118,7 +118,7 @@ export const ServerBenchmarkServers: FC = () => {
         Array.from({ length: 5 }).map((_, i) => (
           <Placeholder key={`server-benchmark-placeholder-${String(i)}`} />
         ))}
-      {fetchStatus === "idel" && results}
+      {fetchStatus === "idle" && results}
       {fetchStatus === "error" && (
         <UiError>{gettext("Can not fetch marks data from GitHub.")}</UiError>
       )}

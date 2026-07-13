@@ -1,3 +1,4 @@
+import { HardDrive } from "lucide-react";
 import { type FC, memo } from "react";
 import type { DiskUsageItemProps } from "@/Components/DiskUsage/components/types.ts";
 import type { PollData } from "@/Components/Poll/components/types.ts";
@@ -8,8 +9,13 @@ import { NodesUsage, NodesUsageLabel, NodesUsageOverview } from "./usage.tsx";
 const Disk: FC<DiskUsageItemProps> = memo(({ id, free, total }) => (
   <div className={styles.item} key={id}>
     <NodesUsage percent={total ? Math.round((free / total) * 100) : 0}>
-      <NodesUsageLabel>{`🖴 ${id}`}</NodesUsageLabel>
-      <NodesUsageOverview>{`${formatBytes(free)} / ${formatBytes(total)}`}</NodesUsageOverview>
+      <NodesUsageLabel>
+        <HardDrive />
+        {id}
+      </NodesUsageLabel>
+      <NodesUsageOverview>
+        {`${formatBytes(free)} / ${formatBytes(total)}`}
+      </NodesUsageOverview>
     </NodesUsage>
   </div>
 ));

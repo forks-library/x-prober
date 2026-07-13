@@ -44,7 +44,7 @@ export const BrowserBenchmarkBrowsers: FC = () => {
       const highestMark = sortedBrowsers[0]?.total ?? 0;
       setBrowsers(sortedBrowsers);
       setMaxMarks(highestMark);
-      setStatus("idel");
+      setStatus("idle");
     };
     fetchData();
   }, [setBrowsers, setMaxMarks]);
@@ -74,7 +74,7 @@ export const BrowserBenchmarkBrowsers: FC = () => {
         Array.from({ length: 5 }).map((_, i) => (
           <Placeholder key={`browser-placeholder-${String(i)}`} />
         ))}
-      {status === "idel" && results}
+      {status === "idle" && results}
       {status === "error" &&
         <UiError>{gettext("Can not fetch marks data from GitHub.")}</UiError>}
     </div>
