@@ -2,6 +2,39 @@
 
 All Notable changes to `X-Prober` will be documented in this file
 
+## 10.0.0 - 2026-07-13
+
+### Breaking changes
+
+- Use toml instead of json for `xconfig.toml` config file
+- Re-design UI and color
+
+### Add
+
+- Add LiangYe(dark) and XiGuang(light) color scheme
+
+### Fix
+
+- Fix str_ function error in PHP5
+- Fix deprecated in filter_input function
+- Fix COUNTINE keyword error in PHP5
+
+### Optimize
+
+- Use Zustand instead of MobX
+- Update package
+- Performance and UI
+
+## 9.1.1 - 2025-12-21
+
+### Fix
+
+- Fix mb_ function error in PHP7/PHP5
+
+### Optimize
+
+- Optimize interval data
+
 ## 9.1.0 - 2025-09-05
 
 ### Add
@@ -55,7 +88,7 @@ All Notable changes to `X-Prober` will be documented in this file
 
 ## 9.0.3 - 2025-08-14
 
-### Fix 
+### Fix
 
 - Fix nodes API error
 - Fix footer style
@@ -72,7 +105,7 @@ All Notable changes to `X-Prober` will be documented in this file
 ### Fix
 
 - Fix footer not showing app name error
-  
+
 ## 9.0.0 - 2025-08-13
 
 ### Rewrite
@@ -348,7 +381,8 @@ All Notable changes to `X-Prober` will be documented in this file
 
 ### Fix
 
-- Fix `mysqli_get_client_version()` should have no args in PHP 8 (Jack Cherng #104)
+- Fix `mysqli_get_client_version()` should have no args in PHP 8 (Jack Cherng
+  #104)
 
 ## 6.2.0 - 2020-09-18
 

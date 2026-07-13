@@ -1,0 +1,4 @@
+nodes = [
+  ["node-1", "http://localhost/prober/dist/prober.php"],
+  ["node-3", "http://localhost/prober/dist/prober.php"],
+]
