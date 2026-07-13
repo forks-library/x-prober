@@ -1,3 +1,4 @@
+import { Cpu } from "lucide-react";
 import { type FC, memo } from "react";
 import { gettext } from "@/Components/Language/index.ts";
 import { SysLoadItem } from "@/Components/ServerStatus/components/system-load.tsx";
@@ -25,7 +26,10 @@ sys: ${((sys / cpuTotal) * 100).toFixed(2)}%
 `;
   return (
     <NodesUsage percent={usage}>
-      <NodesUsageLabel>{gettext("CPU")}</NodesUsageLabel>
+      <NodesUsageLabel>
+        <Cpu />
+        {gettext("CPU")}
+      </NodesUsageLabel>
       <NodesUsageOverview title={cpuTitle}>
         <SysLoad items={sysLoad} />
       </NodesUsageOverview>

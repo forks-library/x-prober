@@ -1,9 +1,10 @@
 .main {
   display: grid;
+  position: relative;
   gap: var(--x-gutter-sm);
   container-type: inline-size;
   max-height: calc(50px * 2 + var(--x-gutter-sm));
-  overflow-y: auto;
+  overflow-y: scroll;
   overscroll-behavior: contain;
   scroll-snap-type: y mandatory;
   scrollbar-color: oklch(0.5 0 0 / 0.5) transparent;

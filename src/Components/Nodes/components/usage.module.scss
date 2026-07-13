@@ -1,3 +1,9 @@
+:root {
+  --x-nodes-usage-percent-bg: oklch(0 0 0 / 0.1);
+}
+:global([data-theme="dark"]) {
+  --x-nodes-usage-percent-bg: oklch(1 0 0 / 0.1);
+}
 .main {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -17,10 +23,14 @@
   height: var(--x-meter-height);
 }
 .label {
-  // display: flex;
+  display: flex;
   grid-area: x-nodes-usage-label;
-  // justify-content: center;
-  // align-items: center;
+  align-items: center;
+  gap: var(--x-gutter-sm);
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 }
 .overview {
   display: flex;
@@ -34,4 +44,7 @@
 }
 .percent {
   grid-area: x-nodes-usage-percent;
+  border-radius: var(--x-radius);
+  background: var(--x-nodes-usage-percent-bg);
+  padding: 0 var(--x-gutter);
 }
