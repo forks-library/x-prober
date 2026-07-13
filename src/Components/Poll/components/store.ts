@@ -19,19 +19,12 @@ type State = {
   pollData: PollData | null;
   setPollData: (pollData: PollData | null) => void;
 };
-
 const actions: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
   pollData: null,
-
   setPollData: (pollData) => {
-    // 1. 更新当前 PollStore 自己的状态
-    // 因为用了 immer 中间件，这里可以直接修改 state（或者像你之前那样返回新对象）
     set((state) => {
       state.pollData = pollData;
     });
-
-    // 2. 核心：在这里一并分发到其他各个子 Store
-    // 加上可选链 ? 保证即使 pollData 为 null 结构也不会报错
     useConfigStore.getState().setPollData(pollData?.config ?? null);
     useUserConfigStore.getState().setPollData(pollData?.userConfig ?? null);
     useDatabaseStore.getState().setPollData(pollData?.database ?? null);
@@ -50,5 +43,4 @@ const actions: StateCreator<State, [["zustand/immer", never]]> = (set) => ({
       .setPollData(pollData?.temperatureSensor ?? null);
   },
 });
-
 export const usePollStore = create<State>()(immer(actions));
