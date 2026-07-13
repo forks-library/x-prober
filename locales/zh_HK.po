@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: X-Prober\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-09-04 22:53+0800\n"
-"Last-Translator: Km.Van <kmvan.com@gmail.com>\n"
+"PO-Revision-Date: 2026-07-13 09:22+0800\n"
+"Last-Translator: Km.Van <kmvan@outlook.com>\n"
 "Language-Team: Km.Van <inn-studio.com>\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,14 @@ msgstr ""
 "X-Poedit-KeywordsList: gettext\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-Flags-xgettext: --add-comments\n"
 
 msgid "Failed to fetch data. Please try again later."
 msgstr "無法獲取數據，請稍後重試。"
+
+msgid "Network error. Please check your connection."
+msgstr "網絡錯誤，請檢查您與伺服器的連接。"
 
 msgid "Touch to copy marks"
 msgstr "點擊複製跑分數據"
@@ -44,12 +47,6 @@ msgstr "測試我的瀏覽器"
 
 msgid "Browser bench"
 msgstr "瀏覽器跑分"
-
-msgid "Dark"
-msgstr "暗黑模式"
-
-msgid "Default"
-msgstr "預設"
 
 msgid "Database"
 msgstr "資料庫"
@@ -228,14 +225,11 @@ msgid ""
 "different loads, just for reference."
 msgstr "不同版本無法直接比較，且不同時間伺服器負載各異，結果僅供參考。"
 
-msgid "Testing, please wait..."
-msgstr "測試中，請稍候..."
+msgid "Please wait {{seconds}}s"
+msgstr "請等候 {{seconds}} 秒"
 
 msgid "Network error, please try again later."
 msgstr "網絡錯誤，請稍後重試。"
-
-msgid "Please wait {{seconds}}s"
-msgstr "請等候 {{seconds}} 秒"
 
 msgid "Benchmark my server"
 msgstr "測試我的伺服器"
@@ -372,17 +366,14 @@ msgstr "{{sensor}} 溫度"
 msgid "Temperature"
 msgstr "溫度"
 
+msgid "LiangYe"
+msgstr "良夜"
+
+msgid "XiGuang"
+msgstr "曦光"
+
 msgid "Click to close"
 msgstr "點擊關閉"
-
-msgid "⏳ Updating, please wait a second..."
-msgstr "⏳ 更新中，請稍候..."
-
-msgid "❌ Update error, click here to try again?"
-msgstr "❌ 更新錯誤，點此重試？"
-
-msgid "✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}"
-msgstr "✨ 發現新版本：{{oldVersion}} → {{newVersion}}"
 
 msgid "Update success, refreshing..."
 msgstr "更新成功，重新整理中..."
@@ -396,6 +387,15 @@ msgstr "無法更新檔案，請檢查伺服器權限及空間。"
 msgid "Click to update"
 msgstr "點擊更新"
 
+msgid "⏳ Updating, please wait a second..."
+msgstr "⏳ 更新中，請稍候..."
+
+msgid "❌ Update error, click here to try again?"
+msgstr "❌ 更新錯誤，點此重試？"
+
+msgid "✨ Found new version: {{oldVersion}} ⇢ {{newVersion}}"
+msgstr "✨ 發現新版本：{{oldVersion}} → {{newVersion}}"
+
 msgid "Loading..."
 msgstr "載入中..."
 
@@ -404,6 +404,15 @@ msgstr "不支援"
 
 msgid "Can not fetch IP"
 msgstr "無法取得 IP"
+
+#~ msgid "Dark"
+#~ msgstr "暗黑模式"
+
+#~ msgid "Default"
+#~ msgstr "預設"
+
+#~ msgid "Testing, please wait..."
+#~ msgstr "測試中，請稍候..."
 
 #~ msgid "Benchmark"
 #~ msgstr "跑分測試"
