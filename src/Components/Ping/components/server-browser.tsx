@@ -1,4 +1,4 @@
-import { type FC, type RefObject, useCallback, useRef } from "react";
+import { type FC, type RefObject, useCallback, useEffect, useRef } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Button } from "@/Components/Button/components/index.tsx";
 import { ButtonStatus } from "@/Components/Button/components/types.ts";
@@ -18,11 +18,27 @@ const Results: FC = () => {
     useShallow((s) => s.serverToBrowserPingItems),
   );
   const count = serverToBrowserPingItems.length;
+
+  // 安全计算，不使用 ... 操作符，防止大数据量时爆栈
+  let min = count ? serverToBrowserPingItems[0].time : 0;
+  let max = count ? serverToBrowserPingItems[0].time : 0;
+  let sum = 0;
+
+  for (let i = 0; i < count; i++) {
+    const t = serverToBrowserPingItems[i].time;
+    sum += t;
+    if (t < min) {
+      min = t;
+    }
+    if (t > max) {
+      max = t;
+    }
+  }
+
+  const avg = count ? (sum / count).toFixed(2) : "0.00";
   const items = serverToBrowserPingItems.map(({ time }) => time);
-  const avg = count ? (items.reduce((a, b) => a + b, 0) / count).toFixed(2) : 0;
-  const max = count ? Math.max(...items) : 0;
-  const min = count ? Math.min(...items) : 0;
   const mdev = calculateMdev(items).toFixed(2);
+
   return (
     <div className={styles.result}>
       {template(
@@ -34,6 +50,7 @@ const Results: FC = () => {
     </div>
   );
 };
+
 const ResultContainer: FC<{
   refContainer: RefObject<HTMLUListElement | null>;
 }> = ({ refContainer }) => {
@@ -41,6 +58,14 @@ const ResultContainer: FC<{
     useShallow((s) => s.serverToBrowserPingItems),
   );
   const hasServerToBrowserPingItems = Boolean(serverToBrowserPingItems.length);
+
+  // 优化点：每次列表长度改变时，自动将容器滚动到最下方
+  useEffect(() => {
+    if (refContainer.current) {
+      refContainer.current.scrollTop = refContainer.current.scrollHeight;
+    }
+  }, [serverToBrowserPingItems.length, refContainer]);
+
   return (
     <ModuleGroup label={gettext("Results")}>
       <div className={styles.resultContainer}>
@@ -57,6 +82,7 @@ const ResultContainer: FC<{
     </ModuleGroup>
   );
 };
+
 export const PingServerToBrowser: FC = () => {
   const {
     isPing,
@@ -71,52 +97,77 @@ export const PingServerToBrowser: FC = () => {
       setIsPingServerToBrowser: s.setIsPingServerToBrowser,
     })),
   );
+
   const refItemContainer = useRef<HTMLUListElement | null>(null);
-  const refPingTimer = useRef<number>(0);
+  const refPingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const ServerTimeMultiplier = 1000;
   const TimeoutTimerMs = 1000;
-  const ScrollTimerMs = 100;
+
+  // 核心单次 Ping 请求
   const ping = useCallback(async (): Promise<void> => {
     const start = Date.now();
-    const { data, status } = await serverFetch<ServerToBrowserPingItemProps>(
-      "ping",
-    );
-    if (data?.time && status === OK) {
-      const { id, time } = data;
-      const end = Date.now();
-      const serverTime = time * ServerTimeMultiplier;
-      addServerToBrowserPingItem({
-        id,
-        time: Math.floor(end - start - serverTime),
-      });
-      setTimeout(() => {
-        if (!refItemContainer.current) {
-          return;
-        }
-        const st = refItemContainer.current.scrollTop;
-        const sh = refItemContainer.current.scrollHeight;
-        if (st < sh) {
-          refItemContainer.current.scrollTop = sh;
-        }
-      }, ScrollTimerMs);
+    try {
+      const { data, status } = await serverFetch<ServerToBrowserPingItemProps>(
+        "ping",
+      );
+      if (data?.time && status === OK) {
+        const { id, time } = data;
+        const end = Date.now();
+        const serverTime = time * ServerTimeMultiplier;
+
+        // 防御本地与服务端时钟不同步导致的负数问题
+        const calculatedTime = Math.max(
+          0,
+          Math.floor(end - start - serverTime),
+        );
+
+        addServerToBrowserPingItem({
+          id,
+          time: calculatedTime,
+        });
+      }
+    } catch (error) {
+      console.error("Ping failed:", error);
     }
   }, [addServerToBrowserPingItem]);
-  const pingLoop = useCallback(async (): Promise<void> => {
-    await ping();
-    refPingTimer.current = window.setTimeout(async () => {
-      await pingLoop();
-    }, TimeoutTimerMs);
-  }, [ping]);
-  const handlePing = useCallback(async () => {
+
+  // 利用 useEffect 集中管理循环逻辑与定时器的销毁
+  useEffect(() => {
+    if (!isPingServerToBrowser) {
+      if (refPingTimer.current) {
+        clearTimeout(refPingTimer.current);
+        refPingTimer.current = null;
+      }
+      return;
+    }
+
+    const runLoop = async () => {
+      await ping();
+      // 只有在依然处于激活状态时才继续下一个定时
+      if (isPingServerToBrowser) {
+        refPingTimer.current = setTimeout(runLoop, TimeoutTimerMs);
+      }
+    };
+
+    runLoop();
+
+    // 组件卸载或状态变为不 Ping 时，严格执行垃圾清理
+    return () => {
+      if (refPingTimer.current) {
+        clearTimeout(refPingTimer.current);
+      }
+    };
+  }, [isPingServerToBrowser, ping]);
+
+  const handlePing = useCallback(() => {
     if (isPing || isPingServerToBrowser) {
       setIsPingServerToBrowser(false);
-      clearTimeout(refPingTimer.current);
       return;
     }
     setIsPingServerToBrowser(true);
-    await pingLoop();
-  }, [isPing, isPingServerToBrowser, pingLoop, setIsPingServerToBrowser]);
-  // const count = serverToBrowserPingItems.length;
+  }, [isPing, isPingServerToBrowser, setIsPingServerToBrowser]);
+
   return (
     <UiSingleColContainer>
       <ModuleGroup label={gettext("Server ⇄ Browser")}>
