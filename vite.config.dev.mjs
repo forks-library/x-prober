@@ -11,19 +11,6 @@ export default defineConfig(({ mode }) => {
       manifest: true,
       outDir: "../dist",
       target: "esnext",
-      // rollupOptions: {
-      //   external: ['react', 'react-dom'],
-      //   output: {
-      //     globals: {
-      //       react: 'React',
-      //       'react-dom': 'ReactDOM',
-      //     },
-      //   },
-      // },
-
-      // rollupOptions: {
-      //   input: new URL('./src/main.tsx', import.meta.url).pathname,
-      // },
     },
     css: {
       modules: {
