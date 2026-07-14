@@ -34,12 +34,12 @@ final class ScriptGeneration
     public function generate(): void
     {
         // 验证源脚本文件是否存在 / Validate if the source script file exists
-        if ( ! is_file($this->scriptFilePath)) {
+        if ( !is_file($this->scriptFilePath)) {
             throw new InvalidArgumentException("[ScriptGeneration] Source file not found: {$this->scriptFilePath}");
         }
 
         // 验证目标模板文件是否存在 / Validate if the destination file exists
-        if ( ! is_file($this->distFilePath)) {
+        if ( !is_file($this->distFilePath)) {
             throw new InvalidArgumentException("[ScriptGeneration] Destination file not found: {$this->distFilePath}");
         }
 
@@ -47,7 +47,7 @@ final class ScriptGeneration
 
         $this->setScript($scriptContent);
 
-        echo "[ScriptGeneration] Script content written successfully.\n";
+        echo "[ScriptGeneration] Script content has been written successfully.\n";
     }
 
     /**
@@ -81,7 +81,7 @@ final class ScriptGeneration
 
         // 检查是否存在占位符（可选优化：防止无效替换）
         // Check if the placeholder exists (Optional optimization: prevent redundant writes)
-        if ( ! str_contains($distContent, '{{X_SCRIPT}}')) {
+        if ( !str_contains($distContent, '{{X_SCRIPT}}')) {
             throw new RuntimeException('[ScriptGeneration] Placeholder {{X_SCRIPT}} not found in destination file.');
         }
 

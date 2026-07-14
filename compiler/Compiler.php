@@ -125,11 +125,11 @@ final class Compiler
      */
     private function getCodeViaFilePath(string $filePath): string
     {
-        echo "Packing `{$filePath}`... ";
+        // echo "Packing `{$filePath}`... ";
 
         $code = file_get_contents($filePath);
         if (false === $code) {
-            echo "FAILED\n";
+            echo "[FAILED] {$filePath}\n";
 
             return '';
         }
@@ -140,7 +140,7 @@ final class Compiler
         // 💡 Opt: Safely remove leading <?php tag via regex to avoid bugs caused by magic number 5
         $code = preg_replace('/^<\\?php\\s*/i', '', $code);
 
-        echo "OK\n";
+        // echo "OK\n";
 
         return $code . "\n";
     }
