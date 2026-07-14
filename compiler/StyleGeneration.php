@@ -30,13 +30,13 @@ final class StyleGeneration
     {
         // 校验源样式文件是否存在
         // Validate if the source style file exists.
-        if ( ! is_file($this->styleFilePath)) {
+        if ( !is_file($this->styleFilePath)) {
             throw new RuntimeException("[StyleGeneration] File not found: {$this->styleFilePath}");
         }
 
         // 校验目标文件是否存在
         // Validate if the target dist file exists.
-        if ( ! is_file($this->distFilePath)) {
+        if ( !is_file($this->distFilePath)) {
             throw new RuntimeException("[StyleGeneration] File not found: {$this->distFilePath}");
         }
 
@@ -45,7 +45,7 @@ final class StyleGeneration
         // 执行替换并写入文件
         // Perform replacement and write to file.
         if ($this->setStyle($styleContent)) {
-            echo "[StyleGeneration] Script content wrote successfully.\n";
+            echo "[StyleGeneration] Script content has been written successfully.\n";
         } else {
             throw new RuntimeException('[StyleGeneration] Error: Cannot write script content to dist.');
         }
