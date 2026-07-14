@@ -1,13 +1,14 @@
 [![X Prober preview](screenshots/preview.webp)](screenshots/preview.webp)
 
 - [简体中文](README-zh_CN.md)
-- [繁体體中文（中國臺灣）](README-zh_TW.md)
-- [繁体體中文（中國香港）](README-zh_HK.md)
+- [繁體中文（中國臺灣）](README-zh_TW.md)
+- [繁體中文（中國香港）](README-zh_HK.md)
 - [日本語](README-jp.md)
 
 # 😎 X Prober, Notch Prober
 
-> A PHP environment probe program that not only displays server information intuitively.
+> A PHP environment probe program that not only displays server information
+> intuitively.
 
 [![Backers on Open Collective](https://opencollective.com/x-prober/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/x-prober/sponsors/badge.svg)](#sponsors)
@@ -23,7 +24,9 @@
 
 ## Download & Usage
 
-- Click [INN Download Node](https://api.inn-studio.com/download?id=xprober) or [GitHub Node](https://github.com/kmvan/x-prober/raw/master/dist/prober.php) to download the probe file
+- Click [INN Download Node](https://api.inn-studio.com/download?id=xprober) or
+  [GitHub Node](https://github.com/kmvan/x-prober/raw/master/dist/prober.php) to
+  download the probe file
 - You'll get a single file. Rename it to `x.php` and upload to your server
 - Access via browser: `your-domain/x.php`
 
@@ -44,7 +47,8 @@
 2. Fetch your repository
 3. Install npm modules: `$ npx pnpm i`
 4. Install composer: `$ composer install && composer dumpautoload -o`
-5. Generate multilingual files: `$ npm run lang` to rebuild `./languages/lang.pot` template
+5. Generate multilingual files: `$ npm run lang` to rebuild
+   `./languages/lang.pot` template
 6. Start PHP backend: `$ npx pnpm dev:php`
 7. Start Vite frontend: `$ npx pnpm dev`
 8. Access: `http://localhost:5173/`
@@ -73,15 +77,19 @@
 
 ## Backers
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/x-prober#backer)]
+Thank you to all our backers! 🙏
+[[Become a backer](https://opencollective.com/x-prober#backer)]
 
 <a href="https://opencollective.com/x-prober#backers" target="_blank"><img src="https://opencollective.com/x-prober/backers.svg?width=890"></a>
 
 ## Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/x-prober#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a
+link to your website.
+[[Become a sponsor](https://opencollective.com/x-prober#sponsor)]
 
-- Thanks to [VPSPlayer.com](https://vpsplayer.com/aff.php?aff=50) - Jan 16, 2021 - ¥199
+- Thanks to [VPSPlayer.com](https://vpsplayer.com/aff.php?aff=50) - Jan 16,
+  2021 - ¥199
 - Thanks to 1529\*\*\*576 - Apr 4, 2019 – ¥150
 - Thanks to [Vultr.com](https://www.vultr.com/?ref=7256513) - Mar 13, 2019 - $50
 
